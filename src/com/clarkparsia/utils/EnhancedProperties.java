@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Title: <br>
@@ -18,12 +17,12 @@ import java.util.Iterator;
 public class EnhancedProperties extends Properties {
 
     public boolean getBooleanProperty(String theProp) {
-        return super.getProperty(theProp) != null && Boolean.valueOf(super.getProperty(theProp)).booleanValue();
+        return super.getProperty(theProp) != null && Boolean.valueOf(super.getProperty(theProp));
     }
 
     public int getIntegerProperty(String theProp) {
         try {
-            return Integer.valueOf(super.getProperty(theProp)).intValue();
+            return Integer.valueOf(super.getProperty(theProp));
         }
         catch (NumberFormatException nfe) {
             return 0;
@@ -39,26 +38,25 @@ public class EnhancedProperties extends Properties {
         return aValue;
     }
 
-    public List getPropertyAsList(String theProp) {
+    public List<String> getPropertyAsList(String theProp) {
         String aValue = getProperty(theProp);
 
-        List aList = new ArrayList();
+        List<String> aList = new ArrayList<String>();
 
         String[] aElems = aValue.split(",");
-        for (int i = 0; i < aElems.length; i++) {
-            aList.add(aElems[i].trim());
+        for (String aElem : aElems) {
+            aList.add(aElem.trim());
         }
 
         return aList;
     }
 
-    public Map getPropertyAsMap(String theProp) {
-        List aList = getPropertyAsList(theProp);
+    public Map<String, String> getPropertyAsMap(String theProp) {
+        List<String> aList = getPropertyAsList(theProp);
 
-        Map aMap = new HashMap();
+        Map<String, String> aMap = new HashMap<String, String>();
 
-        for (Iterator it = aList.iterator(); it.hasNext();) {
-            String aKey = (String) it.next();
+        for (String aKey : aList) {
             String aValue = getProperty(aKey);
 
             aMap.put(aKey, aValue);

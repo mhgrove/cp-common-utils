@@ -27,13 +27,9 @@ import java.awt.Toolkit;
 
 /**
  * <p>Title: </p>
- *
  * <p>Description: </p>
- *
  * <p>Copyright: Copyright (c) 2006</p>
- *
  * <p>Company: Clark & Parsia, LLC. <http://www.clarkparsia.com></p>
- *
  * @author Michael Grove
  * @version 1.0
  */
@@ -68,14 +64,17 @@ public class BasicUtils
         return aBuffer.toString();
     }
 
-    public static List listFiles(File theDirectory) {
-        ArrayList aList = new ArrayList();
+    public static List<File> listFiles(File theDirectory) {
+        ArrayList<File> aList = new ArrayList<File>();
 
         File[] aFileList = theDirectory.listFiles();
-        for (int i = 0; i < aFileList.length; i++) {
-            if (aFileList[i].isDirectory())
-                aList.addAll(listFiles(aFileList[i]));
-            else aList.add(aFileList[i]);
+        for (File aFile : aFileList) {
+            if (aFile.isDirectory()) {
+                aList.addAll(listFiles(aFile));
+            }
+            else {
+                aList.add(aFile);
+            }
         }
 
         return aList;
@@ -94,8 +93,7 @@ public class BasicUtils
          int aIndex = 0;
 
          // while the string to replace is present, remove it and replace it with the new string
-         while (theHost.indexOf(theOldString, aIndex) != -1)
-         {
+         while (theHost.indexOf(theOldString, aIndex) != -1) {
              // find out where the string to remove is
              aIndex = theHost.indexOf(theOldString, aIndex);
 
@@ -116,7 +114,7 @@ public class BasicUtils
      * @throws java.io.IOException if there are problems opening or reading from the file
      * @throws java.io.FileNotFoundException if the file cannot be found
      */
-    public static String getFileAsString(String fn) throws java.io.IOException, java.io.FileNotFoundException
+    public static String getFileAsString(String fn) throws java.io.IOException
     {
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fn)));
         return getStringFromBufferedReader(reader);
@@ -126,18 +124,20 @@ public class BasicUtils
      * Read the contents of the specified reader return them as a String
      * @param aReader BufferedReader the reader to read from
      * @return String the string contained in the reader
-     * @throws IOException
+     * @throws IOException if there is an error reading
      */
     public static String getStringFromBufferedReader(BufferedReader aReader) throws IOException
     {
         StringBuffer theFile = new StringBuffer();
         String line = aReader.readLine();
-        while (line != null)
-        {
+
+        while (line != null) {
             theFile.append(line).append(ENDL);
             line = aReader.readLine();
-        } // while
+        }
+
         aReader.close();
+
         return theFile.toString();
     }
 
@@ -145,12 +145,13 @@ public class BasicUtils
      * Returns the specified URL as a string.  This function will read the contents at the specified URl and return the results.
      * @param theURL URL the URL to read from
      * @return String the String found at the URL
-     * @throws IOException
+     * @throws IOException if there is an error reading
      */
     public static String getURLAsString(URL theURL) throws IOException
     {
-        if (theURL == null)
+        if (theURL == null) {
             return null;
+        }
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(theURL.openStream()));
         return getStringFromBufferedReader(reader);
@@ -164,7 +165,7 @@ public class BasicUtils
      * Write the specifed string to the given file name
      * @param theSave String the string to save
      * @param theFileName String the file to save the string to
-     * @throws IOException
+     * @throws IOException if there is an error while writing
      */
     public static void writeStringToFile(String theSave, String theFileName) throws IOException {
         writeStringToStream(theSave, new FileOutputStream(theFileName));
@@ -190,8 +191,8 @@ public class BasicUtils
         aWriter.close();
     }
 
-    public static Set collectElements(Iterator theIter) {
-        Set aSet = new LinkedHashSet();
+    public static <T> Set<T> collectElements(Iterator<T> theIter) {
+        Set<T> aSet = new LinkedHashSet<T>();
 
         while (theIter.hasNext())
             aSet.add(theIter.next());
@@ -207,24 +208,23 @@ public class BasicUtils
      * @param toSearch Set the search set
      * @return boolean true if any element in the first set is present in the second
      */
-    public static boolean containsAny(Set theList, Set toSearch) {
+    public static <T> boolean containsAny(Set<T> theList, Set<T> toSearch) {
 
-        if (toSearch.isEmpty())
+        if (toSearch.isEmpty()) {
             return false;
+        }
         else
         {
-            Iterator iter = theList.iterator();
-            while (iter.hasNext())
-            {
-                Object obj = iter.next();
-                if (toSearch.contains(obj))
+            for (T aObj : theList) {
+                if (toSearch.contains(aObj)) {
                     return true;
+                }
             }
             return false;
         }
     }
 
-    public static boolean containsAny(List theList, List theSearch) {
-        return containsAny(new HashSet(theList), new HashSet(theSearch));
+    public static <T> boolean containsAny(List<T> theList, List<T> theSearch) {
+        return containsAny(new HashSet<T>(theList), new HashSet<T>(theSearch));
     }
 }
