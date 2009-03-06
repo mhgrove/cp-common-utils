@@ -35,6 +35,17 @@ public class NamespaceUtils
         mNamespaces.remove(theAbbrev);
     }
 
+    public static String getLocalName(String theId) {
+        int aIndex = theId.lastIndexOf("#");
+        if (aIndex == -1)
+            aIndex = theId.lastIndexOf("/");
+
+        if (aIndex == -1)
+            return theId;
+
+        return theId.substring(aIndex+1);
+    }
+    
     public static String qname(String theId) {
         int aIndex = theId.lastIndexOf("#");
         if (aIndex == -1)
