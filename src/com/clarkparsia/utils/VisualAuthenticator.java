@@ -20,6 +20,11 @@ import java.awt.GridLayout;
  * @version 1.0
  */
 public class VisualAuthenticator extends Authenticator {
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     protected PasswordAuthentication getPasswordAuthentication() {
         JTextField aUser = new JTextField();
         JTextField aPassword = new JPasswordField();

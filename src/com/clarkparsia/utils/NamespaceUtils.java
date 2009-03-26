@@ -2,7 +2,8 @@ package com.clarkparsia.utils;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.net.URISyntaxException;
+import java.net.URI;
 
 /**
  * <p>Title: </p>
@@ -18,7 +19,7 @@ import java.util.Iterator;
  */
 public class NamespaceUtils
 {
-    private static final Map mNamespaces = new HashMap();
+    private static final Map<String, String> mNamespaces = new HashMap<String, String>();
 
     public static void clear() {
         mNamespaces.clear();
@@ -76,28 +77,29 @@ public class NamespaceUtils
             aLocalName = theQName;
         }
 
-        if (aURI == null)
+        if (aURI == null) {
             return theQName;
-        else return aURI + aLocalName;
+        }
+        else {
+            return aURI + aLocalName;
+        }
     }
 
     private static String uriForAbbrev(String theAbbrev) {
-        Iterator aIter = mNamespaces.keySet().iterator();
-        while (aIter.hasNext()) {
-            String aKey = (String)aIter.next();
-            if (aKey.equals(theAbbrev))
-                return (String)mNamespaces.get(aKey);
+        for (String aKey : mNamespaces.keySet()) {
+            if (aKey.equals(theAbbrev)) {
+                return mNamespaces.get(aKey);
+            }
         }
 
         return null;
     }
 
     private static String abbrevForURI(String theURI) {
-        Iterator aIter = mNamespaces.keySet().iterator();
-        while (aIter.hasNext()) {
-            String aKey = (String)aIter.next();
-            if (mNamespaces.get(aKey).equals(theURI))
+        for (String aKey : mNamespaces.keySet()) {
+            if (mNamespaces.get(aKey).equals(theURI)) {
                 return aKey;
+            }
         }
 
         return null;

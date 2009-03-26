@@ -66,17 +66,31 @@ public class EnhancedProperties extends Properties {
     }
 
     private String replaceVariables(String theValue) {
-        String aNewValue = theValue;
-        while (aNewValue.indexOf("${") != -1) {
-            String aVar = aNewValue.substring(aNewValue.indexOf("${") + 2, aNewValue.indexOf("}"));
+//        String aNewValue = theValue;
+//        while (aNewValue.indexOf("${") != -1) {
+//            String aVar = aNewValue.substring(aNewValue.indexOf("${") + 2, aNewValue.indexOf("}"));
+//
+//            if (super.getProperty(aVar) != null) {
+//                aNewValue = aNewValue.substring(0, aNewValue.indexOf("${")) + replaceVariables(super.getProperty(aVar)) +
+//                            aNewValue.substring(aNewValue.indexOf("${") + 3 + aVar.length());
+//            }
+//        }
+//
+//        return aNewValue;
+
+        StringBuffer aNewValue = new StringBuffer(theValue);
+        int aIndex = 0;
+        while (aNewValue.indexOf("${", aIndex) != -1) {
+
+            String aVar = aNewValue.substring(aNewValue.indexOf("${", aIndex) + 2, aNewValue.indexOf("}", aIndex));
 
             if (super.getProperty(aVar) != null) {
-                aNewValue = aNewValue.substring(0, aNewValue.indexOf("${")) + replaceVariables(super.getProperty(aVar)) +
-                            aNewValue.substring(aNewValue.indexOf("${") + 3 + aVar.length());
+                aNewValue.replace(aNewValue.indexOf("${", aIndex), aNewValue.indexOf("}", aIndex)+1, replaceVariables(super.getProperty(aVar)));
             }
-        }
 
-        return aNewValue;
+            aIndex = aNewValue.indexOf("}", aIndex);
+        }
+        return aNewValue.toString();
     }
 }
 
