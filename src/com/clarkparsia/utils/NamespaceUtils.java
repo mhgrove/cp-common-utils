@@ -6,19 +6,15 @@ import java.net.URISyntaxException;
 import java.net.URI;
 
 /**
- * <p>Title: </p>
- *
- * <p>Description: </p>
- *
+ * <p>Title: NamespaceUtils</p>
+ * <p>Description: Utility for working with a set of namespaces</p>
  * <p>Copyright: Copyright (c) 2006</p>
- *
  * <p>Company: Clark & Parsia, LLC. <http://www.clarkparsia.com></p>
  *
  * @author Michael Grove
  * @version 1.0
  */
-public class NamespaceUtils
-{
+public class NamespaceUtils {
     private static final Map<String, String> mNamespaces = new HashMap<String, String>();
 
     public static void clear() {

@@ -16,19 +16,21 @@ import java.util.HashMap;
  */
 public class EnhancedProperties extends Properties {
 
-    public boolean getBooleanProperty(String theProp) {
+    /**
+     * Return the value of the property as a boolean
+     * @param theProp the property to retrieve
+     * @return the value of the property as a boolean, or false if the property does not exist
+     */
+    public boolean getPropertyAsBoolean(String theProp) {
         return super.getProperty(theProp) != null && Boolean.valueOf(super.getProperty(theProp));
     }
 
-    public int getIntegerProperty(String theProp) {
-        try {
-            return Integer.valueOf(super.getProperty(theProp));
-        }
-        catch (NumberFormatException nfe) {
-            return 0;
-        }
-    }
-
+    /**
+     * Returns the value of the given property
+     * @param theProp the property to retrieve
+     * @return the value of the property, or null if one is not found
+     */
+    @Override
     public String getProperty(String theProp) {
         String aValue = super.getProperty(theProp);
         if (aValue != null) {
@@ -38,8 +40,31 @@ public class EnhancedProperties extends Properties {
         return aValue;
     }
 
+    /**
+     * Return the value of the property as an int
+     * @param theProp the property to retrieve
+     * @return the value of the property as an int
+     * @throws NumberFormatException thrown if the value is not a valid integer value
+     */
+    public int getPropertyAsInt(String theProp) throws NumberFormatException {
+        return Integer.parseInt(getProperty(theProp));
+    }
+
+    /**
+     * Returns the value of a property as a list.  The value of the property must be comma separated:
+     * <pre>
+     * mylist = one, two, three, four
+     * </pre>
+     * Would yield a list of four elements, "one", "two", "three" and "four".
+     * @param theProp the property key
+     * @return the value as a list, or null if the key is not in the properties. 
+     */
     public List<String> getPropertyAsList(String theProp) {
         String aValue = getProperty(theProp);
+
+        if (aValue == null) {
+            return null;
+        }
 
         List<String> aList = new ArrayList<String>();
 
@@ -51,6 +76,20 @@ public class EnhancedProperties extends Properties {
         return aList;
     }
 
+    /**
+     * Returns the value of the property as a map.  The way this works is if you have some properties like this:
+     * <pre>
+     * map = foo, baz, boz
+     * foo = bar
+     * baz = biz
+     * boz = buzz
+     * </pre>
+     * Getting the key "map" as a map will yield a map with three keys "foo", "baz", and "boz" with the values "bar",
+     * "biz" and "buzz" respectively.  The keys of the map MUST be comma separated.  If a key does not have a corresponding
+     * value, it is not added to the result map.
+     * @param theProp the property key which has the key values of the map as its value
+     * @return the property value as a map.
+     */
     public Map<String, String> getPropertyAsMap(String theProp) {
         List<String> aList = getPropertyAsList(theProp);
 
@@ -59,25 +98,20 @@ public class EnhancedProperties extends Properties {
         for (String aKey : aList) {
             String aValue = getProperty(aKey);
 
-            aMap.put(aKey, aValue);
+            if (aValue != null) {
+                aMap.put(aKey, aValue);
+            }
         }
 
         return aMap;
     }
 
+    /**
+     * Given a property value, resolve any variable references in the value
+     * @param theValue the value to resolve
+     * @return the value, with any valid variable references resolved.
+     */
     private String replaceVariables(String theValue) {
-//        String aNewValue = theValue;
-//        while (aNewValue.indexOf("${") != -1) {
-//            String aVar = aNewValue.substring(aNewValue.indexOf("${") + 2, aNewValue.indexOf("}"));
-//
-//            if (super.getProperty(aVar) != null) {
-//                aNewValue = aNewValue.substring(0, aNewValue.indexOf("${")) + replaceVariables(super.getProperty(aVar)) +
-//                            aNewValue.substring(aNewValue.indexOf("${") + 3 + aVar.length());
-//            }
-//        }
-//
-//        return aNewValue;
-
         StringBuffer aNewValue = new StringBuffer(theValue);
         int aIndex = 0;
         while (aNewValue.indexOf("${", aIndex) != -1) {

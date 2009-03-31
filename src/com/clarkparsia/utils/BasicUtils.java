@@ -39,11 +39,6 @@ public class BasicUtils
     public static final int ONE_WEEK = 7 * ONE_DAY;
 
     private static final Random RANDOM = new Random();
-    
-    /**
-     * The system dependent end-of-line defined here for convenience 
-     */
-    public static String ENDL = System.getProperty( "line.separator" );
 
     /**
      * Return a string of random characters of the specified length.
@@ -61,6 +56,11 @@ public class BasicUtils
         return aBuffer.toString();
     }
 
+    /**
+     * Recursively traverse the directory and all its sub directories and return a list of all the files contained within.
+     * @param theDirectory the start directory
+     * @return all files in the start directory and all its sub directories.
+     */
     public static List<File> listFiles(File theDirectory) {
         ArrayList<File> aList = new ArrayList<File>();
 
@@ -85,8 +85,7 @@ public class BasicUtils
      * @param theNewString  String to insert in the place of the string to remove
      * @return copy of the initial string with all occurances of the one string replaced by the other
      */
-     public static String replace(String theHost, String theOldString, String theNewString)
-     {
+     public static String replace(String theHost, String theOldString, String theNewString) {
          int aIndex = 0;
 
          // while the string to replace is present, remove it and replace it with the new string
@@ -102,91 +101,6 @@ public class BasicUtils
          }
          return theHost;
      }
-
-    /**
-     * Given a path to a file on the local disk, return the contents of that file as a String.<br><br>
-     *
-     * @param fn     Fully qualified file name to a file on the local disk
-     * @return Contents of the file as a String
-     * @throws java.io.IOException if there are problems opening or reading from the file
-     * @throws java.io.FileNotFoundException if the file cannot be found
-     */
-    public static String getFileAsString(String fn) throws java.io.IOException
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fn)));
-        return getStringFromBufferedReader(reader);
-    }
-
-    /**
-     * Read the contents of the specified reader return them as a String
-     * @param aReader BufferedReader the reader to read from
-     * @return String the string contained in the reader
-     * @throws IOException if there is an error reading
-     */
-    public static String getStringFromBufferedReader(BufferedReader aReader) throws IOException
-    {
-        StringBuffer theFile = new StringBuffer();
-        String line = aReader.readLine();
-
-        while (line != null) {
-            theFile.append(line).append(ENDL);
-            line = aReader.readLine();
-        }
-
-        aReader.close();
-
-        return theFile.toString();
-    }
-
-    /**
-     * Returns the specified URL as a string.  This function will read the contents at the specified URl and return the results.
-     * @param theURL URL the URL to read from
-     * @return String the String found at the URL
-     * @throws IOException if there is an error reading
-     */
-    public static String getURLAsString(URL theURL) throws IOException
-    {
-        if (theURL == null) {
-            return null;
-        }
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(theURL.openStream()));
-        return getStringFromBufferedReader(reader);
-    }
-
-    public static String getLocalName(String theString) {
-        return theString.substring(theString.lastIndexOf("#")+1);
-    }
-
-    /**
-     * Write the specifed string to the given file name
-     * @param theSave String the string to save
-     * @param theFileName String the file to save the string to
-     * @throws IOException if there is an error while writing
-     */
-    public static void writeStringToFile(String theSave, String theFileName) throws IOException {
-        writeStringToStream(theSave, new FileOutputStream(theFileName));
-    }
-
-    public static void writeStringToStream(String theString, OutputStream theOutput) throws IOException {
-        writeStringToWriter(theString, new OutputStreamWriter(theOutput));
-    }
-
-    public static void writeStringToWriter(String theString, Writer theWriter) throws IOException {
-        BufferedWriter aWriter = new BufferedWriter(theWriter);
-
-        StringTokenizer st = new StringTokenizer(theString,"\n",true);
-        String s;
-        while (st.hasMoreTokens()) {
-            s = st.nextToken();
-            if (s.equals("\n"))
-                aWriter.newLine();
-            else aWriter.write(s);
-        }
-        
-        aWriter.flush();
-        aWriter.close();
-    }
 
     public static <T> Set<T> collectElements(Iterator<T> theIter) {
         Set<T> aSet = new LinkedHashSet<T>();
