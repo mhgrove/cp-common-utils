@@ -105,43 +105,6 @@ public class BasicUtils
          return theHost;
      }
 
-    public static <T> Set<T> collectElements(Iterator<T> theIter) {
-        Set<T> aSet = new LinkedHashSet<T>();
-
-        while (theIter.hasNext())
-            aSet.add(theIter.next());
-
-        return aSet;
-    }
-
-    /**
-     * Checks to see if any elements of one set are present in another.
-     * First parameter is the list of elements to search for, the second
-     * parameter is the list to search in.  Basically tests to see if the two sets intersect
-     * @param theList Set the elements to look for
-     * @param toSearch Set the search set
-     * @return boolean true if any element in the first set is present in the second
-     */
-    public static <T> boolean containsAny(Set<T> theList, Set<T> toSearch) {
-
-        if (toSearch.isEmpty()) {
-            return false;
-        }
-        else
-        {
-            for (T aObj : theList) {
-                if (toSearch.contains(aObj)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
-    public static <T> boolean containsAny(List<T> theList, List<T> theSearch) {
-        return containsAny(new HashSet<T>(theList), new HashSet<T>(theSearch));
-    }
-
    /**
      * Formats the given string as a java.util.Date object.
      * @param theDate the date string
