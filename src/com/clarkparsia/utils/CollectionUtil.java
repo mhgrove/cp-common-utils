@@ -26,6 +26,9 @@ public class CollectionUtil {
         return aSet;
     }
 
+	public static <T> List<T> list(Iterable<T> theIter) {
+		return list(theIter.iterator());
+	}
 
     public static <T> List<T> list(Iterator<T> theIter) {
         List<T> aSet = new ArrayList<T>();
