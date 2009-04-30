@@ -1,24 +1,9 @@
 package com.clarkparsia.utils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.FileOutputStream;
-import java.io.BufferedWriter;
-import java.io.OutputStream;
 import java.io.File;
-import java.io.Writer;
 
-import java.net.URL;
-
-import java.util.StringTokenizer;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.LinkedHashSet;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -174,11 +159,11 @@ public class BasicUtils
         throw new IllegalArgumentException("Invalid date format supplied: " + theDate);
     }
 
-    public static String formatDate(Date theDate) {
+    public static String date(Date theDate) {
         return new SimpleDateFormat("yyyy-MM-dd").format(theDate);
     }
 
-    public static String isoformat(Date theDate) {
+    public static String datetime(Date theDate) {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(theDate);
     }
 }

@@ -31,12 +31,13 @@ public class CollectionUtil {
 	}
 
     public static <T> List<T> list(Iterator<T> theIter) {
-        List<T> aSet = new ArrayList<T>();
+        List<T> aList = new ArrayList<T>();
 
-        while (theIter.hasNext())
-            aSet.add(theIter.next());
+        while (theIter.hasNext()) {
+            aList.add(theIter.next());
+		}
 
-        return aSet;
+        return aList;
     }
 
     /**
