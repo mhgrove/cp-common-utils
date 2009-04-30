@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Arrays;
 
 /**
  * Title: <br>
@@ -14,30 +15,42 @@ import java.util.NoSuchElementException;
  * @author Evren Sirin
  * @author Michael Grove <mhgrove@hotmail.com>
  */
-public class MultiIterator implements Iterator {
-    private List mIteratorList = new ArrayList();
+public class MultiIterator<T> implements Iterator<T> {
+    private List<Iterator<T>> mIteratorList = new ArrayList<Iterator<T>>();
 
     private int mIndex = 0;
 
-    private Iterator mCurrIterator;
+    private Iterator<T> mCurrIterator;
 
-    public MultiIterator(Iterator theFirst) {
+    public MultiIterator(Iterator<T> theFirst) {
         mCurrIterator = theFirst;
     }
 
-    public MultiIterator(Iterator theFirst, Iterator theSecond) {
-        mCurrIterator = theFirst;
-        mIteratorList.add(theSecond);
+    public MultiIterator(Iterator<T>... theIterList) {
+        mCurrIterator = theIterList[0];
+
+		if (theIterList.length > 1) {
+			mIteratorList.addAll(Arrays.asList(theIterList).subList(1, theIterList.length));
+		}
     }
 
-    public boolean hasNext() {
-        while (!mCurrIterator.hasNext() && mIndex < mIteratorList.size())
-            mCurrIterator = (Iterator) mIteratorList.get(mIndex++);
+	public MultiIterator(List<? extends Iterator<T>> theList) {
+        mCurrIterator = theList.get(0);
+
+		if (theList.size() > 1) {
+			mIteratorList.addAll(theList.subList(1, theList.size()));
+		}
+	}
+
+	public boolean hasNext() {
+        while (!mCurrIterator.hasNext() && mIndex < mIteratorList.size()) {
+            mCurrIterator = mIteratorList.get(mIndex++);
+		}
 
         return mCurrIterator.hasNext();
     }
 
-    public Object next() {
+    public T next() {
         if(!hasNext())
             throw new NoSuchElementException("MultiIterator: No Elements Left in any embedded iterator");
 
@@ -45,10 +58,13 @@ public class MultiIterator implements Iterator {
     }
 
 
-    public void append(Iterator theIter) {
-        if (theIter instanceof MultiIterator)
-            mIteratorList.addAll( ((MultiIterator) theIter).mIteratorList );
-        else mIteratorList.add(theIter);
+    public void append(Iterator<T> theIter) {
+        if (theIter instanceof MultiIterator) {
+            mIteratorList.addAll( ((MultiIterator<T>) theIter).mIteratorList );
+		}
+        else {
+			mIteratorList.add(theIter);
+		}
     }
 
     public void remove() {
