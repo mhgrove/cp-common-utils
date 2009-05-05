@@ -5,16 +5,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.io.InputStream;
+import java.io.IOException;
 
 /**
- * Title: <br>
- * Description: <br>
+ * Title: EnhancedProperties<br>
+ * Description: Extends the java.util.Properties stuff to provide typed accessors to get property values as boolean, int, etc.
+ * Also provides a way to get a property value as a list, or as a map of values.  And it does variable substitution on
+ * property values.<br/><br/>
+ * Given the following property file
+ * <code>
+ * some_boolean_property = true
+ * some_integer_property = 42
+ * some_property = some_value
+ * some_list = one, two, three, four
+ * some_other_property = ${some_property}/foo
+ * some_map = key_a, key_b, key_c
+ * key_a = a
+ * key_b = b
+ * key_c = c
+ * </code>
+ * {@link #getPropertyAsBoolean(String) getPropertyAsBoolean("some_boolean_property")} yields the boolean value "true".
+ * {@link #getPropertyAsInt(String) getPropertyAsInt("some_integer_property")} yields the integer 42.
+ * {@link #getPropertyAsList(String) getPropertyAsList("some_list")} yields a List<String> with the values "one", "two", "three" and "four".
+ * {@link #getPropertyAsMap(String) getPropertyAsMap("some_map")} yields a Map<String, String> with the key value pairs:
+ * key_a => a, key_b => b, key_c => c.  Lastly, getting the property "some_other_property" yields the value "some_value/foo" via
+ * variable substitution.
  * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br>
  * Created: Jan 25, 2008 8:40:09 AM
  *
  * @author Michael Grove <mike@clarkparsia.com>
  */
 public class EnhancedProperties extends Properties {
+
+	/**
+	 * Create a new EnhancedProperties
+	 */
+	public EnhancedProperties() {
+		super();
+	}
+
+	/**
+	 * Create a new EnhancedProperties
+	 * @param theInput the inputstream to load property data from
+	 * @throws IOException thrown if there is an error reading properties data
+	 */
+	public EnhancedProperties(InputStream theInput) throws IOException {
+		super();
+
+		load(theInput);
+	}
 
     /**
      * Return the value of the property as a boolean
