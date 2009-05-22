@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.Reader;
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.util.StringTokenizer;
 
@@ -133,18 +134,40 @@ public class IOUtil {
         aWriter.close();
     }
 
-    public static void transfer(InputStream theInputStream, OutputStream theOutputStream) throws IOException {
-        transfer(new InputStreamReader(theInputStream), new OutputStreamWriter(theOutputStream));
+    public static int transfer(InputStream theInputStream, OutputStream theOutputStream) throws IOException {
+        return transfer(new InputStreamReader(theInputStream), new OutputStreamWriter(theOutputStream));
     }
 
-    public static void transfer(Reader theReader, Writer theWriter) throws IOException {
+    public static int transfer(Reader theReader, Writer theWriter) throws IOException {
 		char[] aCharBuffer = new char[2048];
         int aBytesRead = 0;
+		int aTotalBytes = 0;
 
 		while ((aBytesRead = theReader.read(aCharBuffer)) != -1) {
 			theWriter.write(aCharBuffer, 0, aBytesRead);
+			aTotalBytes += aBytesRead;
 		}
 
         theWriter.flush();
+
+		return aTotalBytes;
+    }
+
+	public static byte[] readBytesFromStream(InputStream theIn) throws IOException {
+        if (theIn == null) {
+			return new byte[0];
+		}
+
+        ByteArrayOutputStream aOutputStream = new ByteArrayOutputStream(4096);
+        byte[] aBuffer = new byte[4096];
+        int aBytesRead = -1;
+
+        while ((aBytesRead = theIn.read(aBuffer)) != -1) {
+            aOutputStream.write(aBuffer, 0, aBytesRead);
+        }
+
+        theIn.close();
+
+        return aOutputStream.toByteArray();
     }
 }
