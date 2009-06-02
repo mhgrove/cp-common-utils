@@ -28,6 +28,18 @@ public class BasicUtils
 
     private static final Random RANDOM = new Random();
 
+	/**
+	 * Returns true if both objects are .equals or both are null.
+	 * @param theObj
+	 * @param theOtherObj
+	 * @param <T>
+	 * @return Returns true if both objects are .equals or both are null.
+	 */
+	public static <T> boolean equalsOrNull(T theObj, T theOtherObj) {
+		return (theObj == null && theOtherObj == null) ||
+			   (theObj != null && theOtherObj != null && theObj.equals(theOtherObj));
+	}
+
     /**
      * Return a string of random characters of the specified length.
      * @param theLength the size of the random string to create

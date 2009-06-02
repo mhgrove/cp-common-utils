@@ -18,6 +18,10 @@ import java.util.Collection;
  */
 public class CollectionUtil {
 
+	public static <T> Set<T> set(Iterable<T> theIter) {
+		return set(theIter.iterator());
+	}
+
     public static <T> Set<T> set(Iterator<T> theIter) {
         Set<T> aSet = new LinkedHashSet<T>();
 
