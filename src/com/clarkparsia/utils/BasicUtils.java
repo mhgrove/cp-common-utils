@@ -1,6 +1,7 @@
 package com.clarkparsia.utils;
 
 import java.io.File;
+import java.io.FileFilter;
 
 import java.util.Random;
 
@@ -62,6 +63,22 @@ public class BasicUtils
      * @return all files in the start directory and all its sub directories.
      */
     public static List<File> listFiles(File theDirectory) {
+		return listFiles(theDirectory, new FileFilter() {
+			public boolean accept(File theFile) {
+				// an accept all file filter
+				return true;
+			}
+		});
+    }
+
+	/**
+	 * Recursively traverse the directory and all its sub directories and return a list of all the files contained within.
+	 * Only files which match the file filter will be returned.
+	 * @param theDirectory the start directory
+	 * @param theFilter the file filter to use.
+	 * @return the list of files in the directory (and its sub directories) which match the file filter.
+	 */
+	public static List<File> listFiles(File theDirectory, FileFilter theFilter) {
         ArrayList<File> aList = new ArrayList<File>();
 
         File[] aFileList = theDirectory.listFiles();
@@ -69,13 +86,13 @@ public class BasicUtils
             if (aFile.isDirectory()) {
                 aList.addAll(listFiles(aFile));
             }
-            else {
+            else if (theFilter.accept(aFile)) {
                 aList.add(aFile);
             }
         }
 
         return aList;
-    }
+	}
 
     /**
      * Given a string, replace all occurances of one string with another.<br><br>

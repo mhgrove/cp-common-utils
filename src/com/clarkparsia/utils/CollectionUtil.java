@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Title: CollectionUtil<br/>
@@ -142,4 +143,40 @@ public class CollectionUtil {
 
         return true;
     }
+
+	/**
+	 * Filter the contents of a collection based on the collection filter provided
+	 * @param theCollection the collection to filter
+	 * @param theFilter the filter to use
+	 * @param <T> the type of objects in the collection
+	 * @return a copy of the collection, but filtered to only include things that passed the filter.
+	 */
+	public static <T> Collection<T> filter(Collection<T> theCollection, CollectionFilter<T> theFilter) {
+		try {
+			Collection<T> aNewCollection = theCollection.getClass().newInstance();
+
+			for (T aObj : theCollection) {
+				if (theFilter.accept(aObj)) {
+					aNewCollection.add(aObj);
+				}
+			}
+
+			return aNewCollection;
+		}
+		catch (InstantiationException e) {
+			// i dont think this can happen, but hey, we'll track it!
+			throw new RuntimeException(e);
+		}
+		catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * Interface for filtering a collection
+	 * @param <T> the type of objects in the collection
+	 */
+	public static interface CollectionFilter<T> {
+		public boolean accept(T theObject);
+	}
 }
