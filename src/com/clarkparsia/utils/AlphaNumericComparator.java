@@ -43,15 +43,15 @@ import java.util.Comparator;
  * 
  * @author Evren Sirin
  */
-public class AlphaNumericComparator implements Comparator {
+public class AlphaNumericComparator<T> implements Comparator<T> {
     /**
      * A static instantiation of a case sensitive AlphaNumericComparator
      */
-    public static final AlphaNumericComparator CASE_SENSITIVE   = new AlphaNumericComparator(true);
+    public static final AlphaNumericComparator CASE_SENSITIVE   = new AlphaNumericComparator<Object>(true);
     /**
      * A static instantiation of a case insensitive AlphaNumericComparator
      */
-    public static final AlphaNumericComparator CASE_INSENSITIVE = new AlphaNumericComparator(false);
+    public static final AlphaNumericComparator CASE_INSENSITIVE = new AlphaNumericComparator<Object>(false);
 
     private boolean caseSensitive;
 
@@ -72,7 +72,10 @@ public class AlphaNumericComparator implements Comparator {
         this.caseSensitive = caseSensitive;
     }
 
-    public int compare(Object o1, Object o2) {
+	/**
+	 * @inheritDoc
+	 */
+    public int compare(T o1, T o2) {
         String s1 = o1.toString();
         String s2 = o2.toString();
         int n1 = s1.length(), n2 = s2.length();

@@ -11,6 +11,7 @@ import java.util.Enumeration;
 import java.util.Collections;
 import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
+import java.lang.reflect.Modifier;
 
 /**
  * Title: <br/>
@@ -25,7 +26,15 @@ public class ClassPath {
 
 	private static Collection<Class> mClasses;
 
-	public static Collection<? extends Class> classes(final Class<?> theInterface) {
+	public static Collection<Class> instantiableClasses(Class theClass) {
+		return CollectionUtil.filter(classes(theClass), new CollectionUtil.CollectionFilter<Class>() {
+			public boolean accept(final Class theClass) {
+				return !theClass.isInterface() && !Modifier.isAbstract(theClass.getModifiers());
+			}
+		});
+	}
+
+	public static Collection<Class> classes(final Class<?> theInterface) {
 		return CollectionUtil.filter(classes(), new CollectionUtil.CollectionFilter<Class>() {
 			public boolean accept(final Class theObject) {
 				return theInterface.isAssignableFrom(theObject);
