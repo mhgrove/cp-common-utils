@@ -1,3 +1,5 @@
+// Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+
 package com.clarkparsia.utils;
 
 import java.io.File;
@@ -11,14 +13,6 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-/**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2006</p>
- * <p>Company: Clark & Parsia, LLC. <http://www.clarkparsia.com></p>
- * @author Michael Grove
- * @version 1.0
- */
 public class BasicUtils
 {
     public static final int ONE_SECOND = 1000;
@@ -84,7 +78,7 @@ public class BasicUtils
         File[] aFileList = theDirectory.listFiles();
         for (File aFile : aFileList) {
             if (aFile.isDirectory()) {
-                aList.addAll(listFiles(aFile));
+                aList.addAll(listFiles(aFile, theFilter));
             }
             else if (theFilter.accept(aFile)) {
                 aList.add(aFile);
