@@ -210,10 +210,13 @@ public class ClassPath {
 			return null;
 		}
 
-		// skip system classes, we don't really care if we include them, this is mostly for user defined stuff
+		// skip system classes and known libraries, we don't really care if we include them,
+		// this is mostly for user defined stuff.  this is hackish, but it should cut down on the overhead of
+		// reading everything in, both in performance and in memory requirements.
 		if (theClassName.startsWith("java.") || theClassName.startsWith("javax.") ||
 			theClassName.startsWith("sun.") || theClassName.startsWith("com.sun.") ||
-			theClassName.startsWith("apple.") || theClassName.startsWith("com.apple")) {
+			theClassName.startsWith("apple.") || theClassName.startsWith("com.apple") ||
+			theClassName.startsWith("org.jdesktop.swingx.")) {
 			return null;
 		}
 
