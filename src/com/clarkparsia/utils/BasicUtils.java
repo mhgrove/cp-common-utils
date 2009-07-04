@@ -119,72 +119,72 @@ public class BasicUtils
      * @return the string as a java.util.Date object
      */
     public static Date asDate(String theDate) {
-        try {
-            return new SimpleDateFormat("MM/dd/yy hh:mm").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("MM/dd/yy hh:mm").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("MM/dd/yyyy hh:mm").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("MM/dd/yyyy hh:mm").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("MM/dd/yyyy").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("MM/dd/yyyy").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("MM-dd-yyyy").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("yyyy-MM-dd").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("MM-dd-yyyy").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("yyyy/MM/dd").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("yyyy/MM/dd").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new SimpleDateFormat("dd-MMM-yy").parse(theDate);
-        }
-        catch (ParseException pe) {
-        }
+	   try {
+		   return new SimpleDateFormat("dd-MMM-yy").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
 
-        try {
-            return new Date(Long.parseLong(theDate));
-        }
-        catch (Exception pe) {
-        }
+	   try {
+		   return new Date(Long.parseLong(theDate));
+	   }
+	   catch (Exception pe) {
+	   }
 
-        throw new IllegalArgumentException("Invalid date format supplied: " + theDate);
-    }
+	   throw new IllegalArgumentException("Invalid date format supplied: " + theDate);
+   }
 
-    public static String date(Date theDate) {
-        return new SimpleDateFormat("yyyy-MM-dd").format(theDate);
-    }
+	public static String date(Date theDate) {
+		return new SimpleDateFormat("yyyy-MM-dd").format(theDate);
+	}
 
     public static String datetime(Date theDate) {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(theDate);
