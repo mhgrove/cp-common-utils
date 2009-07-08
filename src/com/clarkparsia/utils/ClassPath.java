@@ -216,7 +216,7 @@ public class ClassPath {
 		if (theClassName.startsWith("java.") || theClassName.startsWith("javax.") ||
 			theClassName.startsWith("sun.") || theClassName.startsWith("com.sun.") ||
 			theClassName.startsWith("apple.") || theClassName.startsWith("com.apple") ||
-			theClassName.startsWith("org.jdesktop.swingx.")) {
+			theClassName.startsWith("org.jdesktop.")) {
 			return null;
 		}
 
