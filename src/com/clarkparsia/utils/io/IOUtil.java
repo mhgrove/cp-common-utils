@@ -134,14 +134,40 @@ public class IOUtil {
         aWriter.close();
     }
 
-    public static int transfer(InputStream theInputStream, OutputStream theOutputStream) throws IOException {
-        return transfer(new InputStreamReader(theInputStream), new OutputStreamWriter(theOutputStream));
+	/**
+	 * Transfer the contents of the input stream to the output
+	 * @param theInputStream the stream to read from
+	 * @param theOutputStream the stream to write to
+	 * @return the total number of bytes transferred between the streams
+	 * @throws IOException thrown if there is an error while either reading or writing, or if you cross the streams =)
+	 */
+    public static long transfer(InputStream theInputStream, OutputStream theOutputStream) throws IOException {
+		long aTotalBytes = 0;
+		int aBytesRead = 0;
+
+        byte[] aBuffer = new byte[8192];
+
+		while ((aBytesRead = theInputStream.read(aBuffer)) != -1) {
+			theOutputStream.write(aBuffer, 0, aBytesRead);
+			aTotalBytes += aBytesRead;
+		}
+
+		theOutputStream.flush();
+
+		return aTotalBytes;
     }
 
-    public static int transfer(Reader theReader, Writer theWriter) throws IOException {
+	/**
+	 * Transfer the contents of the Reader to the Writer
+	 * @param theReader the reader to read from
+	 * @param theWriter the writer to send the reader's data to
+	 * @return the number of total characters transferred between the two
+	 * @throws IOException thrown if there is an error while either reading or writing
+	 */
+    public static long transfer(Reader theReader, Writer theWriter) throws IOException {
 		char[] aCharBuffer = new char[2048];
         int aBytesRead = 0;
-		int aTotalBytes = 0;
+		long aTotalBytes = 0;
 
 		while ((aBytesRead = theReader.read(aCharBuffer)) != -1) {
 			theWriter.write(aCharBuffer, 0, aBytesRead);
@@ -153,6 +179,12 @@ public class IOUtil {
 		return aTotalBytes;
     }
 
+	/**
+	 * Reads all the data from the input stream into a byte array
+	 * @param theIn the stream to read from
+	 * @return the data from the stream as an array of bytes
+	 * @throws IOException thrown if there is an error while reading from the stream
+	 */
 	public static byte[] readBytesFromStream(InputStream theIn) throws IOException {
         if (theIn == null) {
 			return new byte[0];
