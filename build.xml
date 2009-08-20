@@ -10,7 +10,7 @@
     <property name="dist" location="dist" />
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="0.2" />
+    <property name="project.version" value="0.4" />
     <property name="mainclass" value="Main"/>
 
     <path id="project.class.path">
