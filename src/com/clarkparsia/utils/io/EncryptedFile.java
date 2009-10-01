@@ -162,7 +162,30 @@ public class EncryptedFile extends File {
             throw new IOException(e.getMessage());
         }
     }
+    
+    public static OutputStream encrypt(OutputStream theStream, String theKey) throws IOException {
+        return encrypt(theStream, makeGoodKey(theKey));
+    }
 
+    public static OutputStream encrypt(OutputStream theStream, SecretKey theKey) throws IOException {
+        try {
+            return new CipherOutputStream(theStream, createEncryptCipher(theKey));
+        }
+        catch (InvalidAlgorithmParameterException e) {
+            throw new IOException(e.getMessage());
+        }
+        catch (InvalidKeyException e) {
+            throw new IOException(e.getMessage());
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new IOException(e.getMessage());
+        }
+        catch (NoSuchPaddingException e) {
+            throw new IOException(e.getMessage());
+        }
+    }
+
+    
     /**
      * Create a decryption cipher
      * @param theKey the key to use for the cipher
@@ -177,6 +200,23 @@ public class EncryptedFile extends File {
                                                                        NoSuchPaddingException {
         Cipher aCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
         aCipher.init(Cipher.DECRYPT_MODE, theKey, new IvParameterSpec(IV));
+        return aCipher;
+    }
+    
+    /**
+     * Create an encryption cipher
+     * @param theKey the key to use for the cipher
+     * @return the decryption cipher
+     * @throws InvalidAlgorithmParameterException thrown if the algorithm parameter is bad
+     * @throws InvalidKeyException thrown if the provided key is not valid
+     * @throws NoSuchAlgorithmException thrown if the request cipher algorithm is not available
+     * @throws NoSuchPaddingException thrown if there's no padding method
+     */
+    private static Cipher createEncryptCipher(SecretKey theKey) throws InvalidAlgorithmParameterException,
+                                                                       InvalidKeyException, NoSuchAlgorithmException,
+                                                                       NoSuchPaddingException {
+        Cipher aCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+        aCipher.init(Cipher.ENCRYPT_MODE, theKey, new IvParameterSpec(IV));
         return aCipher;
     }
 
