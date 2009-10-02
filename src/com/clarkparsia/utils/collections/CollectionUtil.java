@@ -1,4 +1,4 @@
-package com.clarkparsia.utils;
+package com.clarkparsia.utils.collections;
 
 import java.util.Set;
 import java.util.Iterator;

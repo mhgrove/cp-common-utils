@@ -2,19 +2,17 @@
 
 package com.clarkparsia.utils;
 
-import java.io.File;
-import java.io.FileFilter;
-
 import java.util.Random;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Date;
+
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class BasicUtils
-{
+/**
+ * Collection of simple utility methods
+ */
+public class BasicUtils {
     public static final int ONE_SECOND = 1000;
     public static final int ONE_MINUTE = 60 * ONE_SECOND;
     public static final int ONE_HOUR = 60 * ONE_MINUTE;
@@ -50,43 +48,6 @@ public class BasicUtils
         }
         return aBuffer.toString();
     }
-
-    /**
-     * Recursively traverse the directory and all its sub directories and return a list of all the files contained within.
-     * @param theDirectory the start directory
-     * @return all files in the start directory and all its sub directories.
-     */
-    public static List<File> listFiles(File theDirectory) {
-		return listFiles(theDirectory, new FileFilter() {
-			public boolean accept(File theFile) {
-				// an accept all file filter
-				return true;
-			}
-		});
-    }
-
-	/**
-	 * Recursively traverse the directory and all its sub directories and return a list of all the files contained within.
-	 * Only files which match the file filter will be returned.
-	 * @param theDirectory the start directory
-	 * @param theFilter the file filter to use.
-	 * @return the list of files in the directory (and its sub directories) which match the file filter.
-	 */
-	public static List<File> listFiles(File theDirectory, FileFilter theFilter) {
-        ArrayList<File> aList = new ArrayList<File>();
-
-        File[] aFileList = theDirectory.listFiles();
-        for (File aFile : aFileList) {
-            if (aFile.isDirectory()) {
-                aList.addAll(listFiles(aFile, theFilter));
-            }
-            else if (theFilter.accept(aFile)) {
-                aList.add(aFile);
-            }
-        }
-
-        return aList;
-	}
 
     /**
      * Given a string, replace all occurances of one string with another.<br><br>

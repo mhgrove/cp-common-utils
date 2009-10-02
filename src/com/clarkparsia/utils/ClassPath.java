@@ -2,6 +2,8 @@
 
 package com.clarkparsia.utils;
 
+import com.clarkparsia.utils.collections.CollectionUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileFilter;
@@ -95,7 +97,7 @@ public class ClassPath {
 				continue;
 			}
 			
-			List<File> aJarList = BasicUtils.listFiles(aFile, new JarFileFilter());
+			List<File> aJarList = FileUtil.listFiles(aFile, new JarFileFilter());
 			for (File aJarFile : aJarList) {
 				try {
 					mLoader.addURL(aJarFile.toURL());
@@ -183,13 +185,13 @@ public class ClassPath {
 		Collection<Class> aClassList = new HashSet<Class>();
 
 		// recurse the directory and file all the jar files and load the classes in them
-		List<File> aJarList = BasicUtils.listFiles(theFile, new JarFileFilter());
+		List<File> aJarList = FileUtil.listFiles(theFile, new JarFileFilter());
 		for (File aJarFile : aJarList) {
 			aClassList.addAll(listClassesFromJar(aJarFile));
 		}
 
 		// now find all the class files and load the classes specified by them
-		List<File> aClassFileList = BasicUtils.listFiles(theFile, new ClassFileFilter());
+		List<File> aClassFileList = FileUtil.listFiles(theFile, new ClassFileFilter());
 		for (File aClassFile : aClassFileList) {
 			Class aClass = _class(classNameFromFileName(aClassFile.getAbsolutePath().substring(theFile.getAbsolutePath().length() + 1)));
 			if (aClass != null) {

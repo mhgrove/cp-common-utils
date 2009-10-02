@@ -1,4 +1,4 @@
-package com.clarkparsia.utils;
+package com.clarkparsia.utils.collections;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Created: Sep 11, 2006 2:48:21 PM
  *
  * @author Evren Sirin
- * @author Michael Grove <mhgrove@hotmail.com>
+ * @author Michael Grove <mike@clarkparsia.com>
  */
 public class MultiIterator<T> implements Iterator<T> {
     private List<Iterator<T>> mIteratorList = new ArrayList<Iterator<T>>();

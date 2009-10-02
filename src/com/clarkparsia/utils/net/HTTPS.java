@@ -1,4 +1,4 @@
-package com.clarkparsia.utils;
+package com.clarkparsia.utils.net;
 
 import java.security.GeneralSecurityException;
 
