@@ -186,4 +186,8 @@ public class BasicUtils {
             return null;
         }
     }
+
+	public static void main(String[] args) {
+		System.err.println(asDate("2007-02-16"));
+	}
 }

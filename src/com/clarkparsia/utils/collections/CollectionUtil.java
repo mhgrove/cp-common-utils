@@ -1,3 +1,5 @@
+// Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+
 package com.clarkparsia.utils.collections;
 
 import java.util.Set;
@@ -45,6 +47,14 @@ public class CollectionUtil {
 
         return aList;
     }
+
+	public static <T> Iterable<T> iterable(final Iterator<T> theIter) {
+		return new Iterable<T>() {
+			public Iterator<T> iterator() {
+				return theIter;
+			}
+		};
+	}
 
     /**
      * Checks to see if any elements of one set are present in another.

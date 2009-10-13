@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+  -->
+
 <project name="Utils" default="dist" basedir=".">
     <description>
         Clark &amp; Parsia Utility Classes
@@ -10,7 +14,7 @@
     <property name="dist" location="dist" />
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="0.4" />
+    <property name="project.version" value="0.5" />
     <property name="mainclass" value="Main"/>
 
     <path id="project.class.path">
