@@ -5,6 +5,8 @@ package com.clarkparsia.utils;
 import java.util.Random;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -76,6 +78,25 @@ public class BasicUtils {
          }
          return theHost;
      }
+
+	/**
+	 * Convert a string to title case.  So if you have "this is a sentence" this function will return "This Is A Sentence"
+	 * @param theStr the string to convert
+	 * @return the converted string
+	 */
+	public static String toTitleCase(String theStr) {
+		char[] charArray = theStr.toLowerCase().toCharArray();
+
+		Pattern pattern = Pattern.compile("\\b([A-Za-z])");
+		Matcher matcher = pattern.matcher(theStr);
+
+		while(matcher.find()){
+			int index = matcher.end(1) - 1;
+			charArray[index] = Character.toTitleCase(charArray[index]);
+		}
+
+		return String.valueOf(charArray);
+	}
 
    /**
      * Formats the given string as a java.util.Date object.
