@@ -135,6 +135,12 @@ public class BasicUtils {
 	   }
 
 	   try {
+		   return new SimpleDateFormat("MM/dd/yy").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
+
+	   try {
 		   return new SimpleDateFormat("yyyy-MM-dd").parse(theDate);
 	   }
 	   catch (ParseException pe) {
@@ -154,6 +160,12 @@ public class BasicUtils {
 
 	   try {
 		   return new SimpleDateFormat("dd-MMM-yy").parse(theDate);
+	   }
+	   catch (ParseException pe) {
+	   }
+
+	   try {
+		   return new SimpleDateFormat("MM dd yyyy HH:mm:ss").parse(theDate);
 	   }
 	   catch (ParseException pe) {
 	   }
