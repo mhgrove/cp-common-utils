@@ -55,7 +55,7 @@ public class ClassPath {
 	 * @return all matching classes
 	 */
 	public static Collection<Class> instantiableClasses(Class<?> theClass) {
-		return CollectionUtil.filter(classes(theClass), new CollectionUtil.CollectionFilter<Class>() {
+		return CollectionUtil.filter(classes(theClass), new Predicate<Class>() {
 			public boolean accept(final Class theClass) {
 				return !theClass.isInterface() && !Modifier.isAbstract(theClass.getModifiers());
 			}
@@ -68,7 +68,7 @@ public class ClassPath {
 	 * @return all matching classes
 	 */
 	public static Collection<Class> classes(final Class<?> theInterface) {
-		return CollectionUtil.filter(classes(), new CollectionUtil.CollectionFilter<Class>() {
+		return CollectionUtil.filter(classes(), new Predicate<Class>() {
 			public boolean accept(final Class theObject) {
 				return theInterface.isAssignableFrom(theObject);
 			}

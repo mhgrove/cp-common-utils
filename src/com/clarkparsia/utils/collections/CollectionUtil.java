@@ -2,6 +2,9 @@
 
 package com.clarkparsia.utils.collections;
 
+import com.clarkparsia.utils.Predicate;
+import com.clarkparsia.utils.Function;
+
 import java.util.Set;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -77,6 +80,22 @@ public class CollectionUtil {
                 }
             }
             return false;
+        }
+    }
+
+    public static <T> boolean containsAll(Collection<T> theList, Collection<T> toSearch) {
+
+        if (toSearch.isEmpty()) {
+            return true;
+        }
+        else
+        {
+            for (T aObj : toSearch) {
+                if (!theList.contains(aObj)) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
@@ -161,9 +180,9 @@ public class CollectionUtil {
 	 * @param <T> the type of objects in the collection
 	 * @return a copy of the collection, but filtered to only include things that passed the filter.
 	 */
-	public static <T> Collection<T> filter(Collection<T> theCollection, CollectionFilter<T> theFilter) {
+	public static <T> Collection<T> filter(Collection<T> theCollection, Predicate<T> theFilter) {
 		try {
-			Collection<T> aNewCollection = theCollection.getClass().newInstance();
+			Collection<T> aNewCollection = (Collection<T>) theCollection.getClass().newInstance();
 
 			for (T aObj : theCollection) {
 				if (theFilter.accept(aObj)) {
@@ -182,11 +201,13 @@ public class CollectionUtil {
 		}
 	}
 
-	/**
-	 * Interface for filtering a collection
-	 * @param <T> the type of objects in the collection
-	 */
-	public static interface CollectionFilter<T> {
-		public boolean accept(T theObject);
+	public static <I, O> Collection<O> transform(Collection<I> theCollection, Function<I,O> theTransformer) {
+		List<O> aNewCollection = new ArrayList<O>();
+
+		for (I aObj : theCollection) {
+			aNewCollection.add(theTransformer.apply(aObj));
+		}
+
+		return aNewCollection;
 	}
 }
