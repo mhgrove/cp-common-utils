@@ -1,8 +1,6 @@
 // Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
 
-package com.clarkparsia.utils;
-
-import com.clarkparsia.utils.io.IOUtil;
+package com.clarkparsia.utils.io;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,6 +12,10 @@ import java.io.FileFilter;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
+
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Title: FileUtil<br/>
@@ -37,6 +39,30 @@ public class FileUtil {
 				return true;
 			}
 		});
+    }
+
+    public static void zipDirectory(File theDir, File theOutputFile) throws IOException {
+        ZipOutputStream aZipOut = new ZipOutputStream(new FileOutputStream(theOutputFile));
+
+        Collection<File> aFileList = listFiles(theDir);
+
+        String aPathToRemove = theDir.getAbsolutePath().substring(0, theDir.getAbsolutePath().lastIndexOf(File.separator));
+
+        for (File aFile : aFileList) {
+            FileInputStream aFileIn = new FileInputStream(aFile);
+
+            ZipEntry aZipEntry = new ZipEntry(aFile.getAbsolutePath().substring(aFile.getAbsolutePath().indexOf(aPathToRemove) + aPathToRemove.length() + 1));
+
+            aZipOut.putNextEntry(aZipEntry);
+
+            IOUtil.transfer(aFileIn, aZipOut);
+
+            aFileIn.close();
+
+            aZipOut.closeEntry();
+        }
+
+        aZipOut.close();
     }
 
 	/**

@@ -2,9 +2,13 @@
 
 package com.clarkparsia.utils;
 
+import com.clarkparsia.utils.collections.CollectionUtil;
+
 import java.util.Random;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +29,25 @@ public class BasicUtils {
     public static final int ONE_WEEK = 7 * ONE_DAY;
 
     private static final Random RANDOM = new Random();
+
+	public static <T> String join(String theJoinWith, Collection<T> theCollection) {
+		return join(theJoinWith, theCollection, new DefaultStringRenderer<T>());
+	}
+
+	public static <T> String join(final String theJoinWith, final Collection<T> theCollection, final StringRenderer<T> theRenderer) {
+		final StringBuffer aBuffer = new StringBuffer();
+
+		CollectionUtil.apply(theCollection, new AbstractDataCommand<T>() {
+			public void execute() {
+				if (aBuffer.length() > 0) {
+					aBuffer.append(theJoinWith).append(" ");
+					aBuffer.append(theRenderer.render(getData()));
+				}
+			}
+		});
+
+		return aBuffer.toString();
+	}
 
 	/**
 	 * Returns true if both objects are .equals or both are null.

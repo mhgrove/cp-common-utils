@@ -3,6 +3,7 @@
 package com.clarkparsia.utils;
 
 import com.clarkparsia.utils.collections.CollectionUtil;
+import com.clarkparsia.utils.io.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
