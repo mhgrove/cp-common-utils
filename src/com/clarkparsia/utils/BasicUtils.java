@@ -37,7 +37,7 @@ public class BasicUtils {
 	public static <T> String join(final String theJoinWith, final Collection<T> theCollection, final StringRenderer<T> theRenderer) {
 		final StringBuffer aBuffer = new StringBuffer();
 
-		CollectionUtil.apply(theCollection, new AbstractDataCommand<T>() {
+		CollectionUtil.each(theCollection, new AbstractDataCommand<T>() {
 			public void execute() {
 				if (aBuffer.length() > 0) {
 					aBuffer.append(theJoinWith).append(" ");
