@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Date;
 import java.util.List;
 import java.util.Collection;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +48,25 @@ public class BasicUtils {
 		});
 
 		return aBuffer.toString();
+	}
+
+	/**
+	 * Wrapper function around String.split() which performs trim() on every token returned and does not return any
+	 * empty tokens.
+	 * @param theStringToSplit the string to split
+	 * @param theSplitToken the regex for the split
+	 * @return the list of whitespace trimmed, non-empty tokens resulting from the split operation
+	 */
+	public static List<String> split(String theStringToSplit, String theSplitToken) {
+		List<String> aList = new ArrayList<String>();
+
+		for (String aToken : theStringToSplit.split(theSplitToken)) {
+			if (aToken.trim().length() > 0) {
+				aList.add(aToken.trim());
+			}
+		}
+
+		return aList;
 	}
 
 	/**

@@ -238,7 +238,8 @@ public class CollectionUtil {
 	}
 
 	/**
-	 * Transform the elements in the iterator, returning a collection of new elements
+	 * Transform the elements in the iterator, returning a collection of new elements.  null elements (elements of
+	 * the original list whose transformation result is null) are not included in the list.
 	 * @param theIterator the iterator of elements to transform
 	 * @param theTransformer the function to use to transform the elements in the iterator
 	 * @param <I> the type of elements in the iterator
@@ -249,7 +250,10 @@ public class CollectionUtil {
 		List<O> aNewCollection = new ArrayList<O>();
 
 		while (theIterator.hasNext()) {
-			aNewCollection.add(theTransformer.apply(theIterator.next()));
+			O aValue = theTransformer.apply(theIterator.next());
+			if (aValue != null) {
+				aNewCollection.add(aValue);
+			}
 		}
 
 		return aNewCollection;

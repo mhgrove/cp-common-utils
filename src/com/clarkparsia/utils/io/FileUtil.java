@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileFilter;
+import java.io.FileWriter;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -40,6 +41,16 @@ public class FileUtil {
 			}
 		});
     }
+
+	public static void append(File theFile, String theString) throws IOException {
+		FileWriter aWriter = new FileWriter(theFile, true);
+
+		aWriter.append(theString);
+
+		aWriter.flush();
+
+		aWriter.close();
+	}
 
     public static void zipDirectory(File theDir, File theOutputFile) throws IOException {
         ZipOutputStream aZipOut = new ZipOutputStream(new FileOutputStream(theOutputFile));
