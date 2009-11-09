@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.Arrays;
 
 import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
@@ -81,6 +82,13 @@ public class ClassPath {
 	 * @param theURL the URL to a jar file to load
 	 */
 	public static void add(URL... theURL) {
+
+		List<URL> curr = new ArrayList<URL>(Arrays.asList(mLoader.getURLs()));
+		if (CollectionUtil.containsAny(curr, Arrays.asList(theURL))) {
+			curr.removeAll(Arrays.asList(theURL));
+			mLoader = new MutableURLClassLoader(curr.toArray(new URL[curr.size()]), mLoader.getParent());
+		}
+				
 		mLoader.addURL(theURL);
 
 		// invalidate our cache

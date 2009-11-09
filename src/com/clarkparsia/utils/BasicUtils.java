@@ -31,6 +31,38 @@ public class BasicUtils {
 
     private static final Random RANDOM = new Random();
 
+	/**
+	 * Merge an array of byte arrays into a single byte array
+	 * @param aArrays the arrays to merge
+	 * @return the merged array
+	 */
+	public static byte[] concat(byte[]... aArrays) {
+		byte[] aResult = new byte[length(aArrays)];
+
+		int aCurrentResultIndex = 0;
+		for (byte[] aArray : aArrays) {
+			System.arraycopy(aArray, 0, aResult, aCurrentResultIndex, aArray.length);
+			aCurrentResultIndex += aArray.length;
+		}
+
+		return aResult;
+	}
+
+	/**
+	 * Compute combined size of all the given byte arrays
+	 * @param aArrays the arrays
+	 * @return the size of the arrays
+	 */
+	private static int length(byte[]...aArrays) {
+		int aResult = 0;
+
+		for (byte[] aArray : aArrays) {
+			aResult += aArray.length;
+		}
+
+		return aResult;
+	}
+
 	public static <T> String join(String theJoinWith, Collection<T> theCollection) {
 		return join(theJoinWith, theCollection, new DefaultStringRenderer<T>());
 	}

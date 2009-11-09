@@ -139,7 +139,7 @@ public class IOUtil {
 	 * @param theInputStream the stream to read from
 	 * @param theOutputStream the stream to write to
 	 * @return the total number of bytes transferred between the streams
-	 * @throws IOException thrown if there is an error while either reading or writing, or if you cross the streams =)
+	 * @throws IOException thrown if there is an error while either reading or writing, or if you cross the streams
 	 */
     public static long transfer(InputStream theInputStream, OutputStream theOutputStream) throws IOException {
 		long aTotalBytes = 0;
