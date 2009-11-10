@@ -4,6 +4,8 @@ package com.clarkparsia.utils;
 
 import com.clarkparsia.utils.collections.CollectionUtil;
 
+import com.clarkparsia.utils.io.Encoder;
+
 import java.util.Random;
 
 import java.util.Date;
@@ -103,9 +105,9 @@ public class BasicUtils {
 
 	/**
 	 * Returns true if both objects are .equals or both are null.
-	 * @param theObj
-	 * @param theOtherObj
-	 * @param <T>
+	 * @param theObj the first object to compare
+	 * @param theOtherObj the second object to compare
+	 * @param <T> the type of the objects to compare
 	 * @return Returns true if both objects are .equals or both are null.
 	 */
 	public static <T> boolean equalsOrNull(T theObj, T theOtherObj) {
@@ -281,15 +283,26 @@ public class BasicUtils {
      * @return the byte representation of the md5 sum of the string
      */
     public static byte[] md5(String theString) {
+		try {
+			return md5(theString.getBytes(Encoder.UTF8.name()));
+		}
+		catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+     * Returns the md5 representation of a string
+     * @param theBytes the bytes to md5
+     * @return the byte representation of the md5 sum of the string
+     */
+    public static byte[] md5(byte[] theBytes) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            return md.digest(theString.getBytes("UTF-8"));
+            return md.digest(theBytes);
         }
         catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
-        catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return null;
         }
