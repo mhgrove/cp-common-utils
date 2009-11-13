@@ -34,6 +34,23 @@ public class BasicUtils {
     private static final Random RANDOM = new Random();
 
 	/**
+	 * Returns a string of the character repeated the specified amount of times.  For example, repeat("*", 5) returns
+	 * the string "*****"
+	 * @param c the character to repoeat
+	 * @param theMult the number of times to repeat it
+	 * @return the string with the repeated character
+	 */
+	public static String repeat(char c, int theMult) {
+		StringBuffer aBuffer = new StringBuffer();
+
+		for (int i = 0; i < theMult; i++) {
+			aBuffer.append(c);
+		}
+
+		return aBuffer.toString();
+	}
+
+	/**
 	 * Merge an array of byte arrays into a single byte array
 	 * @param aArrays the arrays to merge
 	 * @return the merged array

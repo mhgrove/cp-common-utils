@@ -16,6 +16,9 @@ import java.util.HashSet;
 import java.util.Collection;
 import java.util.AbstractCollection;
 import java.util.NoSuchElementException;
+import java.util.Properties;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Title: CollectionUtil<br/>
@@ -40,6 +43,16 @@ public class CollectionUtil {
 		}
 
 		return aCount;
+	}
+
+	public static Map<String, String> map(Properties theProps) {
+		Map<String, String> aMap = new HashMap<String, String>();
+
+		for (Object aKey : theProps.keySet()) {
+			aMap.put(aKey.toString(), theProps.getProperty(aKey.toString()));
+		}
+
+		return aMap;
 	}
 
 	public static <T> void remove(Collection<T> theCollection, Predicate<? super T> thePred) {
