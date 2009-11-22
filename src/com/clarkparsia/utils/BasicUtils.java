@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,6 +49,39 @@ public class BasicUtils {
 		}
 
 		return aBuffer.toString();
+	}
+
+	/**
+	 * <p>Provides a List of integers starting at the given index and going to the given end index (inclusive).  Useful
+	 * if you want to do something X amount of times:</p>
+	 * <code>
+	 *   for (int aNum : range(1, 1000)) {
+	 *       // do work
+	 *   }
+	 * </code>
+	 * @param theStart the start index
+	 * @param theEnd the end index
+	 * @return the range of numbers from start to end (inclusive)
+	 */
+	public static Iterable<Integer> range(final int theStart, final int theEnd) {
+		return new Iterable<Integer>() {
+			public Iterator<Integer> iterator() {
+				return new Iterator<Integer>(){
+					int index = theStart;
+					public boolean hasNext() {
+						return index <= theEnd;
+					}
+
+					public Integer next() {
+						return index++;
+					}
+
+					public void remove() {
+						throw new UnsupportedOperationException();
+					}
+				};
+			}
+		};
 	}
 
 	/**
