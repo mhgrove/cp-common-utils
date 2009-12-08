@@ -21,6 +21,8 @@ import java.text.ParseException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.MalformedURLException;
 
 /**
  * Collection of simple utility methods
@@ -33,6 +35,16 @@ public class BasicUtils {
     public static final int ONE_WEEK = 7 * ONE_DAY;
 
     private static final Random RANDOM = new Random();
+
+	public static boolean isURL(String theURL) {
+		try {
+			new URL(theURL);
+			return true;
+		}
+		catch (MalformedURLException e) {
+			return false;
+		}
+	}
 
 	/**
 	 * Returns a string of the character repeated the specified amount of times.  For example, repeat("*", 5) returns
