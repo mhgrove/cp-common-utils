@@ -142,6 +142,10 @@ public class IOUtil {
 	 * @throws IOException thrown if there is an error while either reading or writing, or if you cross the streams
 	 */
     public static long transfer(InputStream theInputStream, OutputStream theOutputStream) throws IOException {
+		if (theOutputStream == null) {
+			return 0;
+		}
+
 		long aTotalBytes = 0;
 		int aBytesRead = 0;
 

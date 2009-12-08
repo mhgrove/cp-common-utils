@@ -7,6 +7,7 @@ import com.clarkparsia.utils.Function;
 import com.clarkparsia.utils.DataCommand;
 import com.clarkparsia.utils.BasicUtils;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -66,6 +67,10 @@ public class CollectionUtil {
 				theIterator.remove();
 			}
 		}
+	}
+
+	public static <T> Set<T> set(T... theElems) {
+		return new LinkedHashSet<T>(Arrays.asList(theElems));
 	}
 
 	public static <T> Set<T> set(Iterable<T> theIter) {
@@ -252,7 +257,8 @@ public class CollectionUtil {
 
 	/**
 	 * Transform the elements in the iterator, returning a collection of new elements.  null elements (elements of
-	 * the original list whose transformation result is null) are not included in the list.
+	 * the original list whose transformation result is null) are not included in the list.  Note the iterator will
+	 * be exhausted when this function returns.
 	 * @param theIterator the iterator of elements to transform
 	 * @param theTransformer the function to use to transform the elements in the iterator
 	 * @param <I> the type of elements in the iterator
@@ -285,9 +291,11 @@ public class CollectionUtil {
 			theCommand.execute();
 		}
 	}
+
 	/**
 	 * Apply the DataCommand to each element in the iterator.  Each element return by the iterator will be set as
-	 * the data on the DataCommand prior to the command being executed.
+	 * the data on the DataCommand prior to the command being executed.  Note the iterator will be
+	 * exhausted when this function returns.
 	 * @param theIterator the iterator
 	 * @param theCommand the command to execute
 	 * @param <T> the type of elements in the iterator
@@ -297,6 +305,41 @@ public class CollectionUtil {
 			theCommand.setData(theIterator.next());
 			theCommand.execute();
 		}
+	}
+
+	/**
+	 * Search the collection for an element matching the given predicate
+	 * @param theCollection the collection to iterate over
+	 * @param thePredicate the predicate to use to search the collection
+	 * @param <T> the type of elements in the list
+	 * @return true if an element matching the predicate is found, false otherwise
+	 */
+	public static <T> boolean find(Collection<T> theCollection, Predicate<T> thePredicate) {
+		for (T aElem : theCollection) {
+			if (thePredicate.accept(aElem)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Search the iterator for an element matching the given predicate.  Note the iterator will be at least
+	 * partially exhausted when this function returns.
+	 * @param theIterator the iterator
+	 * @param thePredicate the predicate to use to search the iterator
+	 * @param <T> the type of elements in the iterator
+	 * @return true if an element matching the predicate is found, false otherwise
+	 */
+	public static <T> boolean find(Iterator<T> theIterator, Predicate<T> thePredicate) {
+		while (theIterator.hasNext()) {
+			if (thePredicate.accept(theIterator.next())) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

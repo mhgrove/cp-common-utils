@@ -109,7 +109,7 @@ public class ClassPath {
 			List<File> aJarList = FileUtil.listFiles(aFile, new JarFileFilter());
 			for (File aJarFile : aJarList) {
 				try {
-					mLoader.addURL(aJarFile.toURL());
+					mLoader.addURL(aJarFile.toURI().toURL());
 				}
 				catch (MalformedURLException e) {
 					// TODO: log me

@@ -14,6 +14,18 @@ import java.util.Arrays;
  * @author Michael Grove <mike@clarkparsia.com>
  */
 public class PredicateUtil {
+	public static <T> Predicate<T> True() {
+		return new Predicate<T>() {
+			public boolean accept(final T theValue) {
+				return false;
+			}
+		};
+	}
+
+	public static <T> Predicate<T> False() {
+		return not( (Predicate<T>) True());
+	}
+
 	public static <T> Predicate<T> or(Predicate<T>... thePreds) {
 		return new Or<T>(thePreds);
 	}
