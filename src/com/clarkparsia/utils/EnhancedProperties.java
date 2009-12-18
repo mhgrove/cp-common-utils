@@ -80,6 +80,19 @@ public class EnhancedProperties extends Properties {
         return aValue;
     }
 
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public Object put(Object theKey, Object theValue) {
+		if (theKey != null && theValue != null) {
+			return super.put(theKey.toString(), theValue.toString());
+		}
+		else {
+			return null;
+		}
+	}
+
     /**
      * Return the value of the property as an int
      * @param theProp the property to retrieve
