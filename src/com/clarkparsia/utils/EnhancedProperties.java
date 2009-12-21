@@ -96,6 +96,17 @@ public class EnhancedProperties extends Properties {
     /**
      * Return the value of the property as an int
      * @param theProp the property to retrieve
+     * @param theDefault the default property value
+	 * @return the value of the property as an int
+     * @throws NumberFormatException thrown if the value is not a valid integer value
+     */
+    public int getPropertyAsInt(String theProp, int theDefault) throws NumberFormatException {
+        return Integer.parseInt(getProperty(theProp, String.valueOf(theDefault)));
+    }
+
+    /**
+     * Return the value of the property as an int
+     * @param theProp the property to retrieve
      * @return the value of the property as an int
      * @throws NumberFormatException thrown if the value is not a valid integer value
      */
