@@ -87,12 +87,12 @@ public class Header {
 		if (theValue.indexOf(";") != -1) {
 			for (String aKeyValuePair : BasicUtils.split(theValue, ";")) {
 				Tuple aTuple = split(aKeyValuePair);
-				mValues.put(aTuple.<String>get(0), aTuple.<String>get(1));
+				mValues.put(aTuple.<String>get(0), (aTuple.length() < 2 ? null : aTuple.<String>get(1)));
 			}
 		}
 		else if (theValue.indexOf("=") != -1) {
 			Tuple aTuple = split(theValue);
-			mValues.put(aTuple.<String>get(0), aTuple.<String>get(1));
+			mValues.put(aTuple.<String>get(0), (aTuple.length() < 2 ? null : aTuple.<String>get(1)));
 		}
 		else {
 			mValues.put(null, theValue);
@@ -166,5 +166,13 @@ public class Header {
 		}
 
 		return aBuffer.toString();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public String toString() {
+		return getName() + " [" + getHeaderValue()  + "]";
 	}
 }
