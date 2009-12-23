@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Collection;
@@ -108,7 +109,12 @@ public class Request {
 	}
 
 	public Request setBody(String theString) {
-		mBody = new ByteArrayInputStream(theString.getBytes(Encoder.UTF8));
+		try {
+			mBody = new ByteArrayInputStream(theString.getBytes(Encoder.UTF8.name()));
+		}
+		catch (UnsupportedEncodingException e) {
+			// can safely be ignored, we know java supports UTF8
+		}
 
 		return this;
 	}
