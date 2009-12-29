@@ -4,9 +4,12 @@ import com.sun.corba.se.impl.interceptors.CDREncapsCodec;
 
 import java.nio.charset.Charset;
 import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.net.URLEncoder;
+import java.net.URLDecoder;
 
 import sun.misc.BASE64Encoder;
+import sun.misc.BASE64Decoder;
 
 /**
  * Title: Encoder<br/>
@@ -17,7 +20,16 @@ import sun.misc.BASE64Encoder;
  * @author Michael Grove <mike@clarkparsia.com>
  */
 public class Encoder {
+
+	/**
+	 * A base 64 encoder
+	 */
 	private static BASE64Encoder mBase64Encoder;
+
+	/**
+	 * A base 64 decoder
+	 */
+	private static BASE64Decoder mBase64Decoder;
 
 	// these are the charsets that should be available in all jvms.  There might be more than just these...
 	public static final Charset UTF8 = Charset.availableCharsets().get("UTF-8");
@@ -44,7 +56,33 @@ public class Encoder {
 			return URLEncoder.encode(theString, theCharset.displayName());
 		}
 		catch (UnsupportedEncodingException e) {
-			// this can be safely ignored, you would not have a charset object for a support charset
+			// this can be safely ignored, you would not have a charset object for an unsupported charset
+			return null;
+		}
+	}
+
+
+	/**
+	 * URL decode the string using the UTF8 charset
+	 * @param theString the string to decode
+	 * @return the decoded string
+	 */
+	public static String urlDecode(String theString) {
+		return urlDecode(theString, UTF8);
+	}
+
+	/**
+	 * URL decode the given string using the given Charset
+	 * @param theString the string to decode
+	 * @param theCharset the charset to decode the string using
+	 * @return the string decoded with the given charset
+	 */
+	public static String urlDecode(String theString, Charset theCharset) {
+		try {
+			return URLDecoder.decode(theString, theCharset.displayName());
+		}
+		catch (UnsupportedEncodingException e) {
+			// this can be safely ignored, you would not have a charset object for an unsupported charset
 			return null;
 		}
 	}
@@ -62,8 +100,33 @@ public class Encoder {
 	}
 
 	/**
-	 * Return a Sun base64 encoder
-	 * @return an encoder
+	 * Base64 encodes the given byte array.  This utility is provided to abstract over the Sun implementation which
+	 * is deprecated and marked for deletion.  The implementation of this method will always work; so if the existing
+	 * Sun implementation goes away, this will be switched to an appropriate implementation without requiring any
+	 * changes to dependant code.
+	 * @param theStringToDecode the string to decode
+	 * @return the bytes base64 decoded
+	 * @throws java.io.IOException throw if there is an error while decoding
+	 */
+	public static byte[] base64Decode(String theStringToDecode) throws IOException {
+		return getBase64Decoder().decodeBuffer(theStringToDecode);
+	}
+
+	/**
+	 * Return a Base64 decoder
+	 * @return a Sun Base64 decoder
+	 */
+	private static BASE64Decoder getBase64Decoder() {
+		if (mBase64Decoder == null) {
+			mBase64Decoder = new BASE64Decoder();
+		}
+
+		return mBase64Decoder;
+	}
+
+	/**
+	 * Return a base64 encoder
+	 * @return an Sun encoder
 	 */
 	private static BASE64Encoder getBase64Encoder() {
 		if (mBase64Encoder == null) {
