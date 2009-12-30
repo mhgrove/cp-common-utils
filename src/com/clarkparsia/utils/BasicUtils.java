@@ -23,6 +23,8 @@ import java.security.NoSuchAlgorithmException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Collection of simple utility methods
@@ -36,12 +38,32 @@ public class BasicUtils {
 
     private static final Random RANDOM = new Random();
 
+	/**
+	 * Return whether or not the string is a valid URL
+	 * @param theURL the string to test
+	 * @return true if the string is a valid URL, false otherwise
+	 */
 	public static boolean isURL(String theURL) {
 		try {
 			new URL(theURL);
 			return true;
 		}
 		catch (MalformedURLException e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Return whether or not the string is a valid URI
+	 * @param theURI the string to test
+	 * @return true if it is a valid URI, false otherwise
+	 */
+	public static boolean isURI(String theURI) {
+		try {
+			new URI(theURI);
+			return true;
+		}
+		catch (URISyntaxException e) {
 			return false;
 		}
 	}
