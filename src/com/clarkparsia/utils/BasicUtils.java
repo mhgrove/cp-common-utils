@@ -161,8 +161,9 @@ public class BasicUtils {
 			public void execute() {
 				if (aBuffer.length() > 0) {
 					aBuffer.append(theJoinWith).append(" ");
-					aBuffer.append(theRenderer.render(getData()));
 				}
+
+				aBuffer.append(theRenderer.render(getData()));
 			}
 		});
 
