@@ -237,7 +237,6 @@ public class Request {
 			aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
 		}
 		catch (IOException e) {
-			e.printStackTrace();
 			aResponseStream = aConn.getErrorStream();
 			try {
 				aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));

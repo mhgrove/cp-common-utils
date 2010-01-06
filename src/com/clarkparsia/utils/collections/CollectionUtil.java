@@ -388,7 +388,7 @@ public class CollectionUtil {
 	 * @param <I> the type of the original objects
 	 * @param <O> the type of the transformed objects
 	 */
-	private class TransformingIterator<I, O> implements Iterator<O> {
+	public static class TransformingIterator<I, O> implements Iterator<O> {
 
 		/**
 		 * the original iterator
