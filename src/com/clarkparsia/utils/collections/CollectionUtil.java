@@ -69,14 +69,37 @@ public class CollectionUtil {
 		}
 	}
 
+	/**
+	 * Return the array of items as a Set
+	 * @param theElems the items
+	 * @param <T> the type of the items
+	 * @return the items in a Set
+	 */
 	public static <T> Set<T> set(T... theElems) {
 		return new LinkedHashSet<T>(Arrays.asList(theElems));
 	}
 
+	/**
+	 * Return the Iterable as a Set
+	 * @param theIter the iterable
+	 * @param <T> the type of objects in the Iterable
+	 * @return the contents of the Iterable as a Set
+	 */
 	public static <T> Set<T> set(Iterable<T> theIter) {
-		return set(theIter.iterator());
+		if (theIter instanceof Set) {
+			return (Set<T>) theIter;
+		}
+		else {
+			return set(theIter.iterator());
+		}
 	}
 
+	/**
+	 * Go through the contents of the Iterator and return them as a Set
+	 * @param theIter the iterator
+	 * @param <T> the type of objects returned by the Iterator
+	 * @return the contents of the Iterator as a Set
+	 */
     public static <T> Set<T> set(Iterator<T> theIter) {
         Set<T> aSet = new LinkedHashSet<T>();
 
@@ -86,10 +109,28 @@ public class CollectionUtil {
         return aSet;
     }
 
+	/**
+	 * Return the Iterable as a List instance
+	 * @param theIter the Iterable
+	 * @param <T> the type of objects returned by the Iterable
+	 * @return the Iterable as a List
+	 */
 	public static <T> List<T> list(Iterable<T> theIter) {
-		return list(theIter.iterator());
+		if (theIter instanceof List) {
+			// don't create a new list if we don't have to
+			return (List<T>) theIter;
+		}
+		else {
+			return list(theIter.iterator());
+		}
 	}
 
+	/**
+	 * Go through the contents of the iterator and return the as a list
+	 * @param theIter the iterator
+	 * @param <T> the type of objects returned by the iterator
+	 * @return the list of objects in the iterator
+	 */
     public static <T> List<T> list(Iterator<T> theIter) {
         List<T> aList = new ArrayList<T>();
 
@@ -100,6 +141,12 @@ public class CollectionUtil {
         return aList;
     }
 
+	/**
+	 * Wraps the Iterator as an Iterable so it can be used in foreach loops.
+	 * @param theIter the Iterator to wrap
+	 * @param <T> the type of objects returned by the iterator
+	 * @return an instance of an Iterable that will return the given iterator
+	 */
 	public static <T> Iterable<T> iterable(final Iterator<T> theIter) {
 		return new Iterable<T>() {
 			public Iterator<T> iterator() {
