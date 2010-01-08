@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  ~ Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+  ~ Copyright (c) 2005 - 2010, Clark & Parsia, LLC. <http://www.clarkparsia.com>
   -->
 
 <project name="Utils" default="dist" basedir=".">
@@ -14,20 +14,10 @@
     <property name="dist" location="dist" />
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="0.6" />
-    <property name="mainclass" value="Main"/>
+    <property name="project.version" value="1.0" />
 
     <path id="project.class.path">
-<!--    	
-        <pathelement location="lib/" />
--->        
-        <pathelement location="${build}" />  
-<!--    	
-        <fileset dir="lib">
-            <include name="**/*.jar"/>
-            <exclude name="**/${project.name}*.jar"/>
-        </fileset>
--->        
+        <pathelement location="${build}" />
     </path>
 
     <target name="init">
@@ -65,39 +55,10 @@
             </fileset>
         </copy>
 
-        <!--
-        <copy todir="${dist}/tests">
-            <fileset dir="tests">
-                <include name="**/*" />
-            </fileset>
-        </copy>
-        -->
-		<!--
-        <copy todir="${dist}/lib">
-            <fileset dir="lib">
-                <include name="**/*.jar" />
-                <exclude name="**/${project.name}*.jar"/>
-            </fileset>
-        </copy>
-        -->
-
     </target>
 
     <target name="dist" depends="build,distfiles"
             description="Generate a distribution" >
-        <!-- Generate relative classpath for jar file -->
-    	<!--
-        <property name="rlib" location="${basedir}/lib/"/>
-        <pathconvert dirsep="/" pathsep=" " property="Class-Path">
-            <map from="${rlib}/" to=""/>
-                <map from="${rlib}\" to=""/>
-            <path>
-                <fileset dir="${rlib}">
-                    <include name="**/*.jar" />
-                </fileset>
-            </path>
-        </pathconvert>
-        -->
 
         <echo>${Class-Path}</echo>
         <!-- Make Jar file. -->
@@ -124,14 +85,5 @@
 	    <exclude name="**/*.zip"/>
 	        </zipfileset>
 		</zip>
-    </target>
-
-    <target name="run" depends="dist">
-      <java classname="${mainclass}" fork="true" maxmemory="512m">
-          <jvmarg value="-Xss32m -Xms128m -Xmx512m"/>
-          <classpath>
-            <pathelement location="${dist}/lib/${project.name}.jar"/>
-          </classpath>
-      </java>
     </target>
 </project>

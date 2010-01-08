@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.collections;
 
 import java.util.ArrayList;
@@ -7,25 +22,41 @@ import java.util.NoSuchElementException;
 import java.util.Arrays;
 
 /**
- * Title: <br>
- * Description: <br>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br>
- * Created: Sep 11, 2006 2:48:21 PM
+ * <p>A composite iterator</p>
  *
+ * @author Michael Grove
  * @author Evren Sirin
- * @author Michael Grove <mike@clarkparsia.com>
+ * @since 1.0
  */
 public class MultiIterator<T> implements Iterator<T> {
+
+	/**
+	 * The list of iterators that make up this MultiIterator
+	 */
     private List<Iterator<T>> mIteratorList = new ArrayList<Iterator<T>>();
 
+	/**
+	 * The index of the current iterator
+	 */
     private int mIndex = 0;
 
+	/**
+	 * The current iterator
+	 */
     private Iterator<T> mCurrIterator;
 
+	/**
+	 * Create a new MultiIterator
+	 * @param theFirst the iterator backing this one
+	 */
     public MultiIterator(Iterator<T> theFirst) {
         mCurrIterator = theFirst;
     }
 
+	/**
+	 * Create a new MultiIterator
+	 * @param theIterList the array of iterators to back this one
+	 */
     public MultiIterator(Iterator<T>... theIterList) {
         mCurrIterator = theIterList[0];
 
@@ -34,6 +65,10 @@ public class MultiIterator<T> implements Iterator<T> {
 		}
     }
 
+	/**
+	 * Create a new MultiIterator
+	 * @param theList the list of iterators backing this one
+	 */
 	public MultiIterator(List<? extends Iterator<T>> theList) {
         mCurrIterator = theList.get(0);
 
@@ -42,6 +77,9 @@ public class MultiIterator<T> implements Iterator<T> {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public boolean hasNext() {
         while (!mCurrIterator.hasNext() && mIndex < mIteratorList.size()) {
             mCurrIterator = mIteratorList.get(mIndex++);
@@ -50,6 +88,9 @@ public class MultiIterator<T> implements Iterator<T> {
         return mCurrIterator.hasNext();
     }
 
+	/**
+	 * @inheritDoc
+	 */
     public T next() {
         if(!hasNext())
             throw new NoSuchElementException("MultiIterator: No Elements Left in any embedded iterator");
@@ -57,8 +98,15 @@ public class MultiIterator<T> implements Iterator<T> {
         return mCurrIterator.next();
     }
 
-
+	/**
+	 * Append the Iterator to the end of the MultiIterator
+	 * @param theIter the iterator to append
+	 */
     public void append(Iterator<T> theIter) {
+		if (theIter == null || !hasNext()) {
+			return;
+		}
+
         if (theIter instanceof MultiIterator) {
             mIteratorList.addAll( ((MultiIterator<T>) theIter).mIteratorList );
 		}
@@ -67,6 +115,9 @@ public class MultiIterator<T> implements Iterator<T> {
 		}
     }
 
+	/**
+	 * @inheritDoc
+	 */
     public void remove() {
         mCurrIterator.remove();
     }

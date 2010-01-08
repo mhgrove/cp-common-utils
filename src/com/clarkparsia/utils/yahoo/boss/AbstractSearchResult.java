@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.yahoo.boss;
 
 import java.net.URL;
@@ -6,13 +21,10 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * Title: AbstractSearchResult<br/>
- * Description: Abstract implementation of a search result which provides access to some universal properties of search
- * results like URL and title.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: May 14, 2009 3:14:40 PM <br/>
+ * <p>Abstract implementation of a search result which provides access to some universal properties of search
+ * results like URL and title.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
  */
 public abstract class AbstractSearchResult implements SearchResult, ResultConsts {
 

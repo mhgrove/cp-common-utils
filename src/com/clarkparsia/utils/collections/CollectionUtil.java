@@ -1,4 +1,17 @@
-// Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.clarkparsia.utils.collections;
 
@@ -22,12 +35,10 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * Title: CollectionUtil<br/>
- * Description: Utility methods for using and working with collections.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: Apr 21, 2009 10:15:38 AM <br/>
+ * <p>Utility methods for using and working with collections.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
 public class CollectionUtil {
 
@@ -46,6 +57,11 @@ public class CollectionUtil {
 		return aCount;
 	}
 
+	/**
+	 * Return the Properties object as a Map of strings
+	 * @param theProps the Properties
+	 * @return the Properties object as a Map
+	 */
 	public static Map<String, String> map(Properties theProps) {
 		Map<String, String> aMap = new HashMap<String, String>();
 
@@ -56,10 +72,22 @@ public class CollectionUtil {
 		return aMap;
 	}
 
+	/**
+	 * Iterate over the collection and remove anything that satisifies the Predicate
+	 * @param theCollection the collection to iterate
+	 * @param thePred the predicate to use for removal
+	 * @param <T> the type of objects returned by the iterator
+	 */
 	public static <T> void remove(Collection<T> theCollection, Predicate<? super T> thePred) {
 		remove(theCollection.iterator(), thePred);
 	}
 
+	/**
+	 * Iterate and remove anything returned by the Iterator that satisifies the Predicate
+	 * @param theIterator the iterator
+	 * @param thePred the predicate
+	 * @param <T> the type of objects returned by the iterator
+	 */
 	public static <T> void remove(Iterator<T> theIterator, Predicate<? super T> thePred) {
 		while (theIterator.hasNext()) {
 			T aObj = theIterator.next();
@@ -174,20 +202,6 @@ public class CollectionUtil {
                 }
             }
             return false;
-        }
-    }
-
-    public static <T> boolean containsAll(Collection<T> theList, Collection<T> toSearch) {
-        if (toSearch.isEmpty()) {
-            return true;
-        }
-        else {
-            for (T aObj : toSearch) {
-                if (!theList.contains(aObj)) {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 
@@ -390,13 +404,10 @@ public class CollectionUtil {
 	}
 
 	/**
-	 * Title: TransformingCollection<br/>
-	 * Description: A collection which wraps another collection and transforms objects from the original on demand
-	 * during iteration.<br/>
-	 * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
-	 * Created: Oct 31, 2009 9:28:08 AM <br/>
+	 * <p>A collection which wraps another collection and transforms objects from the original on demand</p>
 	 *
-	 * @author Michael Grove <mike@clarkparsia.com>
+	 * @author Michael Grove
+	 * @since 1.0
 	 */
 	private class TransformingCollection<I,O> extends AbstractCollection<O> {
 		/**
@@ -483,7 +494,7 @@ public class CollectionUtil {
 	/**
 	 * An implementation of the Collection interface which provides a filtered view of another collection.  Operations
 	 * which modify this collection also modify the original collection.
-	 * @param <T>
+	 * @param <T> the type of objects in the collection
 	 */
 	private class FilteredCollection<T> implements Collection<T> {
 
@@ -635,6 +646,12 @@ public class CollectionUtil {
 		}
 	}
 
+	/**
+	 * <p>A filtering iterator.</p>
+	 *
+	 * @author Michael Grove
+	 * @since 1.0
+	 */
 	public class FilteredIterator<T> implements Iterator<T> {
 		private Iterator<T> mIter;
 		private Predicate<? super T> mPredicate;
@@ -645,11 +662,18 @@ public class CollectionUtil {
 			mPredicate = thePredicate;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public boolean hasNext() {
 			return mIter.hasNext() && findNext();
 
 		}
 
+		/**
+		 * Return true if there is another element in this iterator
+		 * @return true if there is another element, false otherwise.
+		 */
 		private boolean findNext() {
 			if (mNext != null) {
 				return true;
@@ -667,6 +691,9 @@ public class CollectionUtil {
 			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public T next() {
 			if (mNext == null) {
 				findNext();
@@ -682,6 +709,9 @@ public class CollectionUtil {
 			return aNext;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}

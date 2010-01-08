@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.io;
 
 import com.sun.corba.se.impl.interceptors.CDREncapsCodec;
@@ -12,12 +27,10 @@ import sun.misc.BASE64Encoder;
 import sun.misc.BASE64Decoder;
 
 /**
- * Title: Encoder<br/>
- * Description: Collection of utility methods for encoding/decoding strings.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: Nov 4, 2009 1:54:56 PM <br/>
+ * <p>Collection of utility methods for encoding/decoding strings.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
 public class Encoder {
 

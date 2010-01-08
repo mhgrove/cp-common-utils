@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils;
 
 import java.util.Properties;
@@ -9,12 +24,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * Title: EnhancedProperties<br>
- * Description: Extends the java.util.Properties stuff to provide typed accessors to get property values as boolean, int, etc.
+ * <p>Extends the java.util.Properties stuff to provide typed accessors to get property values as boolean, int, etc.
  * Also provides a way to get a property value as a list, or as a map of values.  And it does variable substitution on
  * property values.<br/><br/>
  * Given the following property file
- * <code>
+ * <code><pre>
  * some_boolean_property = true
  * some_integer_property = 42
  * some_property = some_value
@@ -24,17 +38,15 @@ import java.io.IOException;
  * key_a = a
  * key_b = b
  * key_c = c
- * </code>
+ * </pre></code>
  * {@link #getPropertyAsBoolean(String) getPropertyAsBoolean("some_boolean_property")} yields the boolean value "true".
  * {@link #getPropertyAsInt(String) getPropertyAsInt("some_integer_property")} yields the integer 42.
- * {@link #getPropertyAsList(String) getPropertyAsList("some_list")} yields a List<String> with the values "one", "two", "three" and "four".
- * {@link #getPropertyAsMap(String) getPropertyAsMap("some_map")} yields a Map<String, String> with the key value pairs:
+ * {@link #getPropertyAsList(String) getPropertyAsList("some_list")} yields a List&lt;String&gt; with the values "one", "two", "three" and "four".
+ * {@link #getPropertyAsMap(String) getPropertyAsMap("some_map")} yields a Map&lt;String, String&gt; with the key value pairs:
  * key_a => a, key_b => b, key_c => c.  Lastly, getting the property "some_other_property" yields the value "some_value/foo" via
- * variable substitution.
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br>
- * Created: Jan 25, 2008 8:40:09 AM
+ * variable substitution.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
  */
 public class EnhancedProperties extends Properties {
 

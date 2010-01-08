@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils;
 
 import java.util.List;
@@ -6,15 +21,12 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Title: Tuple<br/>
- * Description: A simple Tuple object.  Trades strict type safety for flexibility.  If you want a type-safe tuple you
+ * <p>A simple Tuple object.  Trades strict type safety for flexibility.  If you want a type-safe tuple you
  * have to define a specific Tuple class for a 1-tuple, for a 2-tuple, for a 3-tuple ... up to n-tuple.  This does
  * not really scale.  Most likely your uses will fall into a small enough range you could make a class for each, but
- * this gets most of the joy without having to write lots of classes for each size.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: Dec 23, 2009 9:09:20 AM <br/>
+ * this gets most of the joy without having to write lots of classes for each size.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
  */
 public class Tuple implements Iterable<Object> {
 

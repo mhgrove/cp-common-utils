@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.net;
 
 import java.net.InetAddress;
@@ -13,36 +28,31 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 
-/** try to determine MAC address of local network card; this is done
-    using a shell to run ifconfig (linux) or ipconfig (windows). The
-    output of the processes will be parsed.
-
-    <p>
-
-    Adapted from code found in the Java forums: http://forum.java.sun.com/thread.jspa?threadID=245711&start=15&tstart=0
-
-    <p>
-
-    Current restrictions:
-
-    <ul>
-       <li>Will probably not run in applets
-       <li>Tested Windows / Linux / Mac OSX only
-       <li>Tested J2SDK 1.4 only
-       <li>If a computer has more than one network adapters, only one MAC address will be returned
-       <li>will not run if user does not have permissions to run ifconfig/ipconfig (e.g. under linux this is typically only permitted for root)
-    </ul>
-
-  * Title: <br>
-  * Description: <br>
-  * Created: Mar 20, 2007 1:52:02 PM
-  *
-  * @author Original Author Unknown
-  * @author Michael Grove <mhgrove@hotmail.com>
-  */
+/** <p>
+ * Try to determine MAC address of local network card; this is done
+ *  using a shell to run ifconfig (linux) or ipconfig (windows). The
+ *  output of the processes will be parsed.
+ *  </p>
+ *
+ *  <p>
+ *
+ *  Adapted from code found in the Java forums: http://forum.java.sun.com/thread.jspa?threadID=245711&start=15&tstart=0
+ *
+ *  <p>
+ *
+ *  Current restrictions:
+ *
+ *  <ul>
+ *     <li>Will probably not run in applets
+ *     <li>Tested Windows / Linux / Mac OSX only
+ *     <li>Tested J2SDK 1.4 only
+ *     <li>If a computer has more than one network adapters, only one MAC address will be returned
+ *     <li>will not run if user does not have permissions to run ifconfig/ipconfig (e.g. under linux this is typically only permitted for root)
+ *  </ul>
+ */
 public class NetworkInfo {
-    public static String getMacAddress() {
-        String mac = "";
+	public static String getMacAddress() {
+		String mac = "";
         String os = System.getProperty("os.name");
 
         try {

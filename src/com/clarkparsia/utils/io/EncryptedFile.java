@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.io;
 
 import javax.crypto.CipherInputStream;
@@ -25,13 +40,11 @@ import java.security.NoSuchAlgorithmException;
 import java.net.URI;
 
 /**
- * Title: EncryptedFile<br/>
- * Description: A extended File which will return an input or output stream for reading and writing to the file
- * in an encrypted/decrypted manner.  The same key must be used to read from an encrypted file as was used to write to it.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: Mar 27, 2009 8:52:42 AM <br/>
+ * <p>A extended File which will return an input or output stream for reading and writing to the file
+ * in an encrypted/decrypted manner.  The same key must be used to read from an encrypted file as was used to write to it.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
 public class EncryptedFile extends File {
 
@@ -162,11 +175,25 @@ public class EncryptedFile extends File {
             throw new IOException(e.getMessage());
         }
     }
-    
+
+	/**
+	 * Return an encrypted output stream using the given key
+	 * @param theStream the stream to encrypt
+	 * @param theKey the key to use for encryption
+	 * @return an encrypted stream
+	 * @throws IOException thrown if there is an error while encrypting
+	 */
     public static OutputStream encrypt(OutputStream theStream, String theKey) throws IOException {
         return encrypt(theStream, makeGoodKey(theKey));
     }
 
+	/**
+	 * Return an encrypted output stream using the given secret key
+	 * @param theStream the stream to encrypt
+	 * @param theKey the key to use for encryption
+	 * @return an encrypted streawm
+	 * @throws IOException thrown if there is an error while encrypting the stream
+	 */
     public static OutputStream encrypt(OutputStream theStream, SecretKey theKey) throws IOException {
         try {
             return new CipherOutputStream(theStream, createEncryptCipher(theKey));
@@ -255,19 +282,5 @@ public class EncryptedFile extends File {
      */
     public OutputStream getOutputStream() throws IOException {
         return new CipherOutputStream(new FileOutputStream(this), mEncryptCipher);
-    }
-
-    public static void main(String[] args) throws Exception {
-        SecretKey key = KeyGenerator.getInstance("DES").generateKey();
-
-        SecretKey aKey = new SecretKeySpec("Daddy needs a new pair of shoes".substring(0, 8).getBytes(), "DES");
-
-        EncryptedFile aFile = new EncryptedFile("/Users/mhgrove/Desktop/enc.file.txt", aKey);
-
-        IOUtil.writeStringToStream("i'm feeling lucky tonight", aFile.getOutputStream());
-        System.err.println(IOUtil.readStringFromStream(aFile.getInputStream()));
-        System.err.println("foo");
-        System.err.println(IOUtil.readStringFromStream(new EncryptedFile("/Users/mhgrove/Desktop/enc.file.txt",
-                                                                         "Daddy needs a new pair of shoes").getInputStream()));
     }
 }

@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.yahoo.boss.web;
 
 import com.clarkparsia.utils.yahoo.boss.XMLResultsBuilder;
@@ -10,13 +25,12 @@ import java.net.URL;
 import java.util.Map;
 
 /**
- * Title: WebSearch <br/>
- * Description: Conducts a web search via Yahoo's BOSS API<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: May 14, 2009 8:34:40 PM <br/>
+ * <p>Conducts a web search via Yahoo's BOSS API</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
+
 public class WebSearch extends AbstractSearch<WebSearchResult> {
 
 	/**
@@ -75,14 +89,4 @@ public class WebSearch extends AbstractSearch<WebSearchResult> {
 		return RESULTS_BUILDER.result(theURL);
 	}
 
-	public static void main(String[] args) throws Exception {
-		WebSearch aSearch = new WebSearch("YoXKPEHV34ErgUqn31aqFYEPi2.Vk_xSYGn207ezkXg9HF3a7rtrSXw8XQmNDx7MOA--");
-
-		SearchResults<WebSearchResult> aResults = aSearch.search("roger clemens");
-
-		System.err.println(aResults.hasNextPage());
-		for (WebSearchResult aRes : aResults) {
-			System.err.println(aRes.getUrl());
-		}
-	}
 }

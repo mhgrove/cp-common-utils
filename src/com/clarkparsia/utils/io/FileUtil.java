@@ -1,4 +1,17 @@
-// Copyright (c) 2005 - 2009, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.clarkparsia.utils.io;
 
@@ -19,12 +32,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
- * Title: FileUtil<br/>
- * Description: Collection of utility functions for file-centric operations.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: Oct 2, 2009 8:33:46 AM <br/>
+ * <p>Collection of utility functions for file-centric operations.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
 public class FileUtil {
 
@@ -42,6 +53,12 @@ public class FileUtil {
 		});
     }
 
+	/**
+	 * Appends the string to the file
+	 * @param theFile the file to append to
+	 * @param theString the string to append
+	 * @throws IOException thrown if there is an error while appending the data
+	 */
 	public static void append(File theFile, String theString) throws IOException {
 		FileWriter aWriter = new FileWriter(theFile, true);
 
@@ -52,6 +69,12 @@ public class FileUtil {
 		aWriter.close();
 	}
 
+	/**
+	 * Zip the given directory.
+	 * @param theDir the directory to zip
+	 * @param theOutputFile the zip file to write to
+	 * @throws IOException thrown if there is an error while zipping the directory or while saving the results.
+	 */
     public static void zipDirectory(File theDir, File theOutputFile) throws IOException {
         ZipOutputStream aZipOut = new ZipOutputStream(new FileOutputStream(theOutputFile));
 

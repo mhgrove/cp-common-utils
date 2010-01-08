@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.yahoo.boss.image;
 
 import com.clarkparsia.utils.yahoo.boss.AbstractSearch;
@@ -9,12 +24,10 @@ import java.util.Map;
 import java.net.MalformedURLException;
 
 /**
- * Title: ImageSearch<br/>
- * Description: Implementation of the Search interface which conducts image searches using Yahoo's BOSS API.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: May 14, 2009 3:12:03 PM <br/>
+ * <p>Implementation of the Search interface which conducts image searches using Yahoo's BOSS API.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
 public class ImageSearch extends AbstractSearch<ImageSearchResult> {
 
@@ -58,16 +71,5 @@ public class ImageSearch extends AbstractSearch<ImageSearchResult> {
 	public SearchResults<ImageSearchResult> search(final String theSearchTerm, final Map<String, String> theParameters) throws BOSSException {
 		// TODO: does the image search take parameters
 		return search(theSearchTerm);
-	}
-
-	public static void main(String[] args) throws Exception {
-		ImageSearch aSearch = new ImageSearch("YoXKPEHV34ErgUqn31aqFYEPi2.Vk_xSYGn207ezkXg9HF3a7rtrSXw8XQmNDx7MOA--");
-
-		SearchResults<ImageSearchResult> aResults = aSearch.search("roger clemens");
-		
-		System.err.println(aResults.hasNextPage());
-		for (ImageSearchResult aRes : aResults) {
-			System.err.println(aRes.getUrl());
-		}
-	}
+	}	
 }

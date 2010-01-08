@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.clarkparsia.utils.yahoo.boss;
 
 import org.xml.sax.InputSource;
@@ -22,12 +37,10 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 
 /**
- * Title: XMLResultsBuilder<br/>
- * Description: Implementation of the ResultBuilder interface for parsing XML formatted result sets from the BOSS API.<br/>
- * Company: Clark & Parsia, LLC. <http://www.clarkparsia.com> <br/>
- * Created: May 14, 2009 4:02:42 PM <br/>
+ * <p>Implementation of the ResultBuilder interface for parsing XML formatted result sets from the BOSS API.</p>
  *
- * @author Michael Grove <mike@clarkparsia.com>
+ * @author Michael Grove
+ * @since 1.0
  */
 public class XMLResultsBuilder<T extends SearchResult> implements ResultsBuilder<T> {
 
