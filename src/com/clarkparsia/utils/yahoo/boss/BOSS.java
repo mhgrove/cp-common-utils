@@ -126,25 +126,4 @@ public class BOSS {
 	public SearchResults<WebSearchResult> webSearch(String theTerm, Map<String, String> theParams) throws BOSSException {
 		return getWebSearch().search(theTerm, theParams);
 	}
-
-	public static void main(String[] args) throws BOSSException {
-		BOSS aYahoo = BOSS.instance("YoXKPEHV34ErgUqn31aqFYEPi2.Vk_xSYGn207ezkXg9HF3a7rtrSXw8XQmNDx7MOA--");
-
-		int aPageCount = 1;
-		SearchResults<WebSearchResult> aResults = aYahoo.webSearch("baltimore orioles");
-
-		while (aPageCount < 6 && aResults.hasNextPage()) {
-			System.err.println("Displaying Results Page: " + aPageCount);
-
-			for (WebSearchResult aResult : aResults) {
-				System.err.println("Title: " + aResult.getTitle());
-				System.err.println("URL: " + aResult.getUrl());
-				System.err.println("Abstract: " + aResult.getAbstract());
-				System.err.println();
-			}
-
-			aResults.nextPage();
-			aPageCount++;
-		}
-	}
 }
