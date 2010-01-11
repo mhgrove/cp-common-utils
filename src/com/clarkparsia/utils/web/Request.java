@@ -164,7 +164,7 @@ public class Request {
 				return new URL(getURL().toString() + "?" + getParameters().getURLEncoded());
 			}
 			catch (MalformedURLException e) {
-				throw new IOException(e);
+				throw new IOException(e.getMessage());
 			}
 		}
 		else {
