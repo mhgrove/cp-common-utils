@@ -27,6 +27,7 @@ import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.net.URL;
 import java.util.StringTokenizer;
 
@@ -102,6 +103,16 @@ public class IOUtil {
 
         Reader reader = new BufferedReader(new InputStreamReader(theURL.openStream()));
         return readStringFromReader(reader);
+    }
+
+    /**
+     * Write the specifed string to the given file name
+     * @param theSave String the string to save
+     * @param theFile the file to save the string to
+     * @throws IOException if there is an error while writing
+     */
+    public static void writeStringToFile(String theSave, File theFile) throws IOException {
+        writeStringToStream(theSave, new FileOutputStream(theFile));
     }
 
     /**

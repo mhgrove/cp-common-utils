@@ -279,6 +279,14 @@ public class CollectionUtil {
         return true;
     }
 
+	/**
+	 * Filter the contents of a collection based on the provided filter, only elements passing the filter
+	 * (Predicate returns true) will be included in the filtered collection
+	 * @param theCollection the collection to filter
+	 * @param theFilter the Predicate to use to filter the collection
+	 * @param <T> the type of elements in the collection
+	 * @return a filtered copy of the collection
+	 */
 	public static <T> Collection<T> filter(Collection<T> theCollection, Predicate<T> theFilter) {
 		return filter(theCollection.iterator(), theFilter);
 	}

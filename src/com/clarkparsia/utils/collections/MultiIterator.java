@@ -15,6 +15,9 @@
 
 package com.clarkparsia.utils.collections;
 
+import com.clarkparsia.utils.Function;
+import static com.clarkparsia.utils.collections.CollectionUtil.transform;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -62,6 +65,19 @@ public class MultiIterator<T> implements Iterator<T> {
 
 		if (theIterList.length > 1) {
 			mIteratorList.addAll(Arrays.asList(theIterList).subList(1, theIterList.length));
+		}
+    }
+
+	/**
+	 * Create a new MultiIterator
+	 * @param theIterList the array of iterators to back this one
+	 */
+    public MultiIterator(Iterable<T>... theIterList) {
+        mCurrIterator = theIterList[0].iterator();
+
+		if (theIterList.length > 1) {
+			mIteratorList.addAll(transform(Arrays.asList(theIterList).subList(1, theIterList.length),
+										   new Function<Iterable<T>, Iterator<T>>() { public Iterator<T> apply(Iterable<T> theIn) { return theIn.iterator(); } }));
 		}
     }
 
