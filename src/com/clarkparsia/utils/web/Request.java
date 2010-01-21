@@ -73,38 +73,81 @@ public class Request {
 		return aRequest;
 	}
 
+	/**
+	 * Return the current timeout value
+	 * @return the timeout value in milliseconds or -1 for no timeout
+	 */
 	public int getTimeout() {
 		return mTimeout;
 	}
 
+	/**
+	 * Set the timeout associated associated with this request
+	 * @param theTimeout the timeout in milliseconds, or -1 for no timeout
+	 * @return this request
+	 */
 	public Request setTimeout(final int theTimeout) {
 		mTimeout = theTimeout;
 
 		return this;
 	}
 
+	/**
+	 * Return whether or not this request will follow redirects
+	 * @return true to follow redirects, false otherwise
+	 */
 	public boolean isFollowRedirects() {
 		return mFollowRedirects;
 	}
 
+	/**
+	 * Set whether or not this request will follow redirects
+	 * @param theFollowRedirects true to follow redirects, false otherwise
+	 * @return this request
+	 */
 	public Request setFollowRedirects(final boolean theFollowRedirects) {
 		mFollowRedirects = theFollowRedirects;
 
 		return this;
 	}
 
+	/**
+	 * Add a parameter to this web request
+	 * @param theKey the parameter key
+	 * @param theValue the parameter value
+	 * @return this request
+	 */
+	public Request addParameter(String theKey, String theValue) {
+		return addParameter(new Parameter(theKey, theValue));
+	}
+
+	/**
+	 * Adds a parameter to this web request
+	 * @param theParameter the parameter to add
+	 * @return this request
+	 */
 	public Request addParameter(Parameter theParameter) {
 		mParameters.add(theParameter);
 
 		return this;
 	}
 
+	/**
+	 * Sets the list of parameters for this web request
+	 * @param theParameters the list of parameters
+	 * @return this request
+	 */
 	public Request setParameters(final ParameterList theParameters) {
 		mParameters = theParameters;
 
 		return this;
 	}
 
+	/**
+	 * Add a header to this request
+	 * @param theHeader the header to add
+	 * @return this request
+	 */
 	public Request addHeader(Header theHeader) {
 		if (mHeaders.containsKey(theHeader.getName())) {
 			theHeader.addValues(mHeaders.get(theHeader.getName()).getValues());
