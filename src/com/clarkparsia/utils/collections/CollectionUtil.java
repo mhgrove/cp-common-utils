@@ -426,7 +426,7 @@ public class CollectionUtil {
 		/**
 		 * The transforming function
 		 */
-		private Function<? super I, ? super O> mTransformer;
+		private Function<I,O> mTransformer;
 
 		/**
 		 * Create a new TransformingCollection
@@ -434,7 +434,7 @@ public class CollectionUtil {
 		 * @param theTransformer the transforming function
 		 */
 		private TransformingCollection(final Collection<I> theOriginalCollection,
-									   final Function<? super I, ? super O> theTransformer) {
+									   final Function<I,O> theTransformer) {
 			mOriginalCollection = theOriginalCollection;
 			mTransformer = theTransformer;
 		}
@@ -464,14 +464,14 @@ public class CollectionUtil {
 		/**
 		 * The transforming function
 		 */
-		private Function<? super I, ? super O> mTransformer;
+		private Function<I,O> mTransformer;
 
 		/**
 		 * Create a new TransformingIterator
 		 * @param theOrig the original iterator
 		 * @param theTransform the function to perform the transform
 		 */
-		public TransformingIterator(Iterator<I> theOrig, Function<? super I, ? super O> theTransform) {
+		public TransformingIterator(Iterator<I> theOrig, Function<I,O> theTransform) {
 			mOriginalIterator = theOrig;
 			mTransformer = theTransform;
 		}
@@ -487,8 +487,7 @@ public class CollectionUtil {
 		 * @inheritDoc
 		 */
 		public O next() {
-			// TODO: i hate generics
-			return (O) mTransformer.apply(mOriginalIterator.next());
+			return mTransformer.apply(mOriginalIterator.next());
 		}
 
 		/**
