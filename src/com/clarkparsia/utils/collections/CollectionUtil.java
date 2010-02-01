@@ -131,8 +131,9 @@ public class CollectionUtil {
     public static <T> Set<T> set(Iterator<T> theIter) {
         Set<T> aSet = new LinkedHashSet<T>();
 
-        while (theIter.hasNext())
+        while (theIter.hasNext()) {
             aSet.add(theIter.next());
+		}
 
         return aSet;
     }
@@ -465,6 +466,16 @@ public class CollectionUtil {
 		 * The transforming function
 		 */
 		private Function<I,O> mTransformer;
+
+
+		/**
+		 * Create a new TransformingIterator
+		 * @param theOrig the original Iterable
+		 * @param theTransform the function to perform the transform
+		 */
+		public TransformingIterator(Iterable<I> theOrig, Function<I,O> theTransform) {
+			this(theOrig.iterator(), theTransform);
+		}
 
 		/**
 		 * Create a new TransformingIterator
