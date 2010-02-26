@@ -17,6 +17,7 @@ package com.clarkparsia.utils;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collection;
 import java.net.URISyntaxException;
 import java.net.URI;
 
@@ -24,7 +25,8 @@ import java.net.URI;
  * <p>Utility methods for working with namespaces</p>
  *
  * @author Michael Grove
- * @since 1.0
+ * @since 0.1
+ * @version 1.0.2
  */
 public class NamespaceUtils {
     private static final Map<String, String> mNamespaces = new HashMap<String, String>();
@@ -32,6 +34,14 @@ public class NamespaceUtils {
     public static void clear() {
         mNamespaces.clear();
     }
+
+	public static Collection<String> prefixes() {
+		return mNamespaces.keySet();
+	}
+
+	public static String namespace(String thePrefix) {
+		return mNamespaces.get(thePrefix);
+	}
 
     public static void addNamespace(String theAbbrev, String theURI) {
         if (!theURI.endsWith("#") && !theURI.endsWith("/"))
