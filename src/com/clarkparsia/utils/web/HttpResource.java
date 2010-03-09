@@ -16,6 +16,7 @@
 package com.clarkparsia.utils.web;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * <p></p>
@@ -35,4 +36,6 @@ public interface HttpResource {
 	public Request initDelete();
 
 	public Request initRequest(Method theMethod);
+
+	public URL url();
 }

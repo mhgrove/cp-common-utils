@@ -144,13 +144,17 @@ public class IOUtil {
     public static void writeStringToWriter(String theString, Writer theWriter) throws IOException {
         BufferedWriter aWriter = new BufferedWriter(theWriter);
 
-        StringTokenizer st = new StringTokenizer(theString,"\n",true);
-        String s;
-        while (st.hasMoreTokens()) {
-            s = st.nextToken();
-            if (s.equals("\n"))
+        StringTokenizer aTokenizer = new StringTokenizer(theString,"\n",true);
+        String aLine;
+
+        while (aTokenizer.hasMoreTokens()) {
+            aLine = aTokenizer.nextToken();
+            if (aLine.equals("\n")) {
                 aWriter.newLine();
-            else aWriter.write(s);
+			}
+            else {
+				aWriter.write(aLine);
+			}
         }
 
         aWriter.flush();

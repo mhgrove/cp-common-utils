@@ -44,8 +44,9 @@ public class NamespaceUtils {
 	}
 
     public static void addNamespace(String theAbbrev, String theURI) {
-        if (!theURI.endsWith("#") && !theURI.endsWith("/"))
+        if (!theURI.endsWith("#") && !theURI.endsWith("/")) {
             theURI += "#";
+		}
 
         mNamespaces.put(theAbbrev, theURI);
     }
@@ -56,30 +57,39 @@ public class NamespaceUtils {
 
     public static String getLocalName(String theId) {
         int aIndex = theId.lastIndexOf("#");
-        if (aIndex == -1)
-            aIndex = theId.lastIndexOf("/");
 
-        if (aIndex == -1)
+        if (aIndex == -1) {
+            aIndex = theId.lastIndexOf("/");
+		}
+
+        if (aIndex == -1) {
             return theId;
+		}
 
         return theId.substring(aIndex+1);
     }
     
     public static String qname(String theId) {
         int aIndex = theId.lastIndexOf("#");
-        if (aIndex == -1)
-            aIndex = theId.lastIndexOf("/");
 
-        if (aIndex == -1)
+        if (aIndex == -1) {
+            aIndex = theId.lastIndexOf("/");
+		}
+
+        if (aIndex == -1) {
             return theId;
+		}
 
         String aURI = theId.substring(0,aIndex+1);
         String aLocalName = theId.substring(aIndex+1);
         String aAbbrev = abbrevForURI(aURI);
 
-        if (aAbbrev != null)
+        if (aAbbrev != null) {
             return aAbbrev + (aAbbrev.length() > 0 ? ":" : "") + aLocalName;
-        else return theId;
+		}
+        else {
+			return theId;
+		}
     }
 
     public static String uri(String theQName) {

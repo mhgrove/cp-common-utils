@@ -38,6 +38,9 @@ public class HttpResourceImpl implements HttpResource {
 		// TODO: does this need to be an interface?  seems like overkill.
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public HttpResource resource(final String theName) {
 		try {
 			return new HttpResourceImpl(new URL(mURL.toString() + (mURL.toString().endsWith("/") ? "" : "/") + theName + (theName.endsWith("/") ? "" : "/")));
@@ -47,31 +50,59 @@ public class HttpResourceImpl implements HttpResource {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Response delete() throws IOException {
 		return initDelete().execute();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Response get() throws IOException {
 		return initGet().execute();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Request initGet() {
 		return new Request(Method.GET, mURL);
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Request initPost() {
 		return new Request(Method.POST, mURL);
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Request initPut() {
 		return new Request(Method.PUT, mURL);
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Request initDelete() {
 		return new Request(Method.DELETE, mURL);
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public Request initRequest(Method theMethod) {
 		return new Request(theMethod, mURL);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public URL url() {
+		return mURL;
 	}
 }
