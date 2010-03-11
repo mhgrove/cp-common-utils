@@ -514,7 +514,7 @@ public class CollectionUtil {
 	 * which modify this collection also modify the original collection.
 	 * @param <T> the type of objects in the collection
 	 */
-	private class FilteredCollection<T> implements Collection<T> {
+	private static class FilteredCollection<T> implements Collection<T> {
 
 		/**
 		 * The collection to filter
@@ -670,7 +670,7 @@ public class CollectionUtil {
 	 * @author Michael Grove
 	 * @since 1.0
 	 */
-	public class FilteredIterator<T> implements Iterator<T> {
+	public static class FilteredIterator<T> implements Iterator<T> {
 		private Iterator<T> mIter;
 		private Predicate<? super T> mPredicate;
 		private T mNext;

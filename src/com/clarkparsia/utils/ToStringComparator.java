@@ -16,6 +16,7 @@
 package com.clarkparsia.utils;
 
 import java.util.Comparator;
+import java.io.Serializable;
 
 /**
  * <p></p>
@@ -23,7 +24,7 @@ import java.util.Comparator;
  * @author Michael Grove
  * @since 1.0
  */
-public class ToStringComparator<T> implements Comparator<T> {
+public class ToStringComparator<T> implements Comparator<T>, Serializable {
 
 	/**
 	 * @inheritDoc

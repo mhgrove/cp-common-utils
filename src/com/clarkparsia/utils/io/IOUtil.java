@@ -40,7 +40,7 @@ public class IOUtil {
     /**
      * The system dependent end-of-line defined here for convenience
      */
-    public static String ENDL = System.getProperty( "line.separator" );
+    public final static String ENDL = System.getProperty( "line.separator" );
 
     /**
      * Given a path to a file on the local disk, return the contents of that file as a String.<br><br>

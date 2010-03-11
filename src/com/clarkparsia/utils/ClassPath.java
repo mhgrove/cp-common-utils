@@ -48,7 +48,7 @@ import java.net.MalformedURLException;
  * @author Michael Grove
  */
 public class ClassPath {
-	public static boolean QUIET = true;
+	final public static boolean QUIET = true;
 
 	private static Collection<Class> mClasses;
 

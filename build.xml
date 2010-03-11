@@ -67,7 +67,6 @@
             <manifest>
                 <attribute name="Main-Class" value="${mainclass}"/>
                 <attribute name="Class-Path" value="${Class-Path}" />
-
             </manifest>
         </jar>
     </target>

@@ -51,12 +51,12 @@ public class EncryptedFile extends File {
     /**
      * The Cipher to use for encryption
      */
-    private Cipher mEncryptCipher;
+    private transient Cipher mEncryptCipher;
 
     /**
      * The Cipher to use for decryption.
      */
-    private Cipher mDecryptCipher;
+    private transient Cipher mDecryptCipher;
 
     /**
      * Initialization vector for the algorithm spec
