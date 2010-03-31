@@ -68,6 +68,15 @@ public class NamespaceUtils {
 
         return theId.substring(aIndex+1);
     }
+
+    public static String getPrefix(String theQName) {
+		if (theQName.indexOf(":") != -1) {
+        	return theQName.substring(0, theQName.indexOf(":"));
+		}
+		else {
+			return null;
+		}
+    }
     
     public static String qname(String theId) {
         int aIndex = theId.lastIndexOf("#");

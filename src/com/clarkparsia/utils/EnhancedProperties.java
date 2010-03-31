@@ -126,6 +126,69 @@ public class EnhancedProperties extends Properties {
         return Integer.parseInt(getProperty(theProp));
     }
 
+	/**
+	 * Return the value of the property as a long
+	 * @param theProperty the property to retrieve
+	 * @param theDefault the default value if the property does not exist
+	 * @return the value of the property as a long
+	 * @throws NumberFormatException thrown if the value is not a value long value
+	 */
+	public long getPropertyAsLong(final String theProperty, final long theDefault) throws NumberFormatException {
+		return Long.parseLong(getProperty(theProperty, String.valueOf(theDefault)));
+	}
+
+	/**
+	 * Return the value of the property as a long
+	 * @param theProperty the property to retrieve
+	 * @return the value of the property as a long
+	 * @throws NumberFormatException thrown if the value is not a value long value
+	 */
+	public long getPropertyAsLong(final String theProperty) throws NumberFormatException {
+		return Long.parseLong(getProperty(theProperty));
+	}
+
+	/**
+	 * Return the value of the property as a float
+	 * @param theProperty the property to retrieve
+	 * @param theDefault the default value to return if the property does not exist
+	 * @return the value of the property as a float, or the default value
+	 * @throws NumberFormatException thrown if the value is not a valid float value
+	 */
+	public float getPropertyAsFloat(final String theProperty, final float theDefault) throws NumberFormatException {
+		return Float.parseFloat(getProperty(theProperty, String.valueOf(theDefault)));
+	}
+
+	/**
+	 * Return the value of the property as a float
+	 * @param theProperty the property to retrieve
+	 * @return the value of the property as a float
+	 * @throws NumberFormatException thrown if the value is not a valid float value
+	 */
+	public float getPropertyAsFloat(final String theProperty) throws NumberFormatException {
+		return Float.parseFloat(getProperty(theProperty));
+	}
+
+	/**
+	 * Return the value of the property as a double
+	 * @param theProperty the property to retrieve
+	 * @return the value of the property as a double
+	 * @throws NumberFormatException thrown if the value is not a valid double value
+	 */
+	public double getPropertyAsDouble(final String theProperty) throws NumberFormatException {
+		return Double.parseDouble(getProperty(theProperty));
+	}
+
+	/**
+	 * Return the value of the property as a double
+	 * @param theProperty the property to retrieve
+	 * @param theDefault the default value for the property if it does not exist
+	 * @return the value of the property, as a double, or the default value if the property does not exist
+	 * @throws NumberFormatException thrown if the value is not a valid double value
+	 */
+	public double getPropertyAsDouble(final String theProperty, double theDefault) throws NumberFormatException {
+		return Double.parseDouble(getProperty(theProperty, String.valueOf(theDefault)));
+	}
+
     /**
      * Returns the value of a property as a list.  The value of the property must be comma separated:
      * <pre>
