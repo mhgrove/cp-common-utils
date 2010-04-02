@@ -156,4 +156,28 @@ public class FileUtil {
 
 		return theSource.delete();
 	}
+
+	public static void copyDirectory(final File theSource, final File theDest) throws IOException {
+
+		if (theSource.isDirectory()) {
+			if (!theDest.exists()) {
+				theDest.mkdir();
+			}
+
+			String[] aChildren = theSource.list();
+			for (String aChild : aChildren) {
+				copyDirectory(new File(theSource, aChild),
+							  new File(theDest, aChild));
+			}
+		}
+		else {
+			InputStream in = new FileInputStream(theSource);
+			OutputStream out = new FileOutputStream(theDest);
+
+			IOUtil.transfer(in, out);
+
+			in.close();
+			out.close();
+		}
+	}
 }
