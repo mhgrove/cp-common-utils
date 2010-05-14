@@ -295,7 +295,9 @@ public class Request {
 		catch (IOException e) {
 			aResponseStream = aConn.getErrorStream();
 			try {
-				aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
+				if (aResponseStream != null) {
+					aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
+				}
 			}
 			catch (IOException e1) {
 				throw e1;

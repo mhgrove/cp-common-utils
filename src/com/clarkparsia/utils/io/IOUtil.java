@@ -30,6 +30,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.net.URL;
 import java.util.StringTokenizer;
+import java.nio.charset.Charset;
 
 /**
  * <p>Collection of utility methods for basic IO tasks.</p>
@@ -37,13 +38,33 @@ import java.util.StringTokenizer;
  * @author Michael Grove
  */
 public class IOUtil {
+
+	/**
+	 * The default charset to use for cases when we're doing IO with a stream or a string and no charset is specified
+	 * explicitly.  Often times the system default is US-ASCII, which ends up leading to encoding problems.  So we'll
+	 * stick with this by default.
+	 */
+	private static final Charset DEFAULT_CHARSET = Encoder.UTF8;
+
     /**
      * The system dependent end-of-line defined here for convenience
      */
     public final static String ENDL = System.getProperty( "line.separator" );
 
     /**
-     * Given a path to a file on the local disk, return the contents of that file as a String.<br><br>
+     * Given a path to a file on the local disk, return the contents of that file as a String.
+     *
+     * @param theFileName     the File on the local disk to read
+     * @return Contents of the file as a String
+     * @throws java.io.IOException if there are problems opening or reading from the file
+     * @throws java.io.FileNotFoundException if the file cannot be found
+     */
+    public static String getFileAsString(File theFileName) throws java.io.IOException {
+        return readStringFromReader(new BufferedReader(new InputStreamReader(new FileInputStream(theFileName), DEFAULT_CHARSET.name())));
+    }
+
+    /**
+     * Given a path to a file on the local disk, return the contents of that file as a String.
      *
      * @param theFileName     Fully qualified file name to a file on the local disk
      * @return Contents of the file as a String
@@ -51,7 +72,7 @@ public class IOUtil {
      * @throws java.io.FileNotFoundException if the file cannot be found
      */
     public static String getFileAsString(String theFileName) throws java.io.IOException {
-        return readStringFromReader(new BufferedReader(new InputStreamReader(new FileInputStream(theFileName))));
+        return readStringFromReader(new BufferedReader(new InputStreamReader(new FileInputStream(theFileName), DEFAULT_CHARSET.name())));
     }
 
     /**
@@ -61,7 +82,7 @@ public class IOUtil {
      * @throws IOException thrown if there is an error while reading from the stream
      */
     public static String readStringFromStream(InputStream theStream) throws IOException {
-        return readStringFromReader(new BufferedReader(new InputStreamReader(theStream)));
+        return readStringFromReader(new BufferedReader(new InputStreamReader(theStream, DEFAULT_CHARSET.name())));
     }
 
     /**
@@ -101,7 +122,7 @@ public class IOUtil {
             return null;
         }
 
-        Reader reader = new BufferedReader(new InputStreamReader(theURL.openStream()));
+        Reader reader = new BufferedReader(new InputStreamReader(theURL.openStream(), DEFAULT_CHARSET.name()));
         return readStringFromReader(reader);
     }
 
@@ -132,7 +153,7 @@ public class IOUtil {
      * @throws IOException thrown if there is an error while writing
      */
     public static void writeStringToStream(String theString, OutputStream theOutput) throws IOException {
-        writeStringToWriter(theString, new OutputStreamWriter(theOutput));
+        writeStringToWriter(theString, new OutputStreamWriter(theOutput, DEFAULT_CHARSET.name()));
     }
 
     /**
