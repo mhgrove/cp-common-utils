@@ -27,6 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.io.Closeable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Collection;
@@ -221,96 +222,117 @@ public class Request {
 
 	public Response execute() throws IOException {
 		// TODO: use-caches?, if-modified-since, HTTPS security twiddling, HTTP Authentication, chunking, user interactions?
-
-		URLConnection aTempConn = getURLWithParams().openConnection();
-
-		if (!(aTempConn instanceof HttpURLConnection)) {
-			throw new IllegalArgumentException("Only HTTP or HTTPS are supported");
-		}
-
-		HttpURLConnection aConn = (HttpURLConnection) aTempConn;
-
-		aConn.setDoInput(true);
-
-		if (getTimeout() != -1) {
-			aConn.setConnectTimeout(getTimeout());
-		}
-		
-		aConn.setInstanceFollowRedirects(isFollowRedirects());
-		aConn.setRequestMethod(getMethod().name());
-
-		for (Header aHeader : getHeaders()) {
-			aConn.setRequestProperty(aHeader.getName(), aHeader.getHeaderValue());
-		}
-
-		InputStream aInput = getBody();
-		if (aInput != null) {
-			aConn.setDoOutput(true);
-			OutputStream aOut = aConn.getOutputStream();
-
-			IOUtil.transfer(aInput, aOut);
-
-			if (aOut != null) {
-				aOut.flush();
-				aOut.close();
-			}
-
-			aInput.close();
-		}
-		
-		aConn.connect();
-
-		Response aResponse = new Response();
-
-		aResponse.setResponseCode(aConn.getResponseCode());
-
-		Collection<Header> aResponseHeaders = new HashSet<Header>();
-
-		Map<String, List<String>> aHeaderMap = aConn.getHeaderFields();
-
-		for (String aName : aHeaderMap.keySet()) {
-			aResponseHeaders.add(new Header(aName, aHeaderMap.get(aName)));
-		}
-
-		aResponse.setHeaders(aResponseHeaders);
-		
-		aResponse.setMessage(aConn.getResponseMessage());
-
 		InputStream aResponseStream = null;
+		InputStream aInput = null;
+		HttpURLConnection aConn = null;
 
 		try {
-			aResponseStream = aConn.getInputStream();
+			URLConnection aTempConn = getURLWithParams().openConnection();
 
-			// if this is GZIP encoded, then wrap the input stream
-			String contentEncoding = aConn.getContentEncoding();
-			if ("gzip".equals(contentEncoding)) {
-				aResponseStream = new GZIPInputStream(aResponseStream);
+			if (!(aTempConn instanceof HttpURLConnection)) {
+				throw new IllegalArgumentException("Only HTTP or HTTPS are supported");
 			}
 
-			// ideally we'd like to return the response body as an inputstream and let the caller read from it at demand
-			// rather than pulling the entire thing into memory, but doing that (i think) keeps open the connection
-			// which is undesirable
-			aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
-		}
-		catch (IOException e) {
-			aResponseStream = aConn.getErrorStream();
+			aConn = (HttpURLConnection) aTempConn;
+
+			aConn.setDoInput(true);
+
+			if (getTimeout() != -1) {
+				aConn.setConnectTimeout(getTimeout());
+			}
+
+			aConn.setInstanceFollowRedirects(isFollowRedirects());
+			aConn.setRequestMethod(getMethod().name());
+
+			for (Header aHeader : getHeaders()) {
+				aConn.setRequestProperty(aHeader.getName(), aHeader.getHeaderValue());
+			}
+
+			aInput = getBody();
+			if (aInput != null) {
+				aConn.setDoOutput(true);
+				OutputStream aOut = aConn.getOutputStream();
+
+				IOUtil.transfer(aInput, aOut);
+
+				if (aOut != null) {
+					aOut.flush();
+					aOut.close();
+				}
+
+				aInput.close();
+			}
+
+			aConn.connect();
+
+			Response aResponse = new Response();
+
+			aResponse.setResponseCode(aConn.getResponseCode());
+
+			Collection<Header> aResponseHeaders = new HashSet<Header>();
+
+			Map<String, List<String>> aHeaderMap = aConn.getHeaderFields();
+
+			for (String aName : aHeaderMap.keySet()) {
+				aResponseHeaders.add(new Header(aName, aHeaderMap.get(aName)));
+			}
+
+			aResponse.setHeaders(aResponseHeaders);
+
+			aResponse.setMessage(aConn.getResponseMessage());
+
 			try {
+				aResponseStream = aConn.getInputStream();
+
+				// if this is GZIP encoded, then wrap the input stream
+				String contentEncoding = aConn.getContentEncoding();
+				if ("gzip".equals(contentEncoding)) {
+					aResponseStream = new GZIPInputStream(aResponseStream);
+				}
+
+				// ideally we'd like to return the response body as an inputstream and let the caller read from it at demand
+				// rather than pulling the entire thing into memory, but doing that (i think) keeps open the connection
+				// which is undesirable
+				aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
+			}
+			catch (IOException e) {
+				// close the connection input stream
 				if (aResponseStream != null) {
-					aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
+					aResponseStream.close();
+				}
+
+				aResponseStream = aConn.getErrorStream();
+
+				try {
+					if (aResponseStream != null) {
+						aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
+					}
+				}
+				catch (IOException e1) {
+					throw e1;
 				}
 			}
-			catch (IOException e1) {
-				throw e1;
-			}
+
+			return aResponse;
 		}
 		finally {
-			if (aResponseStream != null) {
-				aResponseStream.close();
+			close(aInput);
+			close(aResponseStream);
+
+			if (aConn != null) {
+				aConn.disconnect();
 			}
 		}
+	}
 
-		aConn.disconnect();
-
-		return aResponse;
+	private void close(Closeable theClosable) {
+		try {
+			if (theClosable != null) {
+				theClosable.close();
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
