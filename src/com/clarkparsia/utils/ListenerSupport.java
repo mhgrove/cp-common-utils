@@ -26,6 +26,7 @@ import java.util.Iterator;
  *
  * @author Michael Grove
  * @since 1.0
+ * @version 1.0.2
  */
 public class ListenerSupport<T extends EventListener> implements Iterable<T> {
 
@@ -64,4 +65,13 @@ public class ListenerSupport<T extends EventListener> implements Iterable<T> {
     public Iterator<T> iterator() {
         return getListeners().iterator();
     }
+
+	/**
+	 * Create a new ListenerSupport
+	 * @param <T> the listener type
+	 * @return a new ListenerSupport
+	 */
+	public static <T extends EventListener> ListenerSupport<T> create() {
+		return new ListenerSupport<T>();
+	}
 }
