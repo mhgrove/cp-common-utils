@@ -4,7 +4,10 @@ package com.clarkparsia.utils;
  * <p>Collection of utility methods and classes for using the {@link Function} interface.</p>
  *
  * @author Michael Grove
+ * @since 1.0
+ * @version 1.1
  */
+@Deprecated // use guava
 public class FunctionUtil {
 
 	/**

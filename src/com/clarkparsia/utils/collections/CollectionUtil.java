@@ -47,6 +47,7 @@ public class CollectionUtil {
 	 * @param theIter the iterator to count
 	 * @return the number of elements
 	 */
+    @Deprecated
 	public static int size(Iterator<?> theIter) {
 		int aCount = 0;
 

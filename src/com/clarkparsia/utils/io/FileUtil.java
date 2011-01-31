@@ -36,7 +36,9 @@ import java.util.zip.ZipOutputStream;
  *
  * @author Michael Grove
  * @since 1.0
+ * @version 1.1
  */
+@Deprecated // use guava
 public class FileUtil {
 
     /**

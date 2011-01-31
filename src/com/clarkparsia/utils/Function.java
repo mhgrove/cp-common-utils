@@ -20,7 +20,9 @@ package com.clarkparsia.utils;
  *
  * @author Michael Grove
  * @since 1.0
+ * @version 1.1
  */
+@Deprecated // use guava
 public interface Function<I,O> {
 	public O apply(I theIn);
 }

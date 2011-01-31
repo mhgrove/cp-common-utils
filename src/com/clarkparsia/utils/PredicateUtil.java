@@ -23,7 +23,9 @@ import java.util.Arrays;
  *
  * @author Michael Grove
  * @since 1.0
+ * @version 1.1
  */
+@Deprecated // use guava
 public class PredicateUtil {
 	public static <T> Predicate<T> True() {
 		return new Predicate<T>() {

@@ -42,6 +42,7 @@ import java.util.zip.GZIPInputStream;
  *
  * @author Michael Grove
  * @since 1.0
+ * @version 1.1
  */
 public class Request {
 	private URL mURL;
@@ -265,10 +266,6 @@ public class Request {
 
 			aConn.connect();
 
-			Response aResponse = new Response();
-
-			aResponse.setResponseCode(aConn.getResponseCode());
-
 			Collection<Header> aResponseHeaders = new HashSet<Header>();
 
 			Map<String, List<String>> aHeaderMap = aConn.getHeaderFields();
@@ -276,10 +273,6 @@ public class Request {
 			for (String aName : aHeaderMap.keySet()) {
 				aResponseHeaders.add(new Header(aName, aHeaderMap.get(aName)));
 			}
-
-			aResponse.setHeaders(aResponseHeaders);
-
-			aResponse.setMessage(aConn.getResponseMessage());
 
 			try {
 				aResponseStream = aConn.getInputStream();
@@ -289,11 +282,6 @@ public class Request {
 				if ("gzip".equals(contentEncoding)) {
 					aResponseStream = new GZIPInputStream(aResponseStream);
 				}
-
-				// ideally we'd like to return the response body as an inputstream and let the caller read from it at demand
-				// rather than pulling the entire thing into memory, but doing that (i think) keeps open the connection
-				// which is undesirable
-				aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
 			}
 			catch (IOException e) {
 				// close the connection input stream
@@ -302,18 +290,9 @@ public class Request {
 				}
 
 				aResponseStream = aConn.getErrorStream();
-
-				try {
-					if (aResponseStream != null) {
-						aResponse.setContent(IOUtil.readStringFromStream(aResponseStream));
-					}
-				}
-				catch (IOException e1) {
-					throw e1;
-				}
 			}
 
-			return aResponse;
+            return new Response(aConn, aResponseHeaders);
 		}
 		finally {
 			close(aInput);

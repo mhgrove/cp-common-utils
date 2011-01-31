@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+
 import java.io.Writer;
 import java.io.BufferedWriter;
 import java.io.InputStream;
@@ -36,7 +37,10 @@ import java.nio.charset.Charset;
  * <p>Collection of utility methods for basic IO tasks.</p>
  *
  * @author Michael Grove
+ * @since 1.0
+ * @version 1.1
  */
+@Deprecated // use guava
 public class IOUtil {
 
 	/**
@@ -253,5 +257,9 @@ public class IOUtil {
         theIn.close();
 
         return aOutputStream.toByteArray();
+    }
+
+    public static Readable asReadable(final InputStream theStream) {
+        return new InputStreamReader(theStream, DEFAULT_CHARSET);
     }
 }
