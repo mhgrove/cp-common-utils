@@ -296,11 +296,6 @@ public class Request {
 		}
 		finally {
 			close(aInput);
-			close(aResponseStream);
-
-			if (aConn != null) {
-				aConn.disconnect();
-			}
 		}
 	}
 

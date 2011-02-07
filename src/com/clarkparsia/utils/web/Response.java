@@ -36,6 +36,8 @@ import java.util.HashMap;
 public class Response implements Closeable {
 
 	private final InputStream mContent;
+	private final InputStream mErrorStream;
+
 	private final Map<String, Header> mHeaders;
 	private final String mMessage;
     private final HttpURLConnection mConnection;
@@ -50,12 +52,23 @@ public class Response implements Closeable {
         }
 
         mConnection = theConn;
+		
         mContent = theConn.getInputStream();
+		mErrorStream = theConn.getErrorStream();
+
         mMessage = theConn.getResponseMessage();
         mResponseCode = theConn.getResponseCode();
     }
 
-    /**
+	/**
+	 * Return the error stream from the connection
+	 * @return the error stream
+	 */
+	public InputStream getErrorStream() {
+		return mErrorStream;
+	}
+
+	/**
      * Return the response message from the server
      * @return the message
      */
@@ -110,7 +123,14 @@ public class Response implements Closeable {
      * @throws IOException if there is an error while closing
      */
     public void close() throws IOException {
-        mContent.close();
-        mConnection.disconnect();
+		if (mContent != null) {
+        	mContent.close();
+		}
+
+		if (mErrorStream != null) {
+			mErrorStream.close();
+		}
+
+		mConnection.disconnect();
     }
 }
