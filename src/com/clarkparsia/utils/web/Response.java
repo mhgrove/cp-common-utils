@@ -35,15 +35,15 @@ import java.util.HashMap;
  */
 public class Response implements Closeable {
 
-	private final InputStream mContent;
-	private final InputStream mErrorStream;
+	private InputStream mContent = null;
+	private InputStream mErrorStream = null;
 
 	private final Map<String, Header> mHeaders;
-	private final String mMessage;
+	private String mMessage;
     private final HttpURLConnection mConnection;
-    private final int mResponseCode;
+    private int mResponseCode;
 
-    public Response(final HttpURLConnection theConn, final Collection<Header> theHeaders) throws IOException {
+    public Response(final HttpURLConnection theConn, final Collection<Header> theHeaders) {
 
         mHeaders = new HashMap<String, Header>();
 
@@ -52,13 +52,35 @@ public class Response implements Closeable {
         }
 
         mConnection = theConn;
-		
-        mContent = theConn.getInputStream();
-		mErrorStream = theConn.getErrorStream();
 
-        mMessage = theConn.getResponseMessage();
-        mResponseCode = theConn.getResponseCode();
-    }
+		try {
+			mContent = theConn.getInputStream();
+		}
+		catch (IOException e) {
+			// there was an error in the connection, so probably the error stream will be populated, this is safe to ignore
+		}
+
+		try {
+			mErrorStream = theConn.getErrorStream();
+		}
+		catch (Exception e) {
+			// there was an error in the connection, probably just no error stream.
+		}
+
+		try {
+			mMessage = theConn.getResponseMessage();
+		}
+		catch (IOException e) {
+			// ugh?
+		}
+
+		try {
+			mResponseCode = theConn.getResponseCode();
+		}
+		catch (IOException e) {
+			// ugh?
+		}
+	}
 
 	/**
 	 * Return the error stream from the connection
