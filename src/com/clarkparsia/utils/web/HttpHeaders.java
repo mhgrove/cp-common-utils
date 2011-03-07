@@ -19,7 +19,7 @@ package com.clarkparsia.utils.web;
  * <p>Enumeration of common http headers.</p>
  *
  * @author Michael Grove
- * @since 1.0
+ * @since 1.1
  */
 public enum HttpHeaders {
 
@@ -27,7 +27,8 @@ public enum HttpHeaders {
 	Authentication("Authentication"),
 	ContentDisposition("Content-Disposition"),
 	ContentLength("Content-Length"),
-	ContentType("Content-Type");
+	ContentType("Content-Type"),
+	TransferEncoding("Transfer-Encoding");
 
 	/**
 	 * The name of the HTTP header

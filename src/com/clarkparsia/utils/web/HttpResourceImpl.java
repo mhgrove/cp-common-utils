@@ -15,11 +15,6 @@
 
 package com.clarkparsia.utils.web;
 
-import com.clarkparsia.utils.web.HttpResource;
-import com.clarkparsia.utils.web.Method;
-import com.clarkparsia.utils.web.Request;
-import com.clarkparsia.utils.web.Response;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -43,7 +38,7 @@ public class HttpResourceImpl implements HttpResource {
 	 */
 	public HttpResource resource(final String theName) {
 		try {
-			return new HttpResourceImpl(new URL(mURL.toString() + (mURL.toString().endsWith("/") ? "" : "/") + theName + (theName.endsWith("/") ? "" : "/")));
+			return new HttpResourceImpl(new URL(mURL.toString() + (mURL.toString().endsWith("/") ? "" : "/") + theName));// + (theName.endsWith("/") ? "" : "/")));
 		}
 		catch (MalformedURLException e) {
 			throw new IllegalArgumentException(e);

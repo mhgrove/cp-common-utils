@@ -25,12 +25,12 @@ public class Parameter {
 	/**
 	 * The parameter name
 	 */
-	private String mName;
+	private final String mName;
 
 	/**
 	 * The parameter value
 	 */
-	private String mValue;
+	private final String mValue;
 
 	/**
 	 * Create a new Parameter

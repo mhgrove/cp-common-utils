@@ -26,10 +26,16 @@ import java.net.URI;
  *
  * @author Michael Grove
  * @since 0.1
- * @version 1.0.2
+ * @version 1.1
  */
 public class NamespaceUtils {
     private static final Map<String, String> mNamespaces = new HashMap<String, String>();
+//
+//	static {
+//		addNamespace("xsd", "http://www.w3.org/2001/XMLSchema#");
+//		addNamespace("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
+//		addNamespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+//	}
 
     public static void clear() {
         mNamespaces.clear();

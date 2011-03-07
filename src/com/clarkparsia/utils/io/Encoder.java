@@ -18,10 +18,12 @@ package com.clarkparsia.utils.io;
 import com.sun.corba.se.impl.interceptors.CDREncapsCodec;
 
 import java.nio.charset.Charset;
+import java.nio.ByteBuffer;
 import java.io.UnsupportedEncodingException;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.net.URLDecoder;
+import java.util.BitSet;
 
 import sun.misc.BASE64Encoder;
 import sun.misc.BASE64Decoder;
@@ -65,13 +67,16 @@ public class Encoder {
 	 * @return the string encoded with the given charset
 	 */
 	public static String urlEncode(String theString, Charset theCharset) {
-		try {
-			return URLEncoder.encode(theString, theCharset.displayName());
-		}
-		catch (UnsupportedEncodingException e) {
-			// this can be safely ignored, you would not have a charset object for an unsupported charset
-			return null;
-		}
+		// saves us a couple ms using a custom encoder rather than the one built into the jdk. todo unfortunately, we're ignoring the charset.
+		return FastURLEncode.encode(theString);
+
+//		try {
+//			return URLEncoder.encode(theString, theCharset.displayName());
+//		}
+//		catch (UnsupportedEncodingException e) {
+//			// this can be safely ignored, you would not have a charset object for an unsupported charset
+//			return null;
+//		}
 	}
 
 
@@ -147,5 +152,57 @@ public class Encoder {
 		}
 
 		return mBase64Encoder;
+	}
+
+	private static class FastURLEncode {
+		static final char[] hexadecimal = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+		static BitSet safe = new BitSet(256);
+		static {
+			for (char i = 'a'; i <= 'z'; i++) {
+				safe.set(i);
+			}
+			for (char i = 'A'; i <= 'Z'; i++) {
+				safe.set(i);
+			}
+			for (char i = '0'; i <= '9'; i++) {
+				safe.set(i);
+			}
+			safe.set('.');
+			safe.set('-');
+			safe.set('*');
+			safe.set('_');
+		}
+
+		public static String encode(String s) {
+
+			// Guess a bit bigger for encoded form
+			StringBuilder buf = new StringBuilder(s.length() + 16);
+
+			for (int i = 0; i < s.length(); i++) {
+				char ch = s.charAt(i);
+				if (safe.get(ch)) {
+					buf.append(ch);
+				}
+				else if (ch == ' ') {
+					buf.append('+');
+				}
+				else {
+					byte[] b= ByteBuffer.allocate(2).putChar(ch).array();
+					for (int j = 0; j < b.length; j++) {
+						byte toEncode = b[j];
+						if (toEncode == 0 && j == 0) {
+							continue;
+						}
+						buf.append('%');
+						int high = (int) ((toEncode & 0xf0) >> 4);
+						int low = (int) (toEncode & 0x0f);
+						buf.append(hexadecimal[high]).append(hexadecimal[low]);
+					}
+				}
+			}
+
+			return buf.toString();
+		}
 	}
 }

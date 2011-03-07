@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.io.Closeable;
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Collection;
@@ -222,6 +223,7 @@ public class Request {
 	}
 
 	public Response execute() throws IOException {
+
 		// TODO: use-caches?, if-modified-since, HTTPS security twiddling, HTTP Authentication, chunking, user interactions?
 		InputStream aResponseStream = null;
 		InputStream aInput = null;
@@ -249,7 +251,15 @@ public class Request {
 				aConn.setRequestProperty(aHeader.getName(), aHeader.getHeaderValue());
 			}
 
+			aConn.setInstanceFollowRedirects(isFollowRedirects());
+			aConn.setRequestMethod(getMethod().name());
+
 			aInput = getBody();
+
+			if (aInput == null && getMethod() == Method.POST) {
+				aInput = new ByteArrayInputStream(new byte[0]);
+			}
+
 			if (aInput != null) {
 				aConn.setDoOutput(true);
 				OutputStream aOut = aConn.getOutputStream();
@@ -283,7 +293,7 @@ public class Request {
 					aResponseStream = new GZIPInputStream(aResponseStream);
 				}
 			}
-			catch (IOException e) {
+			catch (IOException ex) {
 				// close the connection input stream
 				if (aResponseStream != null) {
 					aResponseStream.close();

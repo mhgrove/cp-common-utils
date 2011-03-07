@@ -18,6 +18,8 @@ package com.clarkparsia.utils.web;
 import com.clarkparsia.utils.io.Encoder;
 
 import java.util.ArrayList;
+import java.util.BitSet;
+import java.nio.ByteBuffer;
 
 /**
  * <p>A list of {@link Parameter} objects.</p>
@@ -44,16 +46,25 @@ public class ParameterList extends ArrayList<Parameter> {
 	 * @return the params as a string
 	 */
 	private String str(boolean theEncode) {
-		StringBuffer aBuffer = new StringBuffer();
+
+		// guesstimate the size needed to serialize to a string
+		int size = 0;
+		for (int i = 0; i < size(); i++) {
+			Parameter aParam = get(i);
+			size += aParam.getName().length() + aParam.getValue().length() + 16 /* padding for url encoding of value */;
+		}
+
+		StringBuilder aBuffer = new StringBuilder(size);
 
 		boolean aFirst = true;
 		for (Parameter aParam : this) {
-			if (!aFirst) {
-				aBuffer.append("&");
-			}
 
+			if (!aFirst) {
+				aBuffer.append('&');
+			}
+			
 			aBuffer.append(aParam.getName());
-			aBuffer.append("=");
+			aBuffer.append('=');
 			aBuffer.append(theEncode
 						   ? Encoder.urlEncode(aParam.getValue())
 						   : aParam.getValue());
