@@ -18,6 +18,8 @@ package com.clarkparsia.utils.web;
 import com.clarkparsia.utils.Tuple;
 import com.clarkparsia.utils.BasicUtils;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +44,11 @@ public class Header {
 	 * The list of values for the header
 	 */
 	private Map<String, String> mValues = new HashMap<String, String>();
+	
+	/**
+	 * The list of raw values for the header (i.e., before parsing/splitting)
+	 */
+	private List<String> mRawValues = new LinkedList<String>();
 
 	/**
 	 * Create a new HTTP header
@@ -74,6 +81,10 @@ public class Header {
 	public Header(final String theName, final Map<String, String> theValues) {
 		mName = theName;
 		mValues = theValues;
+				
+		// at this point there is no information about "raw" values 
+		// (need to "recreate" the "raw" version)
+		mRawValues.add(mapToValue(theValues));
 	}
 
 	/**
@@ -110,6 +121,8 @@ public class Header {
 		else {
 			mValues.put(null, theValue);
 		}
+		
+		mRawValues.add(theValue);
 	}
 
 	/**
@@ -118,6 +131,10 @@ public class Header {
 	 */
 	void addValues(Map<String, String> theValues) {
 		mValues.putAll(theValues);
+		
+		// at this point there is no information about "raw" values 
+		// (need to "recreate" the "raw" version)
+		mRawValues.add(mapToValue(theValues));
 	}
 
 	/**
@@ -135,7 +152,17 @@ public class Header {
 	public Map<String, String> getValues() {
 		return mValues;
 	}
-
+	
+	/**
+	 * Return the raw values of the HTTP header (i.e., before any processing/splitting has
+	 * occurred).
+	 * 
+	 * @return the list of raw header values (one for each header occurrence)
+	 */
+	public Collection<String> getRawValues() {
+		return mRawValues;
+	}
+	
 	/**
 	 * Return the value of the header element
 	 * @param theKey the name of the header element, or null to get the value of the header
@@ -160,10 +187,20 @@ public class Header {
 	 * @return the string encoded reprsentation of the header values suitable for insertion into a HTTP request
 	 */
 	public String getHeaderValue() {
+		return mapToValue(getValues());
+	}
+	
+	/**
+	 * Converts a map of key-value pairs to a semi-colon separated string.  For example, if your values are "foo", "bar"
+	 * and "baz" this will return the string "foo; bar; baz"
+	 * @param theValues a map to be converted
+	 * @return the string encoded reprsentation of the header values suitable for insertion into a HTTP request
+	 */
+	private static String mapToValue(Map<String,String> theValues) {
 		StringBuffer aBuffer = new StringBuffer();
 
 		boolean aFirst = true;
-		for (String aKey : getValues().keySet()) {
+		for (String aKey : theValues.keySet()) {
 
 			if (!aFirst) {
 				aBuffer.append("; ");
@@ -175,9 +212,35 @@ public class Header {
 				aBuffer.append(aKey).append("=");
 			}
 			
-			aBuffer.append(getValues().get(aKey));
+			aBuffer.append(theValues.get(aKey));
 		}
 
+		return aBuffer.toString();		
+	}
+	
+	/**
+	 * Return a raw header value (i.e., before any processing/splitting). If the header was mentioned
+	 * multiple times, this method returns all the header values concatenated together and separated by a comma
+	 * (RFC 2616, Section 4.2 Message Headers: "It MUST be possible to combine the multiple header fields into one 
+	 * (..) without changing the semantics of the message, by appending each subsequent field-value to the first, 
+	 * each separated by a comma").
+	 * 
+	 * @return a single string that contain the raw header values concatenated together, separated by a comma
+	 */
+	public String getRawHeaderValue() {
+		StringBuffer aBuffer = new StringBuffer();
+		
+		boolean aFirst = true;
+		for (String aRawValue : getRawValues()) {
+			if (!aFirst) {
+				aBuffer.append(", ");
+			}
+
+			aFirst = false;
+
+			aBuffer.append(aRawValue);
+		}
+		
 		return aBuffer.toString();
 	}
 
