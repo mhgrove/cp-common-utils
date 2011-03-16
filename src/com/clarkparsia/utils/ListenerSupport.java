@@ -20,27 +20,32 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * <p>Base class for a collection of listeners</p>
  *
  * @author Michael Grove
  * @since 1.0
- * @version 1.0.2
+ * @version 1.1
  */
 public class ListenerSupport<T extends EventListener> implements Iterable<T> {
 
     /**
      * The listeners
      */
-    private Set<T> mListeners = Collections.synchronizedSet(new HashSet<T>());
+    private List<T> mListeners = Collections.synchronizedList(new ArrayList<T>());
 
     /**
      * Adds the specified listener to the list
      * @param theListener the listener to add
      */
     public void addListener(T theListener) {
-        mListeners.add(theListener);
+		if (!mListeners.contains(theListener)) {
+        	mListeners.add(theListener);
+		}
     }
 
     /**
@@ -55,8 +60,8 @@ public class ListenerSupport<T extends EventListener> implements Iterable<T> {
      * Return the registered listeners.
      * @return the listeners
      */
-    protected Set<T> getListeners() {
-        return Collections.unmodifiableSet(mListeners);
+    protected Collection<T> getListeners() {
+        return Collections.unmodifiableList(mListeners);
     }
 
     /**

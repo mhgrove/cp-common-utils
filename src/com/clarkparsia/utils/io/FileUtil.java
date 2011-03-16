@@ -38,7 +38,6 @@ import java.util.zip.ZipOutputStream;
  * @since 1.0
  * @version 1.1
  */
-@Deprecated // use guava
 public class FileUtil {
 
     /**
@@ -61,6 +60,7 @@ public class FileUtil {
 	 * @param theString the string to append
 	 * @throws IOException thrown if there is an error while appending the data
 	 */
+	@Deprecated // use guava
 	public static void append(File theFile, String theString) throws IOException {
 		FileWriter aWriter = new FileWriter(theFile, true);
 
@@ -130,6 +130,7 @@ public class FileUtil {
 	 * @param theDest the location to copy the file to
 	 * @throws IOException thrown if there is an error while performing the copy
 	 */
+	@Deprecated // use guava
 	public static void copy(File theSource, File theDest) throws IOException {
 		InputStream aIn = null;
 		OutputStream aOut = null;
@@ -153,6 +154,7 @@ public class FileUtil {
 	 * @return returns true of the move was successful, i.e. the original file was deleted after the copy
 	 * @throws IOException thrown if there is an error while copying or removing the file.
 	 */
+	@Deprecated // use guava
 	public static boolean move(File theSource, File theDest) throws IOException {
 		copy(theSource, theDest);
 
