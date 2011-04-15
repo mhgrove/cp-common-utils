@@ -260,7 +260,7 @@ public class Request {
 				aInput = new ByteArrayInputStream(new byte[0]);
 			}
 
-			if (aInput != null) {
+			if (aInput != null && (getMethod() != Method.DELETE)) {
 				aConn.setDoOutput(true);
 				OutputStream aOut = aConn.getOutputStream();
 
