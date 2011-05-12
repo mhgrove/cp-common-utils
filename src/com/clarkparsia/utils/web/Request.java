@@ -205,7 +205,7 @@ public class Request {
 	}
 
 	private URL getURLWithParams() throws IOException {
-		if (getMethod().equals(Method.GET) && !getParameters().isEmpty()) {
+		if (!getParameters().isEmpty()) {
 			try {
 				return new URL(getURL().toString() + "?" + getParameters().getURLEncoded());
 			}
