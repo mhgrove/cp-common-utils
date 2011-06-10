@@ -242,6 +242,7 @@ public class Request {
 
 			if (getTimeout() != -1) {
 				aConn.setConnectTimeout(getTimeout());
+				aConn.setReadTimeout(getTimeout());
 			}
 
 			aConn.setInstanceFollowRedirects(isFollowRedirects());
