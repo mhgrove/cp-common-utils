@@ -79,6 +79,7 @@ public class Response implements Closeable {
 		}
 		catch (IOException e) {
 			// ugh?
+			mResponseCode = -1;
 		}
 	}
 
@@ -137,7 +138,7 @@ public class Response implements Closeable {
      */
 	public boolean hasErrorCode() {
 		// TODO: right?
-		return getResponseCode() >= 400;
+		return (getResponseCode() >= 400) || (getResponseCode() < 0);
 	}
 
     /**
