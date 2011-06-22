@@ -109,9 +109,19 @@ public class FileUtil {
 	 * @return the list of files in the directory (and its sub directories) which match the file filter.
 	 */
 	public static List<File> listFiles(File theDirectory, FileFilter theFilter) {
-        ArrayList<File> aList = new ArrayList<File>();
+
+		ArrayList<File> aList = new ArrayList<File>();
+
+		if (!theDirectory.isDirectory()) {
+			return aList;
+		}
 
         File[] aFileList = theDirectory.listFiles();
+		
+		if (aFileList == null) {
+			return aList;
+		}
+
         for (File aFile : aFileList) {
             if (aFile.isDirectory()) {
                 aList.addAll(listFiles(aFile, theFilter));
@@ -121,7 +131,7 @@ public class FileUtil {
             }
         }
 
-        return aList;
+		return aList;
 	}
 
 	/**
