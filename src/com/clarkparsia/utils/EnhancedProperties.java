@@ -47,6 +47,8 @@ import java.io.IOException;
  * variable substitution.</p>
  *
  * @author Michael Grove
+ * @since 1.0
+ * @version 1.1
  */
 public class EnhancedProperties extends Properties {
 
@@ -76,6 +78,16 @@ public class EnhancedProperties extends Properties {
     public boolean getPropertyAsBoolean(String theProp) {
         return super.getProperty(theProp) != null && Boolean.valueOf(super.getProperty(theProp));
     }
+
+	/**
+	 * Return the value of the property as a boolean.
+	 * @param theProperty the property to retrieve
+	 * @param theDefault the default value if the property does not exist
+	 * @return the value of the property if it exists, otherwise the default value
+	 */
+	public boolean getPropertyAsBoolean(final String theProperty, final boolean theDefault) {
+		return super.getProperty(theProperty) == null ? theDefault : Boolean.valueOf(super.getProperty(theProperty));
+	}
 
     /**
      * Returns the value of the given property
