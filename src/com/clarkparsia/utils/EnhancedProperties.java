@@ -268,12 +268,14 @@ public class EnhancedProperties extends Properties {
         while (aNewValue.indexOf("${", aIndex) != -1) {
 
             String aVar = aNewValue.substring(aNewValue.indexOf("${", aIndex) + 2, aNewValue.indexOf("}", aIndex));
+			int end = aNewValue.indexOf("}", aIndex);
 
             if (super.getProperty(aVar) != null) {
                 aNewValue.replace(aNewValue.indexOf("${", aIndex), aNewValue.indexOf("}", aIndex)+1, replaceVariables(super.getProperty(aVar)));
             }
 
-            aIndex = aNewValue.indexOf("}", aIndex);
+            //aIndex = aNewValue.indexOf("}", aIndex);
+			aIndex = end;
         }
         return aNewValue.toString();
     }
