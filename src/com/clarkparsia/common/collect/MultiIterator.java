@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import java.util.Arrays;
  * @since 1.0
  * @version 2.0
  */
-public class MultiIterator<T> implements Iterator<T> {
+public final class MultiIterator<T> implements Iterator<T> {
 
 	/**
 	 * The list of iterators that make up this MultiIterator

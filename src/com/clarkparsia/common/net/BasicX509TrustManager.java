@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,9 @@ import java.security.cert.CertificateException;
  *
  * @author Michael Grove
  * @since 1.0
+ * @version 2.0
  */
-public class BasicX509TrustManager implements X509TrustManager {
+public final class BasicX509TrustManager implements X509TrustManager {
     private X509TrustManager mDefaultTrustManager = null;
 
     public BasicX509TrustManager(KeyStore keystore) throws NoSuchAlgorithmException, KeyStoreException {

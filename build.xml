@@ -13,6 +13,7 @@
     <property name="build" location="build" />
     <property name="dist" location="dist" />
 	<property name="lib" value="lib"/>
+	<property name="javadoc.dir" value="${dist}/javadocs"/>
 
     <property name="project.name" value="cp-common-utils" />
     <property name="project.version" value="2.0" />
@@ -33,6 +34,7 @@
         <tstamp/>
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
     </target>
 
     <target name="compile" depends="init"
@@ -89,13 +91,15 @@
         <delete dir="${dist}" />
     </target>
 
-    <target name="dist-zip" depends="dist">
-        <zip destfile="${dist}/${project.name}-${DSTAMP}.zip">
-	    <zipfileset dir="${dist}">
-	    <include name="**/*"/>
-	    <exclude name="**/src/**"/>
-	    <exclude name="**/*.zip"/>
-	        </zipfileset>
-		</zip>
-    </target>
+	<target name="javadocs" depends="init">
+		<javadoc destdir="${javadoc.dir}" access="public" use="true" notree="false"
+			nonavbar="false" noindex="false" splitindex="true" author="true"
+			version="true" nodeprecatedlist="false" nodeprecated="false"
+			doctitle="${project.name}-${project.version}"
+			bottom="Copyright &#169; 2010-2011 Clark &amp; Parsia. All Rights Reserved.">
+
+			<classpath refid="project.class.path"/>
+			<fileset dir="${src}" defaultexcludes="yes"/>
+		</javadoc>
+	</target>
 </project>

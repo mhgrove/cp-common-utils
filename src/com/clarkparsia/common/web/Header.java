@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import java.util.Collections;
  * @since 1.0
  * @version 2.0
  */
-public class Header {
+public final class Header {
 
 	/**
 	 * The name of the header. {@link HttpHeaders} is an enumeration of common header names.

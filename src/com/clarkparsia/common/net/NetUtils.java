@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,15 +21,45 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.io.File;
 
 /**
- * <p>Network and IP related utility functions</p>
+ * <p>Network, URI/URL, and IP related utility functions</p>
  *
  * @author Michael Grove
+ * @author Blazej Bulka
  * @since 1.0
  * @version 2.0
  */
-public class NetUtils {
+public final class NetUtils {
+
+	private NetUtils() {
+	}
+
+	/**
+     * Quotes special characters in path fragment of a URL.  This is different from URL encoding, of for example form submission results.  This will replace
+	 * characters in the URI, such as space (' ') with '+' rather than "%2F" as you would get from URL encoding.
+     *
+     * @param unquotedPath the unquoted path
+     * @return quoted path
+     */
+    public static String quoteURIPath(String unquotedPath) {
+        // NOTE: do NOT URLEncoder here because its intended purpose is encoding HTML forms. In particular
+        // it will encode all slashes '/' with %2F, which is not intended
+
+        // the code below assumes that the unquoted path is an absolute path, then converts it into a file: URI.
+        // next, it uses Java's toURI() method which properly quotes characters in the path, then converts it into a string
+        // and strips file: prefix
+        String result = new File(unquotedPath).toURI().toString().substring("file:".length());
+
+        // preserve trailing slashes
+        if (unquotedPath.endsWith("/")) {
+            return result + "/";
+        }
+        else {
+            return result;
+        }
+    }
 
 	/**
 	 * Return whether or not the string is a valid URL

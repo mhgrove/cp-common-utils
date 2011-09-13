@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2010 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.clarkparsia.common.io;
 
 import com.google.common.io.ByteStreams;
+import com.google.common.io.Files;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,7 +40,32 @@ import java.util.zip.ZipOutputStream;
  * @since 1.0
  * @version 2.0
  */
-public class Files2 {
+public final class Files2 {
+
+	private Files2() {
+	}
+
+	/**
+	 * Create a valid directory from the given {@link File}
+	 * @param theDirectory the directory to create
+	 * @throws IOException if the directory cannot be created
+	 * @return the newly created directory
+	 */
+	public static File createDirectory(File theDirectory) throws IOException {
+
+		if (theDirectory.exists()) {
+			if (!theDirectory.isDirectory()) {
+				Files.deleteRecursively(theDirectory);
+			}
+		}
+		else {
+			if (!theDirectory.mkdirs()) {
+				throw new IOException("Unable to create directory "+theDirectory);
+			}
+		}
+
+		return theDirectory;
+	}
 
     /**
      * Recursively traverse the directory and all its sub directories and return a list of all the files contained within.
