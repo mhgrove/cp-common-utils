@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -41,8 +42,55 @@ public final class Iterations {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(Iterations.class);
 
+	/**
+	 * Create an {@link Iteration} which iterates over the given array
+	 * @param theArray the array to iterate over
+	 * @return an Iteration over the array
+	 */
 	public static <T, E extends Exception> Iteration<T,E> forArray(final T[] theArray) {
 		return new ArrayIteration<T, E>(theArray);
+	}
+
+	/**
+	 * Return an empty {@link Iteration} which does not iterate.
+	 * @return an empty Iteration
+	 */
+	public static <T, E extends Exception> Iteration<T,E> emptyIteration() {
+		return new EmptyIteration<T,E>();
+	}
+
+	/**
+	 * <p>An {@link Iteration} implementation which is empty and does not iterate.
+	 *
+	 * @author Michael Grove
+	 * @since 2.0
+	 * @version 2.0
+	 */
+	private static class EmptyIteration<T, E extends Exception> implements Iteration<T,E> {
+
+		/**
+		 * @inheritDoc
+		 */
+		@Override
+		public T next() throws E {
+			throw new NoSuchElementException();
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		@Override
+		public boolean hasNext() throws E {
+			return false;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		@Override
+		public void close() throws E {
+			// no-op
+		}
 	}
 
 	/**
