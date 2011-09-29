@@ -16,6 +16,7 @@
 package com.clarkparsia.common.base;
 
 import java.util.Map;
+import java.util.Iterator;
 
 import com.google.common.collect.Maps;
 
@@ -25,17 +26,25 @@ import com.google.common.collect.Maps;
  * @since 2.0
  * @version 2.0
  */
-public class Options {
+public class Options implements Iterable<Option<Object>> {
 	private final Map<Option<Object>, Object> options;
 
-	private Options() {
+	Options() {
 		this.options = Maps.newHashMap();
 	}
 
-	private Options(Options other) {
+	Options(Options other) {
 		this.options = Maps.newHashMap(other.options);
 	}
-	
+
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public Iterator<Option<Object>> iterator() {
+		return options.keySet().iterator();
+	}
+
 	/**
 	 * Creates a copy of the options instance.
 	 */
@@ -100,7 +109,7 @@ public class Options {
 		Boolean value = (Boolean) options.get(option);
 		if (value == null)
 			value = option.getDefaultValue();
-		return value != null && value.booleanValue();
+		return value != null && value;
 	}
 	
 	/**
@@ -121,4 +130,12 @@ public class Options {
 		return oldValue != null ? (V) oldValue : option.getDefaultValue();
 	}
 
+	@SuppressWarnings("unchecked")
+	public static void insert(final Options theOptions, final Options theOptionsToInsert) {
+		for (Option aOpt : theOptionsToInsert) {
+			if (!theOptions.contains(aOpt)) {
+				theOptions.set(aOpt, theOptionsToInsert.get(aOpt));
+			}
+		}
+	}
 }

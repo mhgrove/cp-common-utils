@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @since 2.0
  * @version 2.0
  */
-public class Option<V> {
+public final class Option<V> {
 	private final String name;
 	private V defaultValue;
 
