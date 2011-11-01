@@ -29,8 +29,15 @@ public final class ImmutableOptions extends Options {
 	}
 
 	public static ImmutableOptions of(final Options theOptions) {
-		return new ImmutableOptions(theOptions);
+		if (theOptions instanceof ImmutableOptions) {
+			return (ImmutableOptions) theOptions;
+		}
+		else {
+			return new ImmutableOptions(theOptions);
+		}
 	}
+
+
 
 	/**
 	 * @inheritDoc
