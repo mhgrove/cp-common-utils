@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Iterator;
 
 import com.google.common.collect.Maps;
+import com.google.common.base.Objects;
 
 /**
  * @author Evren Sirin
@@ -137,5 +138,32 @@ public class Options implements Iterable<Option<Object>> {
 				theOptions.set(aOpt, theOptionsToInsert.get(aOpt));
 			}
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		final Options aOptions = (Options) o;
+
+		return Objects.equal(options, aOptions.options);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public int hashCode() {
+		return options != null
+			   ? options.hashCode()
+			   : 0;
 	}
 }
