@@ -17,8 +17,11 @@ package com.clarkparsia.common.collect;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Function;
+import static com.google.common.collect.Iterables.find;
+import com.google.common.collect.Iterables;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * <p>Utility methods for using Iterables which are not present in the Guava Iterables class.  Also includes re-implementations of some methods, filter and transform, found
@@ -32,6 +35,37 @@ import java.util.Iterator;
 public final class Iterables2 {
 
 	private Iterables2() {
+	}
+
+	/**
+	 * Same as {@link Iterables#find} except it does not throw {@link NoSuchElementException} if the result is not found.
+	 *
+	 * @param theIterable	the iterable to search
+	 * @param thePredicate	the predicate to use
+	 *
+	 * @return true if an element in the Iterable satisfies the predicate, false otherwise
+	 */
+	public static <T> boolean find(final Iterable<T> theIterable, final Predicate<? super T> thePredicate) {
+        try {
+            return Iterables.find(theIterable, thePredicate) != null;
+        }
+        catch (NoSuchElementException e) {
+            // find throws this exception when it can't find the element, which is not really helpful
+            // we just want the boolean of whether or not it was found.
+            return false;
+        }
+    }
+
+	/**
+	 * Apply the predicate to every element in the Iterable.  The result of the predicate is ignored.
+	 *
+	 * @param theIterable	the iterable whose elements should use the predicate
+	 * @param thePredicate	the predicate to apply
+	 */
+	public static <T> void each(final Iterable<T> theIterable, final Predicate<? super T> thePredicate) {
+		for (T aObj : theIterable) {
+			thePredicate.apply(aObj);
+		}
 	}
 
 	/**

@@ -131,6 +131,12 @@ public class Options implements Iterable<Option<Object>> {
 		return oldValue != null ? (V) oldValue : option.getDefaultValue();
 	}
 
+	/**
+	 * Inserts the given options into the existing set of options.  Options will only be added if they
+	 * do not already have a value specified in the existing options.
+	 * @param theOptions			the options to insert into
+	 * @param theOptionsToInsert	the new options to insert
+	 */
 	@SuppressWarnings("unchecked")
 	public static void insert(final Options theOptions, final Options theOptionsToInsert) {
 		for (Option aOpt : theOptionsToInsert) {
