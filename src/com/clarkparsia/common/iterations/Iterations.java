@@ -15,6 +15,7 @@
 
 package com.clarkparsia.common.iterations;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Function;
 import com.google.common.collect.Sets;
@@ -265,6 +266,33 @@ public final class Iterations {
 			theIteration.close();
 		}
 	}
+
+    /**
+     * Return whether or not the Iterations have the same contents.  Does not compare implementation.
+     * null's are considered equals, otherwise Object.equals is used.  Iterations are not closed.
+     *
+     * @param theLeftIter   an iteration
+     * @param theRightIter  the iteration to compare to
+     * @return              true if the iterations have the same exact contents, false otherwise.
+     * @throws E            if one of the iterations threw something while comparing
+     */
+    public static <T, E extends Throwable> boolean equals(final Iteration<T,E> theLeftIter,
+                                                          final Iteration<T,E> theRightIter) throws E {
+        while (theLeftIter.hasNext()) {
+            if (!theRightIter.hasNext()) {
+                return false;
+            }
+
+            final T aLeft = theLeftIter.next();
+            final T aRight = theRightIter.next();
+
+            if (!Objects.equal(aLeft, aRight)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 	/**
 	 * Return the contents of the Iteration as a List.  The Iteration is closed when the method returns.

@@ -20,13 +20,15 @@ package com.clarkparsia.common.iterations;
  *
  * @author Michael Grove
  * @since 2.0
- * @version 2.0
+ * @version 2.0.2
  */
 public interface SupportsIteration<T, E extends Throwable> {
 
 	/**
-	 * Return an Iteration over this object
-	 * @return the iteration
+	 * Return an Iteration over this object.
+     *
+	 * @return      the iteration
+     * @throws E    if there was an error creating the Iteration
 	 */
-	public Iteration<T,E> iteration();
+	public Iteration<T,E> iteration() throws E;
 }
