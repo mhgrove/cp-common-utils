@@ -18,6 +18,7 @@ package com.clarkparsia.common.base;
 import java.lang.reflect.InvocationTargetException;
 
 import com.google.common.base.Predicate;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
 
 /**
@@ -102,5 +103,13 @@ public final class Preconditions2 {
 				throw new IllegalArgumentException(e);
 			}
 		}
+	}
+
+	public static <T> T[] checkNotEmpty(final T[] theArray) {
+		if (theArray == null || theArray.length == 0) {
+			throw new IllegalArgumentException();
+		}
+
+		return theArray;
 	}
 }
