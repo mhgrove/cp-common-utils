@@ -56,7 +56,7 @@
     <target name="distfiles">
        <!-- Copy in lib files -->
         <mkdir dir="${dist}/lib" />
-		
+
         <copy todir="${dist}/lib">
             <fileset dir="${lib}">
                 <include name="**/*.jar" />
@@ -96,10 +96,13 @@
 			nonavbar="false" noindex="false" splitindex="true" author="true"
 			version="true" nodeprecatedlist="false" nodeprecated="false"
 			doctitle="${project.name}-${project.version}"
-			bottom="Copyright &#169; 2010-2011 Clark &amp; Parsia. All Rights Reserved.">
+			bottom="Copyright &#169; 2010-2012 Clark &amp; Parsia. All Rights Reserved.">
+
+			<link href="http://guava-libraries.googlecode.com/svn/trunk/javadoc/"/>
 
 			<classpath refid="project.class.path"/>
 			<fileset dir="${src}" defaultexcludes="yes"/>
 		</javadoc>
 	</target>
+
 </project>
