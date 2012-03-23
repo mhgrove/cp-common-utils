@@ -276,26 +276,8 @@ public class Request {
 
 			Map<String, List<String>> aHeaderMap = aConn.getHeaderFields();
 
-			for (String aName : aHeaderMap.keySet()) {
-				aResponseHeaders.add(new Header(aName, aHeaderMap.get(aName)));
-			}
-
-			try {
-				aResponseStream = aConn.getInputStream();
-
-				// if this is GZIP encoded, then wrap the input stream
-				String contentEncoding = aConn.getContentEncoding();
-				if ("gzip".equals(contentEncoding)) {
-					aResponseStream = new GZIPInputStream(aResponseStream);
-				}
-			}
-			catch (IOException ex) {
-				// close the connection input stream
-				if (aResponseStream != null) {
-					aResponseStream.close();
-				}
-
-				aResponseStream = aConn.getErrorStream();
+			for (Map.Entry<String, List<String>> aEntry : aHeaderMap.entrySet()) {
+				aResponseHeaders.add(new Header(aEntry.getKey(), aEntry.getValue()));
 			}
 
             return new Response(aConn, aResponseHeaders);

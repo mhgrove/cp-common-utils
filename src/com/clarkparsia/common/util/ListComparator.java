@@ -17,6 +17,7 @@ package com.clarkparsia.common.util;
 
 import java.util.List;
 import java.util.Comparator;
+import java.io.Serializable;
 
 import com.google.common.primitives.Ints;
 
@@ -27,7 +28,7 @@ import com.google.common.primitives.Ints;
  * @since 2.1
  * @version 2.1
  */
-public final class ListComparator<T extends Comparable> implements Comparator<List<T>> {
+public final class ListComparator<T extends Comparable> implements Comparator<List<T>>, Serializable {
 
 	public static <T extends Comparable> ListComparator<T> create() {
 		return new ListComparator<T>();

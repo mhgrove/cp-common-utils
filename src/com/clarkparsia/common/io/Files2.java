@@ -17,6 +17,7 @@ package com.clarkparsia.common.io;
 
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
+import com.google.common.io.Closeables;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -90,25 +91,30 @@ public final class Files2 {
     public static void zipDirectory(File theDir, File theOutputFile) throws IOException {
         ZipOutputStream aZipOut = new ZipOutputStream(new FileOutputStream(theOutputFile));
 
-        Collection<File> aFileList = listFiles(theDir);
+		try {
+			Collection<File> aFileList = listFiles(theDir);
 
-        String aPathToRemove = theDir.getAbsolutePath().substring(0, theDir.getAbsolutePath().lastIndexOf(File.separator));
+			String aPathToRemove = theDir.getAbsolutePath().substring(0, theDir.getAbsolutePath().lastIndexOf(File.separator));
 
-        for (File aFile : aFileList) {
-            FileInputStream aFileIn = new FileInputStream(aFile);
+			for (File aFile : aFileList) {
+				FileInputStream aFileIn = new FileInputStream(aFile);
 
-            ZipEntry aZipEntry = new ZipEntry(aFile.getAbsolutePath().substring(aFile.getAbsolutePath().indexOf(aPathToRemove) + aPathToRemove.length() + 1));
+				try {
+					ZipEntry aZipEntry = new ZipEntry(aFile.getAbsolutePath().substring(aFile.getAbsolutePath().indexOf(aPathToRemove) + aPathToRemove.length() + 1));
 
-            aZipOut.putNextEntry(aZipEntry);
+					aZipOut.putNextEntry(aZipEntry);
 
-            ByteStreams.copy(aFileIn, aZipOut);
-
-            aFileIn.close();
-
-            aZipOut.closeEntry();
-        }
-
-        aZipOut.close();
+					ByteStreams.copy(aFileIn, aZipOut);
+				}
+				finally {
+					Closeables.closeQuietly(aFileIn);
+					aZipOut.closeEntry();
+				}
+			}
+		}
+		finally {
+			Closeables.closeQuietly(aZipOut);
+		}
     }
 
 	/**
@@ -148,7 +154,9 @@ public final class Files2 {
 
 		if (theSource.isDirectory()) {
 			if (!theDest.exists()) {
-				theDest.mkdir();
+				if (!theDest.mkdir()) {
+					throw new IOException("Could not create destination");
+				}
 			}
 
 			String[] aChildren = theSource.list();
@@ -163,8 +171,8 @@ public final class Files2 {
 
 			ByteStreams.copy(in, out);
 
-			in.close();
-			out.close();
+			Closeables.closeQuietly(in);
+			Closeables.closeQuietly(out);
 		}
 	}
 }

@@ -24,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.util.Map;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.zip.GZIPInputStream;
 
 /**
  * <p>A response to an HTTP invocation.  Responses must be closed when they are no longer used to close the
@@ -55,6 +56,12 @@ public class Response implements Closeable {
 
 		try {
 			mContent = theConn.getInputStream();
+			
+			// if this is GZIP encoded, then wrap the input stream
+			String contentEncoding = theConn.getContentEncoding();
+			if ("gzip".equals(contentEncoding)) {
+				mContent = new GZIPInputStream(mContent);
+			}
 		}
 		catch (IOException e) {
 			// there was an error in the connection, so probably the error stream will be populated, this is safe to ignore

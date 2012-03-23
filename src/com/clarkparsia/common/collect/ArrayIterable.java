@@ -18,16 +18,17 @@ package com.clarkparsia.common.collect;
 import java.util.Iterator;
 
 /**
- * <p>Adapter class for using an Array as an Iterable, particularly, for allowing parts of an array to be the iterable.</p>
+ * <p>Adapter class for using an Array as an Iterable, particularly, for allowing parts of an array to be the iterable.  Does not make a copy
+ * of the array, so changes to the array will affect the Iterable and Iterators created from it.</p>
  *
  * @author Michael Grove
  * @since 2.0
  * @version 2.0
  */
 public final class ArrayIterable<T> implements Iterable<T> {
-	private T[] mArray;
-	private int mStart;
-	private int mEnd;
+	private final T[] mArray;
+	private final int mStart;
+	private final int mEnd;
 
 	/**
 	 * Create a new ArrayIterator

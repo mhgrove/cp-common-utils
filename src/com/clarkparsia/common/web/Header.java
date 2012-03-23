@@ -202,7 +202,7 @@ public final class Header {
 		StringBuffer aBuffer = new StringBuffer();
 
 		boolean aFirst = true;
-		for (String aKey : theValues.keySet()) {
+		for (Map.Entry<String, String> aEntry : theValues.entrySet()) {
 
 			if (!aFirst) {
 				aBuffer.append("; ");
@@ -210,11 +210,11 @@ public final class Header {
 
 			aFirst = false;
 
-			if (aKey != null) {
-				aBuffer.append(aKey).append("=");
+			if (aEntry.getKey() != null) {
+				aBuffer.append(aEntry.getKey()).append("=");
 			}
 			
-			aBuffer.append(theValues.get(aKey));
+			aBuffer.append(aEntry.getValue());
 		}
 
 		return aBuffer.toString();		

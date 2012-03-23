@@ -335,7 +335,7 @@ public class Timer {
 		return System.nanoTime() / 1000000;
 	}
 
-	private class TimerInterruptedException extends RuntimeException {
+	private static class TimerInterruptedException extends RuntimeException {
 
 		public TimerInterruptedException(final String theMsg) {
 			super(theMsg);
