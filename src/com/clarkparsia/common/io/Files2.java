@@ -39,7 +39,7 @@ import java.util.zip.ZipOutputStream;
  *
  * @author Michael Grove
  * @since 1.0
- * @version 2.0
+ * @version 2.2
  */
 public final class Files2 {
 
@@ -56,7 +56,7 @@ public final class Files2 {
 
 		if (theDirectory.exists()) {
 			if (!theDirectory.isDirectory()) {
-				Files.deleteRecursively(theDirectory);
+				deleteRecursively(theDirectory);
 			}
 		}
 		else {
@@ -66,6 +66,34 @@ public final class Files2 {
 		}
 
 		return theDirectory;
+	}
+
+	/**
+	 * <p>Recursively deletes a directory and <b>all</b> its contents, if this a file, it will simply be deleted.</p>
+	 *
+	 * <p>Be careful calling this, if any directory is a symlink, this could delete the contents of the linked directory.</p>
+	 *
+	 * @param theFile		the file or directory to recursively delete.
+	 *
+	 * @throws IOException	if there was an error while deleting
+	 */
+	public static void deleteRecursively(final File theFile) throws IOException {
+		if (theFile.isDirectory()) {
+			// shaky symlink detection, picked up from Guava
+			if (theFile.getCanonicalPath().equals(theFile.getAbsolutePath())) {
+				final File[] aFiles = theFile.listFiles();
+				if (aFiles == null) {
+					throw new IOException("Error listing files for " + theFile);
+				}
+				for (File aFile : aFiles) {
+					deleteRecursively(aFile);
+				}
+			}
+		}
+		
+		if (!theFile.delete()) {
+			throw new IOException("Failed to delete file: " + theFile);
+		}
 	}
 
     /**

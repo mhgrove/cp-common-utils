@@ -16,7 +16,7 @@
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="2.1" />
+    <property name="project.version" value="2.2" />
 
     <path id="project.class.path">
         <pathelement location="${lib}" />
