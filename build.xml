@@ -17,6 +17,8 @@
 
     <property name="project.name" value="cp-common-utils" />
     <property name="project.version" value="2.2" />
+	
+	<property name="premainclass" value="com.clarkparsia.common.base.Instrumentor"/>
 
     <path id="project.class.path">
         <pathelement location="${lib}" />
@@ -80,7 +82,7 @@
         <jar jarfile="${dist}/lib/${project.name}-${project.version}.jar"
              basedir="${build}">
             <manifest>
-                <attribute name="Main-Class" value="${mainclass}"/>
+                <attribute name="Premain-Class" value="${premainclass}"/>
                 <attribute name="Class-Path" value="${Class-Path}" />
             </manifest>
         </jar>
