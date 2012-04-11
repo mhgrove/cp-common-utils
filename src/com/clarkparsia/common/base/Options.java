@@ -15,27 +15,34 @@
 
 package com.clarkparsia.common.base;
 
-import java.util.Map;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
 
-import com.google.common.collect.Maps;
 import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
 
 /**
  * @author Evren Sirin
  * 
  * @since 2.0
- * @version 2.0
+ * @version 2.2
  */
-public class Options implements Iterable<Option<Object>> {
+public class Options implements Iterable<Option<Object>>, Copyable<Options> {
+	private static Options EMPTY = new Options(Collections.<Option<Object>, Object>emptyMap());
+	
 	private final Map<Option<Object>, Object> options;
 
 	Options() {
-		this.options = Maps.newHashMap();
+		this(Maps.<Option<Object>, Object>newHashMap());
 	}
 
-	Options(Options other) {
-		this.options = Maps.newHashMap(other.options);
+	Options(Options theOptions) {
+		this(theOptions.options);
+	}
+	
+	private Options(Map<Option<Object>, Object> theMap) {
+		this.options = theMap;
 	}
 
 	/**
@@ -47,10 +54,20 @@ public class Options implements Iterable<Option<Object>> {
 	}
 
 	/**
-	 * Creates a copy of the options instance.
+	 * Creates a mutable copy of the options instance. Updating the copy will not affect the original options. The copy
+	 * can be modified even if the original options instance may not be modifiable.
 	 */
+	public Options copy() {
+		return new Options(Maps.newHashMap(options));
+	}
+
+	/**
+	 * Creates a copy of the options instance.
+	 * @deprecated Use {@link Options#copy()} instead.
+	 */
+	@Deprecated
 	public static Options copyOf(Options options) {
-		return new Options(options);
+		return options.copy();
 	}
 
 	/**
@@ -123,6 +140,16 @@ public class Options implements Iterable<Option<Object>> {
 	}
 
 	/**
+	 * Copies all of the option value mappings from the specified Options overriding any previous value.
+	 * .
+	 * @return a reference to this object to allow method chaining
+	 */
+	public Options setAll(Options theOptions) {
+		options.putAll(theOptions.options);
+		return this;
+	}
+
+	/**
 	 * Removes any previous value associated with this option.
 	 */
 	@SuppressWarnings("unchecked")
@@ -144,6 +171,43 @@ public class Options implements Iterable<Option<Object>> {
 				theOptions.set(aOpt, theOptionsToInsert.get(aOpt));
 			}
 		}
+	}
+	
+	/**
+	 * Combines the given multiple options instances into one options instance. If there are duplicate options in the given
+	 * arguments, the value that appears in the last options instance override any previous value.
+	 */
+	public static Options combine(Options... theOptionsArray) {
+		Options aResult = Options.create();
+		for (Options aOptions : theOptionsArray) {
+			aResult.setAll(aOptions);
+		}
+		return aResult;
+	}
+
+	/**
+	 * Creates an unmodifiable, shallow copy of the options instance. The unmodifiable copy cannot be updated directly
+	 * but since it is a shallow copy updating the copy. If this needs to be avoided
+	 * <code>Options.unmodifiable(Options.copy())</code> can be used.
+	 * 
+	 * @return a new options instance that will throw exceptions on modification function
+	 */
+	public static Options unmodifiable(Options options) {
+		return new Options(Collections.unmodifiableMap(options.options));
+	}
+
+	/**
+	 * Creates a new empty <i>immutable</i> StardogOptions instance.
+	 */
+	public static Options empty() {
+		return EMPTY;
+	}
+
+	/**
+	 * Creates an <i>immutable</i> option instance with the given single mapping.
+	 */
+	public static <V> Options singleton(Option<V> key, V value) { 
+		return new Options(Collections.singletonMap((Option<Object>) key, (Object) value));
 	}
 
 	/**
@@ -172,4 +236,12 @@ public class Options implements Iterable<Option<Object>> {
 			   ? options.hashCode()
 			   : 0;
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+    public String toString() {
+	    return options.toString();
+    }
 }

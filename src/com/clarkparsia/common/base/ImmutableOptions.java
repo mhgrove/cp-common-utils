@@ -15,12 +15,17 @@
 
 package com.clarkparsia.common.base;
 
+import java.util.Iterator;
+
+import com.google.common.collect.Iterators;
+
 /**
  * <p>Extends {@link Options} to provide an immutable version.</p>
  *
  * @author Michael Grove
  * @version 2.0
  * @since 2.0
+ * @deprecated Use {@link Options#unmodifiable(Options)} instead
  */
 public final class ImmutableOptions extends Options {
 
@@ -28,6 +33,9 @@ public final class ImmutableOptions extends Options {
 		super(other);
 	}
 
+	/** 
+	 * @deprecated Use {@link Options#immutable()} instead
+	 */
 	public static ImmutableOptions of(final Options theOptions) {
 		if (theOptions instanceof ImmutableOptions) {
 			return (ImmutableOptions) theOptions;
@@ -37,7 +45,10 @@ public final class ImmutableOptions extends Options {
 		}
 	}
 
-
+	@Override
+    public Iterator<Option<Object>> iterator() {
+	    return Iterators.unmodifiableIterator(super.iterator());
+    }
 
 	/**
 	 * @inheritDoc
@@ -54,4 +65,10 @@ public final class ImmutableOptions extends Options {
 	public <V> Options set(final Option<V> option, final V value) {
 		throw new UnsupportedOperationException("Cannot edit immutable options");
 	}
+
+	@Override
+    public Options setAll(Options theOptions) {
+		throw new UnsupportedOperationException("Cannot edit immutable options");
+    }
+	
 }
