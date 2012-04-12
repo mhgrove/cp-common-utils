@@ -50,6 +50,10 @@ public final class CustomizableJULFormatter extends Formatter {
 	private static enum Style {
 		NONE, SHORT, MEDIUM, LONG;
 	}
+	
+	private static enum ThreadStyle {
+		ID, NAME;
+	}
 
 	private final static DateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("hh:mm:ss.SSS");
 	private final static DateFormat LONG_TIME_FORMAT = new SimpleDateFormat("MMM d, yyyy hh:mm:ss.SSS");
@@ -57,16 +61,26 @@ public final class CustomizableJULFormatter extends Formatter {
 	private final static String NEW_LINE = System.getProperty("line.separator");
 
 	private Style style = Style.SHORT;
+	private ThreadStyle threadStyle = null;
 
 	private CustomizableJULFormatter(Style style) {
 		this.style = style;
 	}
 
 	public CustomizableJULFormatter() {
-		String propName = getClass().getName() + ".style";
-		String format = LogManager.getLogManager().getProperty(propName);
+		String stylePropName = getClass().getName() + ".style";
+		String style = LogManager.getLogManager().getProperty(stylePropName);
 		try {
-			style = Style.valueOf(format.toUpperCase());
+			this.style = Style.valueOf(style.toUpperCase());
+		}
+		catch (Exception e) {
+			// invalid style; does it make sense to log inside log formatter?
+		}
+		
+		String threadsPropName = getClass().getName() + ".threads";
+		String threadStyle = LogManager.getLogManager().getProperty(threadsPropName);
+		try {
+			this.threadStyle = ThreadStyle.valueOf(threadStyle.toUpperCase());
 		}
 		catch (Exception e) {
 			// invalid style; does it make sense to log inside log formatter?
@@ -81,6 +95,16 @@ public final class CustomizableJULFormatter extends Formatter {
 			sb.append("[");
 			sb.append(record.getLevel());
 			sb.append(" ");
+			if (threadStyle != null) {				
+				sb.append("(Thread: ");
+				if (threadStyle == ThreadStyle.ID) {
+					sb.append(record.getThreadID());
+				}
+				else {
+					sb.append(Thread.currentThread().getName());
+				}
+				sb.append(") ");
+			}
 			if (style != Style.SHORT) {
 				if (style != Style.LONG) {
 					sb.append(simpleClassName(record.getSourceClassName()));
