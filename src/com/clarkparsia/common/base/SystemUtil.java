@@ -82,6 +82,37 @@ public final class SystemUtil {
 		}
 	}
 
+	public static float getPropertyAsFloat(final String theProperty, final float theDefault) {
+		String aValue = System.getProperty(theProperty);
+		if (aValue == null) {
+			return theDefault;
+		}
+		else {
+			try {
+				return Float.parseFloat(aValue);
+			}
+			catch (NumberFormatException e) {
+				LOGGER.warn("Value for property {} is intended to be an float, but the provided value {} is not a valid float", theProperty, theDefault);
+				return theDefault;
+			}
+		}
+	}
+
+	public static double getPropertyAsDouble(final String theProperty, final double theDefault) {
+		String aValue = System.getProperty(theProperty);
+		if (aValue == null) {
+			return theDefault;
+		}
+		else {
+			try {
+				return Double.parseDouble(aValue);
+			}
+			catch (NumberFormatException e) {
+				LOGGER.warn("Value for property {} is intended to be an double, but the provided value {} is not a valid double", theProperty, theDefault);
+				return theDefault;
+			}
+		}
+	}
 	public static String getProperty(final String theProperty, final String theDefault) {
 		String aValue = System.getProperty(theProperty);
 
