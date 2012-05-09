@@ -22,7 +22,31 @@ package com.clarkparsia.common.base;
  * @version 2.0
  */
 public final class Numbers {
+	/**
+	 * Constant field for thousand.
+	 */
+	public static final long THOUSAND = 1000;
+	
+	/**
+	 * Short-name constant field for thousand (1000).
+	 */
+	public static final long K = THOUSAND;
 
+	/**
+	 * Constant field for million.
+	 */
+	public static final long MILLION = 1000000;
+	
+	/**
+	 * Short-name constant field for million.
+	 */
+	public static final long M = MILLION;
+
+	/**
+	 * Constant field for billion.
+	 */
+	public static final long BILLION = 1000000000;
+	
 	private Numbers() {
 	}
 
@@ -46,11 +70,11 @@ public final class Numbers {
 	 * </pre>
 	 */
 	public static String readable(long number) {
-		if (number < 1000)
+		if (number < THOUSAND)
 			return String.valueOf(number);
-		else if (number < 10000)
+		else if (number < 10 * THOUSAND)
 			return String.format("%1.1fK", number / 1E3);
-		else if (number < 1000000)
+		else if (number < MILLION)
 			return String.format("%1.0fK", number / 1E3);
 		else
 			return String.format("%1.1fM", number / 1E6);
