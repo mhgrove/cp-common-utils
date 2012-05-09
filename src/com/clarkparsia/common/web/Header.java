@@ -18,6 +18,7 @@ package com.clarkparsia.common.web;
 import com.clarkparsia.common.util.Tuple;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -180,7 +181,13 @@ public final class Header {
 	 * @return a 2-tuple of strings with the key and value.
 	 */
 	private Tuple split(String theKeyValue) {
-		return new Tuple(Splitter.on("=").trimResults().omitEmptyStrings().split(theKeyValue));
+		List<String> aStrings = Lists.newArrayList(Splitter
+													   .on("=")
+													   .trimResults()
+													   .omitEmptyStrings()
+													   .split(theKeyValue));
+
+		return new Tuple(aStrings.toArray(new String[aStrings.size()]));
 	}
 
 	/**
