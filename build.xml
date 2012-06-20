@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  ~ Copyright (c) 2005 - 2010, Clark & Parsia, LLC. <http://www.clarkparsia.com>
+  ~ Copyright (c) 2005 - 2012, Clark & Parsia, LLC. <http://www.clarkparsia.com>
   -->
 
 <project name="Utils" default="dist" basedir=".">
@@ -16,7 +16,7 @@
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="2.2" />
+    <property name="project.version" value="2.2.1" />
 	
 	<property name="premainclass" value="com.clarkparsia.common.base.Instrumentor"/>
 
