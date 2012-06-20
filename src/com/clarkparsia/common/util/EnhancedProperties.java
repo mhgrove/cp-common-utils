@@ -23,6 +23,11 @@ import java.util.HashMap;
 import java.io.InputStream;
 import java.io.IOException;
 
+import com.clarkparsia.common.base.Copyable;
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Maps;
+
 /**
  * <p>Extends the java.util.Properties stuff to provide typed accessors to get property values as boolean, int, etc.
  * Also provides a way to get a property value as a list, or as a map of values.  And it does variable substitution on
@@ -50,7 +55,7 @@ import java.io.IOException;
  * @since 1.0
  * @version 1.1
  */
-public class EnhancedProperties extends Properties {
+public class EnhancedProperties extends Properties implements Copyable<EnhancedProperties> {
 
 	/**
 	 * Create a new EnhancedProperties
@@ -64,10 +69,22 @@ public class EnhancedProperties extends Properties {
 	 * @param theInput the inputstream to load property data from
 	 * @throws IOException thrown if there is an error reading properties data
 	 */
-	public EnhancedProperties(InputStream theInput) throws IOException {
+	public EnhancedProperties(final InputStream theInput) throws IOException {
 		super();
 
 		load(theInput);
+	}
+
+	/**
+	 * Copy constructor
+	 * @param theProps the properties to copy from
+	 */
+	public EnhancedProperties(final Properties theProps) {
+		super();
+
+		for (Object aKey : theProps.keySet()) {
+			put(aKey, theProps.get(aKey));
+		}
 	}
 
     /**
@@ -279,5 +296,71 @@ public class EnhancedProperties extends Properties {
         }
         return aNewValue.toString();
     }
+
+	/**
+	 * @inheritDoc
+	 */
+	@Override
+	public EnhancedProperties copy() {
+		return new EnhancedProperties(this);
+	}
+
+	/**
+	 * Return a subset of this Properties object by selecting all the keys which pass the predicate filter and
+	 * inserting those key-value objects into the returned value.
+	 *
+	 * @param theKeySelector	the filter for key values
+	 *
+	 * @return					an EnhancedProperties containing all key-value pairs whose keys pass the filter
+	 */
+	public EnhancedProperties select(final Predicate<String> theKeySelector) {
+		final EnhancedProperties aProps = new EnhancedProperties();
+
+		for (Object aKey : keySet()) {
+			if (theKeySelector.apply(aKey.toString())) {
+				aProps.put(aKey, get(aKey));
+			}
+		}
+
+		return aProps;
+	}
+
+	public EnhancedProperties transformKeys(final Function<String, String> theKeyFunction) {
+		final EnhancedProperties aProps = new EnhancedProperties();
+
+		for (Object aKey : keySet()) {
+			aProps.put(theKeyFunction.apply(aKey.toString()), get(aKey));
+		}
+
+		return aProps;
+	}
+
+
+	public EnhancedProperties transformValues(final Function<String, String> theValueFunction) {
+		final EnhancedProperties aProps = new EnhancedProperties();
+
+		for (Object aKey : keySet()) {
+			aProps.put(aKey, theValueFunction.apply(getProperty(aKey.toString())));
+		}
+
+		return aProps;
+	}
+
+	public Iterable<EnhancedProperties> partitionByKeys(final Function<String, String> thePartitionFunction) {
+		Map<String, EnhancedProperties> aMap = Maps.newHashMap();
+		for (Object aKey : keySet()) {
+			String aKeyStr = aKey.toString();
+			String aMapKey = thePartitionFunction.apply(aKeyStr);
+			EnhancedProperties aProps = aMap.get(aMapKey);
+			if (aProps == null) {
+				aProps = new EnhancedProperties();
+				aMap.put(aMapKey, aProps);
+			}
+
+			aProps.put(aKey, get(aKey));
+		}
+
+		return aMap.values();
+	}
 }
 

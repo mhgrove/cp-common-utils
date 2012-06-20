@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2012 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ public final class SystemUtil {
 	 * the logger
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(SystemUtil.class);
+
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	private SystemUtil() {
 	}

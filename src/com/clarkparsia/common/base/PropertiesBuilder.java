@@ -22,7 +22,7 @@ import java.util.Properties;
  *
  * @author Michael Grove
  * @since 0.3
- * @version 0.6.1
+ * @version 2.2.1
  */
 public final class PropertiesBuilder {
 
@@ -67,6 +67,18 @@ public final class PropertiesBuilder {
 		return this;
 	}
 
+	public PropertiesBuilder setTrue(final String theKey) {
+		return set(theKey, "true");
+	}
+
+	public PropertiesBuilder setFalse(final String theKey) {
+		return set(theKey, "false");
+	}
+
+	public PrefixedPropertiesBuilder withPrefix(final String thePrefix) {
+		return new PrefixedPropertiesBuilder(thePrefix);
+	}
+
 	/**
 	 * Return the created Properties instance
 	 * @return the properties
@@ -75,5 +87,26 @@ public final class PropertiesBuilder {
 		Properties aProps = new Properties();
 		aProps.putAll(mProperties);
 		return aProps;
+	}
+
+	public final class PrefixedPropertiesBuilder {
+		private final String mPrefix;
+
+		public PrefixedPropertiesBuilder(final String thePrefix) {
+			mPrefix = thePrefix;
+		}
+
+		public PrefixedPropertiesBuilder set(final String theKey, final String theValue) {
+			mProperties.setProperty(mPrefix + theKey, theValue);
+			return this;
+		}
+
+		public PrefixedPropertiesBuilder setTrue(final String theKey) {
+			return set(theKey, "true");
+		}
+
+		public PrefixedPropertiesBuilder setFalse(final String theKey) {
+			return set(theKey, "false");
+		}
 	}
 }
