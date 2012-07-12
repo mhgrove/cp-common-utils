@@ -356,10 +356,24 @@ public final class Iterations {
 	 * @param <O> the output type
 	 * @param <E> the error type
 	 * @return the transformed iteration
-	 * @throws E if there is an error while iterating
 	 */
-	public static <I, O, E extends Throwable> Iteration<O, E> transform(final Iteration<I, E> theIteration, final Function<I, O> theFunc) throws E {
+	public static <I, O, E extends Throwable> Iteration<O, E> transform(final Iteration<I, E> theIteration, final Function<I, O> theFunc) {
 		return new TransformIteration<I,O,E>(theFunc, theIteration);
+	}
+
+	/**
+	 * Apply the function to to transform the exceptions of an inner iterator to a different exception type while iteration
+	 * elements are returned unchanged.
+	 * 
+	 * @param theIteration the iteration
+	 * @param theFunc the transforming function for exceptions
+	 * @param <T> the iteration element type
+	 * @param <IE> the input exception type
+	 * @param <OE> the output exception type
+	 * @return the transformed iteration
+	 */
+	public static <T, IE extends Throwable, OE extends Throwable> Iteration<T, OE> transformException(final Iteration<T, IE> theIteration, final Function<IE ,OE> theFunc) {
+		return new TransformException<T,IE,OE>(theFunc, theIteration);
 	}
 
 	/**
