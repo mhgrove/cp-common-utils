@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2012 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,16 @@
 
 package com.clarkparsia.common.base;
 
+import com.google.common.base.Objects;
+
 /**
  * Tuple with 2 elements
  *
- * @author Pedro Oliveira
- * @version 2.0
- * @param <K1>
- * @param <K2>
- * @since 2.0
+ * @author	Pedro Oliveira
+ * @author	Michael Grove
+ *
+ * @since	2.0
+ * @version	2.3
  */
 public final class Pair<K1, K2> {
 
@@ -30,9 +32,13 @@ public final class Pair<K1, K2> {
 
 	public final K2 second;
 
+	private final int mHashCode;
+
 	private Pair(final K1 a, final K2 b) {
 		this.first = a;
 		this.second = b;
+
+		mHashCode = (first == null ? 37 : first.hashCode()) ^ (second == null ? 7 : second.hashCode());
 	}
 
 	public static <S, T> Pair<S, T> create(S a, T b) {
@@ -47,11 +53,15 @@ public final class Pair<K1, K2> {
 		if (o == this) {
 			return true;
 		}
-		if ((o instanceof Pair<?, ?>)) {
+		else if (o == null) {
+			return false;
+		}
+		else if ((o instanceof Pair<?, ?>)) {
 			Pair<?, ?> other = (Pair<?, ?>) o;
-			if (((other.first == null && this.first == null) || (other.first != null && other.first.equals(this.first))) && ((other.second == null && this.second == null) || (other.second != null && other.second.equals(this.second)))) {
-				return true;
-			}
+
+			return mHashCode == other.mHashCode
+				&& Objects.equal(first, other.first)
+				&& Objects.equal(second, other.second);
 		}
 		return false;
 	}
@@ -61,7 +71,7 @@ public final class Pair<K1, K2> {
 	 */
 	@Override
 	public int hashCode() {
-		return (first == null ? 37 : first.hashCode()) ^ (second == null ? 7 : second.hashCode());
+		return mHashCode;
 	}
 
 	/**
