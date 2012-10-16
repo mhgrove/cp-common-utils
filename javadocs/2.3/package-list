@@ -1,0 +1,10 @@
+com.clarkparsia.common.base
+com.clarkparsia.common.collect
+com.clarkparsia.common.io
+com.clarkparsia.common.iterations
+com.clarkparsia.common.logging
+com.clarkparsia.common.net
+com.clarkparsia.common.timer
+com.clarkparsia.common.util
+com.clarkparsia.common.util.concurrent
+com.clarkparsia.common.web
