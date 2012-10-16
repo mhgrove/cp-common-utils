@@ -1,5 +1,6 @@
 com.clarkparsia.common.base
 com.clarkparsia.common.collect
+com.clarkparsia.common.hash
 com.clarkparsia.common.io
 com.clarkparsia.common.iterations
 com.clarkparsia.common.logging
