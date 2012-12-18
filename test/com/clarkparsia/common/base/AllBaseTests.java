@@ -21,12 +21,12 @@ import org.junit.runners.Suite;
 /**
  * <p>Test suite for all the base package tests</p>
  *
- * @author Michael Grove
- * @since 2.2.1
- * @version 2.2.1
+ * @author  Michael Grove
+ * @since   2.2.1
+ * @version 2.3.1
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class})
+@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class})
 public class AllBaseTests {
 
 }

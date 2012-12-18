@@ -17,6 +17,7 @@ package com.clarkparsia.common.hash;
 
 import java.nio.charset.Charset;
 
+import com.google.common.base.Charsets;
 import com.google.common.hash.PrimitiveSink;
 
 /**
@@ -42,14 +43,14 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	 */
 	@Override
 	public PrimitiveSink putBytes(final byte[] theBytes) {
-		throw new UnsupportedOperationException();
+		return putBytes(theBytes, 0, theBytes.length);
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	@Override
-	public PrimitiveSink putBytes(final byte[] theBytes, final int i, final int i1) {
+	public PrimitiveSink putBytes(final byte[] theBytes, final int theStart, final int theLength) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -114,7 +115,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	 */
 	@Override
 	public PrimitiveSink putString(final CharSequence theCharSequence) {
-		throw new UnsupportedOperationException();
+        return putString(theCharSequence, Charsets.UTF_8);
 	}
 
 	/**
@@ -122,6 +123,6 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	 */
 	@Override
 	public PrimitiveSink putString(final CharSequence theCharSequence, final Charset theCharset) {
-		throw new UnsupportedOperationException();
+        return putBytes(theCharSequence.toString().getBytes(theCharset));
 	}
 }

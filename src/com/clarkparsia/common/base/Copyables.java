@@ -15,15 +15,18 @@
 
 package com.clarkparsia.common.base;
 
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Arrays;
+
+import com.google.common.base.Optional;
 
 /**
  * <p>Utility methods for copying collections of {@link Copyable} objects.</p>
  *
- * @author Michael Grove
- * @version 2.1
- * @since 2.1
+ * @author  Michael Grove
+ * @since   2.1
+ * @version 2.3.1
  */
 public final class Copyables {
 
@@ -87,11 +90,32 @@ public final class Copyables {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T copy(final T theObject) {
-		if (theObject instanceof Copyable) {
+        if (theObject == null) {
+            return null;
+        }
+		else if (theObject instanceof Copyable) {
 			return (T) ((Copyable)theObject).copy();
 		}
 		else {
 			return theObject;
 		}
 	}
+
+    /**
+     * If the {@link Optional} has ({@link Optional#isPresent isPresent a value} a {@link Copyable#copy} is made of the object.
+     * Otherwise, with an absent value, the Optional is returned as-is
+     *
+     * @param theObj    the object to copy
+     * @param <T>       the object's type
+     * @return          an Optional which contains a copy of the object if a value is present on the optional.
+     */
+    public static <T> Optional<T> copy(final Optional<T> theObj) {
+        if (theObj.isPresent()) {
+            return Optional.of(copy(theObj.get()));
+        }
+        else {
+            // no value, no need to make a copy
+            return theObj;
+        }
+    }
 }
