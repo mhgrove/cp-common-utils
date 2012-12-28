@@ -17,6 +17,7 @@ package com.clarkparsia.common.io;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -48,5 +49,18 @@ public class PeekingDataInputStream extends DataInputStream {
         int aByte = in.read();
         in.reset();
         return aByte;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public int read() throws IOException {
+        try {
+            return super.read();
+        }
+        catch (EOFException e) {
+            return -1;
+        }
     }
 }
