@@ -21,8 +21,6 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
-import com.clarkparsia.common.net.BasicX509TrustManager;
-
 
 /**
  * <p>Initializes HTTPS with a less restrictive TrustManager</p>

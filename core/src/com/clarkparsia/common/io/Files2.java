@@ -15,6 +15,7 @@
 
 package com.clarkparsia.common.io;
 
+import com.clarkparsia.common.base.Dates;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 import com.google.common.io.Closeables;
@@ -27,6 +28,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileFilter;
 
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -177,6 +179,28 @@ public final class Files2 {
 
 		return aList;
 	}
+
+    /**
+     * Rotates a file.  Moves the specified file to a new file in the same directory, the name of the
+     * new file is postfixed with the current date (YYYY-mm-dd).  If this file exists, that file name
+     * is post-fixed .<num> where number is continuously incremented counter until a unique file
+     * name is found.
+     *
+     * @param theFile       the file name to be rotated
+     *
+     * @throws IOException  if the file could not be moved to the new location
+     */
+    public static void rotate(final File theFile) throws IOException {
+        final String aDate = Dates.date(new Date(theFile.lastModified()));
+
+        File aLogBk = new File(theFile.getParent(), theFile.getName() + "." + aDate);
+        int aCount = 0;
+        while (aLogBk.exists()) {
+            aLogBk = new File(theFile.getParent(), theFile.getName() + "." + aDate + "." + aCount++);
+        }
+
+        Files.move(theFile, aLogBk);
+    }
 
 	public static void copyDirectory(final File theSource, final File theDest) throws IOException {
 

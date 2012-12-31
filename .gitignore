@@ -1,0 +1,7 @@
+*/lib
+settings/ivy-cache
+settings/local.ivysettings.xml
+settings/ivysettings.properties
+out
+build
+dist

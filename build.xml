@@ -3,14 +3,25 @@
   ~ Copyright (c) 2005 - 2012, Clark & Parsia, LLC. <http://www.clarkparsia.com>
   -->
 
-<project name="Utils" default="dist" basedir=".">
+<project name="Utils" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
     <description>
         Clark &amp; Parsia Utility Classes
     </description>
 
     <!-- Global Properties -->
-    <property name="src" location="src" />
+	<property name="core" location="core"/>
+    <property name="core.src" location="${core}/src" />
+	<property name="core.lib" location="${core}/lib" />
+	<property name="core.test" location="${core}/test" />
+
+	<property name="protobuf" location="protobuf"/>
+	<property name="protobuf.src" location="${protobuf}/src" />
+	<property name="protobuf.lib" location="${protobuf}/lib" />
+
     <property name="build" location="build" />
+	<property name="build.core" location="${build}/core" />
+	<property name="build.protobuf" location="${build}/protobuf" />
+
     <property name="dist" location="dist" />
 	<property name="lib" value="lib"/>
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
@@ -20,36 +31,88 @@
 	
 	<property name="premainclass" value="com.clarkparsia.common.base.Instrumentor"/>
 
-    <path id="project.class.path">
-        <pathelement location="${lib}" />
-        <pathelement location="${build}" />
-        <fileset dir="${lib}">
-            <include name="**/*.jar"/>
-            <exclude name="**/${project.name}*.jar"/>
-        </fileset>
-    </path>
+	<!-- ******************** IVY ********************** -->
 
-    <target name="init">
+	<property name="ivy.install.version" value="2.2.0" />
+	<condition property="ivy.home" value="${env.IVY_HOME}">
+		<isset property="env.IVY_HOME" />
+	</condition>
+	<property name="ivy.home" value="${user.home}/.ant" />
+	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	<target name="download-ivy" unless="offline">
+
+		<mkdir dir="${ivy.jar.dir}"/>
+		<!-- download Ivy from web site so that it can be used even without any special installation -->
+		<get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+			 dest="${ivy.jar.file}" usetimestamp="true"/>
+	</target>
+
+	<target name="init-ivy" depends="download-ivy">
+		<!-- try to load ivy here from ivy home, in case the user has not already dropped
+				  it into ant's lib dir (note that the latter copy will always take precedence).
+				  We will not fail as long as local lib dir exists (it may be empty) and
+				  ivy is in at least one of ant's lib dir or the local lib dir. -->
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+				 uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>
+
+	<target name="clean-ivy-cache">
+		<ivy:cleancache/>
+		<delete dir="settings/ivy-cache" failonerror="false"/>
+	</target>
+
+	<!-- *********************************************** -->
+
+	<target name="resolve" depends="clean-libs, init-ivy" description="--> retrieve dependencies with ivy">
+		<ivy:configure file="settings/ivysettings.xml" />
+
+		<ivy:resolve file="${core}/ivy.xml"/>
+		<ivy:retrieve pattern="${core.lib}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar"/>
+		<ivy:cachepath pathid="core.classpath"/>
+	</target>
+
+	<target name="clean-libs">
+		<delete dir="${core.lib}" />
+	</target>
+
+    <target name="init" depends="resolve">
+		<path id="project.class.path">
+			<path refid="core.classpath"/>
+		</path>
+
         <pathconvert targetos="unix" property="classpath" refid="project.class.path" />
         <echo>CLASSPATH=${classpath}</echo>
         <!-- Create the time stamp -->
         <tstamp/>
+
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
+		<mkdir dir="${build.core}"/>
+
 		<mkdir dir="${dist}"/>
     </target>
 
     <target name="compile" depends="init"
             description="Compile source files." >
-        <javac source="1.5" target="1.5" srcdir="${src}" destdir="${build}" debug="yes" deprecation="yes">
+        <javac source="1.5" target="1.5" srcdir="${core.src}" destdir="${build.core}" debug="yes" deprecation="yes">
             <classpath refid="project.class.path"/>
         </javac>
+
+		<!--<javac source="1.5" target="1.5" srcdir="${protobuf.src}" destdir="${build.protobuf}" debug="yes" deprecation="yes">-->
+			<!--<classpath refid="project.class.path"/>-->
+		<!--</javac>-->
     </target>
 
     <target name="build" depends="compile"
             description="Compile sources and copy data files into build directory.">
         <copy todir="${build}">
-            <fileset dir="${src}">
+            <fileset dir="${core.src}">
                 <exclude name="**/*.java" />
             </fileset>
         </copy>
@@ -60,18 +123,11 @@
         <mkdir dir="${dist}/lib" />
 
         <copy todir="${dist}/lib">
-            <fileset dir="${lib}">
+            <fileset dir="${core.lib}">
                 <include name="**/*.jar" />
                 <exclude name="**/${project.name}*.jar"/>
             </fileset>
         </copy>
-
-        <copy todir="${dist}/src">
-            <fileset dir="${src}">
-                <include name="**/*.java" />
-            </fileset>
-        </copy>
-
     </target>
 
     <target name="dist" depends="build,distfiles"
@@ -103,8 +159,7 @@
 			<link href="http://guava-libraries.googlecode.com/svn/trunk/javadoc/"/>
 
 			<classpath refid="project.class.path"/>
-			<fileset dir="${src}" defaultexcludes="yes"/>
+			<fileset dir="${core.src}" defaultexcludes="yes"/>
 		</javadoc>
 	</target>
-
 </project>

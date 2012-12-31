@@ -15,7 +15,6 @@
 
 package com.clarkparsia.common.base;
 
-import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Arrays;
 

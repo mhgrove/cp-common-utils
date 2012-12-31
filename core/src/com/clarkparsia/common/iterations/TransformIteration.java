@@ -15,7 +15,6 @@
 
 package com.clarkparsia.common.iterations;
 
-import com.clarkparsia.common.iterations.Iteration;
 import com.google.common.base.Function;
 
 import java.util.NoSuchElementException;
