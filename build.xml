@@ -3,31 +3,22 @@
   ~ Copyright (c) 2005 - 2012, Clark & Parsia, LLC. <http://www.clarkparsia.com>
   -->
 
-<project name="Utils" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="Master Utils" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
     <description>
         Clark &amp; Parsia Utility Classes
     </description>
 
     <!-- Global Properties -->
 	<property name="core" location="core"/>
-    <property name="core.src" location="${core}/src" />
-	<property name="core.lib" location="${core}/lib" />
-	<property name="core.test" location="${core}/test" />
-
-	<property name="protobuf" location="protobuf"/>
-	<property name="protobuf.src" location="${protobuf}/src" />
-	<property name="protobuf.lib" location="${protobuf}/lib" />
 
     <property name="build" location="build" />
-	<property name="build.core" location="${build}/core" />
-	<property name="build.protobuf" location="${build}/protobuf" />
 
     <property name="dist" location="dist" />
-	<property name="lib" value="lib"/>
+
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="2.3.1" />
+    <property name="project.version" value="2.4" />
 	
 	<property name="premainclass" value="com.clarkparsia.common.base.Instrumentor"/>
 
@@ -67,99 +58,40 @@
 		<delete dir="settings/ivy-cache" failonerror="false"/>
 	</target>
 
-	<!-- *********************************************** -->
-
-	<target name="resolve" depends="clean-libs, init-ivy" description="--> retrieve dependencies with ivy">
-		<ivy:configure file="settings/ivysettings.xml" />
-
-		<ivy:resolve file="${core}/ivy.xml"/>
-		<ivy:retrieve pattern="${core.lib}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar"/>
-		<ivy:cachepath pathid="core.classpath"/>
-	</target>
-
-	<target name="clean-libs">
-		<delete dir="${core.lib}" />
-	</target>
-
-    <target name="init" depends="resolve">
-		<path id="project.class.path">
-			<path refid="core.classpath"/>
-		</path>
-
-        <pathconvert targetos="unix" property="classpath" refid="project.class.path" />
-        <echo>CLASSPATH=${classpath}</echo>
-        <!-- Create the time stamp -->
-        <tstamp/>
-
-        <!-- Create the build directory structure used by compile -->
-        <mkdir dir="${build}"/>
-		<mkdir dir="${build.core}"/>
-
-		<mkdir dir="${dist}"/>
-    </target>
-
-    <target name="compile" depends="init"
-            description="Compile source files." >
-        <javac source="1.5" target="1.5" srcdir="${core.src}" destdir="${build.core}" debug="yes" deprecation="yes">
-            <classpath refid="project.class.path"/>
-        </javac>
-
-		<!--<javac source="1.5" target="1.5" srcdir="${protobuf.src}" destdir="${build.protobuf}" debug="yes" deprecation="yes">-->
-			<!--<classpath refid="project.class.path"/>-->
-		<!--</javac>-->
-    </target>
-
-    <target name="build" depends="compile"
-            description="Compile sources and copy data files into build directory.">
-        <copy todir="${build}">
-            <fileset dir="${core.src}">
-                <exclude name="**/*.java" />
-            </fileset>
-        </copy>
-    </target>
-
-    <target name="distfiles">
-       <!-- Copy in lib files -->
-        <mkdir dir="${dist}/lib" />
-
-        <copy todir="${dist}/lib">
-            <fileset dir="${core.lib}">
-                <include name="**/*.jar" />
-                <exclude name="**/${project.name}*.jar"/>
-            </fileset>
-        </copy>
-    </target>
-
-    <target name="dist" depends="build,distfiles"
-            description="Generate a distribution" >
-
-        <echo>${Class-Path}</echo>
-        <!-- Make Jar file. -->
-        <jar jarfile="${dist}/lib/${project.name}-${project.version}.jar"
-             basedir="${build}">
-            <manifest>
-                <attribute name="Premain-Class" value="${premainclass}"/>
-                <attribute name="Class-Path" value="${Class-Path}" />
-            </manifest>
-        </jar>
-    </target>
-
+	<!-- *********************************************** -->	
+	
     <target name="clean" description="Clean up build files">
         <delete dir="${build}" />
         <delete dir="${dist}" />
     </target>
+	
+	<target name="init" depends="init-ivy">
+        <mkdir dir="${build}"/>
 
-	<target name="javadocs" depends="init">
-		<javadoc destdir="${javadoc.dir}" access="public" use="true" notree="false"
-			nonavbar="false" noindex="false" splitindex="true" author="true"
-			version="true" nodeprecatedlist="false" nodeprecated="false"
-			doctitle="${project.name}-${project.version}"
-			bottom="Copyright &#169; 2010-2012 Clark &amp; Parsia. All Rights Reserved.">
+		<mkdir dir="${dist}"/>
+    </target>
+    
+	<target name="dist" depends="init" description="project dist">
+		<ivy:configure file="settings/ivysettings.xml" />
 
-			<link href="http://guava-libraries.googlecode.com/svn/trunk/javadoc/"/>
+		<ivy:buildlist reference="build-path" onMissingDescriptor="skip">
+			<fileset dir="." includes="**/build.xml"/>
+		</ivy:buildlist>
+		
+		<subant buildpathref="build-path" failonerror="true">
+		    <property name="core" value="${core}"/>
+		    <property name="build" value="${build}"/>
+		    <property name="dist" value="${dist}"/>
+		    <property name="ivy.settings" location="settings/ivysettings.xml"/>
+		    
+		    <target name="clean"/>
+			<target name="resolve"/>
+			<target name="dist"/>
+		</subant>		
 
-			<classpath refid="project.class.path"/>
-			<fileset dir="${core.src}" defaultexcludes="yes"/>
-		</javadoc>
+		<ivy:makepom ivyfile="${core}/ivy.xml" pomfile="${core}/pom.xml">
+			<mapping conf="core" scope="compile"/>
+			<mapping conf="runtime" scope="runtime"/>
+		</ivy:makepom>
 	</target>
 </project>
