@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2012 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,23 @@
 
 package com.clarkparsia.common.io;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.util.zip.GZIPOutputStream;
+
+import com.google.common.io.ByteStreams;
+import com.google.common.primitives.Ints;
 
 /**
  * <p>Utility class to hold functionality not already contained in {@link com.google.common.io.ByteStreams}</p>
  *
  * @author  Michael Grove
  * @since   2.3.1
- * @version 2.3.1
+ * @version 2.4
  */
 public final class ByteStreams2 {
 
@@ -33,6 +40,47 @@ public final class ByteStreams2 {
      */
     private ByteStreams2() {
         throw new AssertionError();
+    }
+
+    /**
+     * Read an int from the {@link InputStream}
+     * @param theStream     the stream to read from
+     * @return              the int
+     * @throws IOException  if there is an error reading the int
+     */
+    public static int readInt(final InputStream theStream) throws IOException {
+        byte[] array = new byte[Ints.BYTES];
+        ByteStreams.readFully(theStream, array);
+        return Ints.fromByteArray(array);
+    }
+
+    /**
+     * Write an int to the {@link OutputStream}
+     * @param theStream     the stream to write to
+     * @param theInt        the int to write
+     * @throws IOException  if there was an error writing the int
+     */
+    public static void writeInt(final OutputStream theStream, final int theInt) throws IOException {
+        theStream.write(Ints.toByteArray(theInt));
+    }
+
+    /**
+     * GZIP the array of bytes
+     *
+     * @param theBytes      the bytes to gzip
+     * @return              the bytes, gzipped
+     * @throws IOException  if there was an error during gzipping
+     */
+    public static byte[] gzip(final byte[] theBytes) throws IOException {
+        ByteArrayOutputStream aOut = new ByteArrayOutputStream(theBytes.length);
+
+        GZIPOutputStream aZipped = new GZIPOutputStream(aOut);
+        ByteStreams.copy(new ByteArrayInputStream(theBytes), aZipped);
+
+        aZipped.flush();
+        aZipped.close();
+
+        return aOut.toByteArray();
     }
 
     /**
