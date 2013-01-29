@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,10 @@ import org.junit.runners.Suite;
  *
  * @author  Michael Grove
  * @since   2.2.1
- * @version 2.3.1
+ * @version 2.4
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class})
+@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class, TestOptionals.class })
 public class AllBaseTests {
 
 }
