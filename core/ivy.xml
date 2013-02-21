@@ -1,5 +1,5 @@
 <ivy-module version="2.2">
-	<info organisation="com.clarkparsia.common-utils" module="core" revision="2.4">
+	<info organisation="com.clarkparsia.common-utils" module="core" revision="2.4.1">
 		<license name="APL 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
 		<ivyauthor name="Michael Grove"/>
 		<description homepage="https://github.com/mhgrove/cp-common-utils">Core utility classes for various common tasks.  In many cases classes extend or supplement

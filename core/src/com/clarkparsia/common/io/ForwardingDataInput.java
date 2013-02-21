@@ -1,6 +1,7 @@
-// Copyright (c) 2010 - 2013 -- Clark & Parsia, LLC. <http://www.clarkparsia.com>
+// Copyright (c) 2010 - 2012 -- Clark & Parsia, LLC. <http://www.clarkparsia.com>
 // For more information about licensing and copyright of this software, please contact
 // inquiries@clarkparsia.com or visit http://stardog.com
+
 package com.clarkparsia.common.io;
 
 import java.io.DataInput;
@@ -12,8 +13,8 @@ import com.google.common.collect.ForwardingObject;
  * <p>Base class for creating a {@link DataInput} decorator</p>
  *
  * @author  Michael Grove
- * @since   2.4
- * @version 2.4
+ * @since   1.0
+ * @version 1.0
  */
 public class ForwardingDataInput extends ForwardingObject implements DataInput {
     private final DataInput mInput;

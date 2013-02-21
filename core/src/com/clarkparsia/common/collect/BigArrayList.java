@@ -118,7 +118,11 @@ public final class BigArrayList<T> implements Iterable<T> {
 		return data.size();
 	}
 	
-	
+	public void clear() {
+        data.clear();
+        singleData = true;
+    }
+
 	/**
 	 * An interface for datastructures that provide a long-sized {@link List}
 	 * 
@@ -134,6 +138,8 @@ public final class BigArrayList<T> implements Iterable<T> {
 		public long size();
 
 		public K set(long theIndex, K theElement);
+
+        public void clear();
 	}
 	
 	/**
@@ -150,8 +156,13 @@ public final class BigArrayList<T> implements Iterable<T> {
 		public SingleList() {
 			data = new ArrayList<T>();
 		}
-		
-		public T get(long index) {
+
+        @Override
+        public void clear() {
+            data.clear();
+        }
+
+        public T get(long index) {
 			return data.get((int) index);
 		}
 		
@@ -202,6 +213,12 @@ public final class BigArrayList<T> implements Iterable<T> {
 			this.size = otherData.size();
 			grow();
 		}
+
+        public void clear() {
+            data = new ArrayList<List<T>>();
+            size = 0;
+            grow();
+        }
 		
 		public T get(long index) {
 			int pos = (int) (index / maxSize);

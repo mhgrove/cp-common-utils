@@ -20,8 +20,8 @@ import java.util.Iterator;
 /**
  * <p>An adapter to provide a single iteration over a list of iterations.  This will iterate over each child iteration in the order they are provided in the constructor.</p>
  *
- * @author Michael Grove
- * @since 2.0
+ * @author  Michael Grove
+ * @since   2.0
  * @version 2.0
  */
 public class MultiIteration<T, E extends Throwable> extends AbstractIteration<T, E> {

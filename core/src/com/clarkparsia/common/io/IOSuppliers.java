@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2012 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,10 @@
 
 package com.clarkparsia.common.io;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 import com.google.common.base.Supplier;
 import com.google.common.io.InputSupplier;
@@ -26,7 +29,7 @@ import com.google.common.io.OutputSupplier;
  *
  * @author  Michael Grove
  * @since   2.3.1
- * @version 2.3.1
+ * @version 2.4
  */
 public final class IOSuppliers {
 
@@ -96,6 +99,23 @@ public final class IOSuppliers {
             @Override
             public T getOutput() throws IOException {
                 return theObj.get();
+            }
+        };
+    }
+
+    /**
+     * Return an {@link InputSupplier} which will supply {@link FileChannel} objects for the given {@link File}
+     * @param theFile   the file to read from
+     * @return          a supplier of FileChannels for the File
+     */
+    public static InputSupplier<FileChannel> newFileChannelSupplier(final File theFile) {
+        return new InputSupplier<FileChannel>() {
+            /**
+             * @inheritDoc
+             */
+            @Override
+            public FileChannel getInput() throws IOException {
+                return new FileInputStream(theFile).getChannel();
             }
         };
     }

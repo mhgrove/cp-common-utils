@@ -138,7 +138,7 @@ public final class Iterations {
 	 * @param <E> the exception that can be thrown during use
 	 * @return a concatenated iteration which will iterate over all the provided Iterations
 	 */
-	public static <T, E extends Exception> Iteration<T, E> concat(Iterable<Iteration<T, E>> theIterations) {
+	public static <T, E extends Exception, I extends Iteration<T, E>> Iteration<T, E> concat(final Iterable<I> theIterations) {
 		return new MultiIteration<T,E>(theIterations);
 	}
 
@@ -149,7 +149,7 @@ public final class Iterations {
 	 * @param <E> the exception that can be thrown during use
 	 * @return a concatenated iteration which will iterate over all the provided Iterations
 	 */
-	public static <T, E extends Exception> Iteration<T, E> concat(Iteration<T, E>... theIterations) {
+	public static <T, E extends Exception, I extends Iteration<T, E>> Iteration<T, E> concat(final I ... theIterations) {
 		return new MultiIteration<T,E>(Arrays.asList(theIterations));
 	}
 
