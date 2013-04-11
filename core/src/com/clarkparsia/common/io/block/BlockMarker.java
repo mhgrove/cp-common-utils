@@ -13,23 +13,15 @@
  * limitations under the License.
  */
 
-package com.clarkparsia.common.io;
-
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-
-import com.clarkparsia.common.io.block.BlockWriterTests;
+package com.clarkparsia.common.io.block;
 
 /**
- * <p></p>
- *
- * @author Michael Grove
- * @since 0
- * @version 0
+ * Markers printed at the beginning and end of a block.
+ * 
+ * @author Evren Sirin
  */
-
-@RunWith(Suite.class)
-@Suite.SuiteClasses({ MiscIOTests.class, BlockWriterTests.class })
-public class AllIOTests {
-
+public interface BlockMarker {
+	public String getBegin();
+	
+	public String getEnd();
 }

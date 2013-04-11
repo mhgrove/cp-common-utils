@@ -13,23 +13,30 @@
  * limitations under the License.
  */
 
-package com.clarkparsia.common.io;
-
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-
-import com.clarkparsia.common.io.block.BlockWriterTests;
+package com.clarkparsia.common.io.block;
 
 /**
- * <p></p>
- *
- * @author Michael Grove
- * @since 0
- * @version 0
+ * Enumeration of brackets that are commonly used as {@link BlockMarker block markers}.
+ * 
+ * @author Evren Sirin
  */
+public enum Bracket implements BlockMarker {
+	SQUARE("[", "]"), CURLY("{", "}"), PARENTHESIS("(", ")"), ANGLE("<", ">");
+	
+	private final String start;
+	
+	private final String end;
+	
+	private Bracket(String start, String end) {
+	    this.start = start;
+	    this.end = end;
+    }
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({ MiscIOTests.class, BlockWriterTests.class })
-public class AllIOTests {
-
+	public String getBegin() {
+		return start;
+	}
+	
+	public String getEnd() {
+		return end;
+	}
 }
