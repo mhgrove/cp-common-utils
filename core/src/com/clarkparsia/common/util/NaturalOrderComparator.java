@@ -21,10 +21,16 @@ import java.util.Comparator;
  * <p>Simple {@link Comparator} implementation which can be used for {@link Comparable} objects.</p>
  *
  * @author	Michael Grove
- * @version	2.3
  * @since	2.3
+ * @version	2.5
  */
-public final class NaturalOrderComparator<T extends Comparable> implements Comparator<T> {
+public final class NaturalOrderComparator<T extends Comparable<T>> implements Comparator<T> {
+    private NaturalOrderComparator() {
+    }
+
+    public static <T extends Comparable<T>> NaturalOrderComparator<T> create() {
+        return new NaturalOrderComparator<T>();
+    }
 
 	/**
 	 * @inheritDoc
