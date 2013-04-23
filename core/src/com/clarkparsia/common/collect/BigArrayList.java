@@ -28,10 +28,10 @@ import com.google.common.collect.UnmodifiableIterator;
  * <p/>
  * For now, only {@link #add(Object)}, {@link #get(long)}, and {@link #size()} are supported.
  * 
- * @author Pedro Oliveira <pedro@clarkparsia.com>
+ * @author Pedro Oliveira
  *
- * @param <T>
- * @since 2.0
+ * @param   <T>
+ * @since   2.0
  * @version 2.0
  */
 public final class BigArrayList<T> implements Iterable<T> {
