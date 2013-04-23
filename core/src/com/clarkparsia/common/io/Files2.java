@@ -16,6 +16,7 @@
 package com.clarkparsia.common.io;
 
 import com.clarkparsia.common.base.Dates;
+import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 import com.google.common.io.Closeables;
@@ -80,6 +81,8 @@ public final class Files2 {
 	 * @throws IOException	if there was an error while deleting
 	 */
 	public static void deleteRecursively(final File theFile) throws IOException {
+        Preconditions.checkNotNull(theFile);
+
 		if (theFile.isDirectory()) {
 			// shaky symlink detection, picked up from Guava
 			if (theFile.getCanonicalPath().equals(theFile.getAbsolutePath())) {
@@ -227,4 +230,20 @@ public final class Files2 {
 			Closeables.closeQuietly(out);
 		}
 	}
+
+    public static boolean deleteFiles(final File theFile) {
+        Preconditions.checkNotNull(theFile);
+
+        boolean aResult = true;
+
+        if (theFile.isDirectory()) {
+            for (File file : theFile.listFiles()) {
+                if (file.isFile()) {
+                    aResult = aResult && file.delete();
+                }
+            }
+        }
+
+        return aResult;
+    }
 }
