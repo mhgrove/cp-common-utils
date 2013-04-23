@@ -24,12 +24,13 @@ package com.clarkparsia.common;
  */
 
 import com.clarkparsia.common.base.AllBaseTests;
+import com.clarkparsia.common.collect.BigArrayListTest;
 import com.clarkparsia.common.io.AllIOTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AllBaseTests.class, AllIOTests.class })
+@Suite.SuiteClasses({AllBaseTests.class, AllIOTests.class, BigArrayListTest.class })
 public class AllTests {
 
 }

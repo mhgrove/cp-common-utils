@@ -23,10 +23,10 @@ import org.junit.runners.Suite;
  *
  * @author  Michael Grove
  * @since   2.2.1
- * @version 2.4
+ * @version 2.5
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class, TestOptionals.class, PropertiesTests.class })
+@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class, TestOptionals.class, DurationTests.class, PropertiesTests.class })
 public class AllBaseTests {
 
 }
