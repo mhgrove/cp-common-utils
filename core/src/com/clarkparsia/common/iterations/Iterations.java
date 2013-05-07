@@ -179,6 +179,7 @@ public final class Iterations {
 	 */
 	public static <T, E extends Throwable> Iterator<T> toIterator(final Iteration<T, E> theIteration) {
 		return new Iterator<T>() {
+            @Override
 			public boolean hasNext() {
 				try {
 					return theIteration.hasNext();
@@ -188,6 +189,7 @@ public final class Iterations {
 				}
 			}
 
+            @Override
 			public T next() {
 				try {
 					return theIteration.next();
@@ -207,8 +209,9 @@ public final class Iterations {
 				}
 			}
 
+            @Override
 			public void remove() {
-				// no-op
+				throw new UnsupportedOperationException();
 			}
 		};
 	}
