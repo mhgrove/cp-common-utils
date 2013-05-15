@@ -81,13 +81,6 @@ public class TableData {
 		this.rightAligned[colIndex] = rightAligned;
 	}
 
-	/**
-	 * @deprecated Use {@link add(List)} instead
-	 */
-	public void addRow(List row) {
-		add( row );
-	}
-
 	public void add(List row) {
 		if( row.size() != colNames.size() )
 			throw new IllegalArgumentException( "Row has " + row.size()

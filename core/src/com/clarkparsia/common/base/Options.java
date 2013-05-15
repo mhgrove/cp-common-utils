@@ -62,15 +62,6 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
 	}
 
 	/**
-	 * Creates a copy of the options instance.
-	 * @deprecated Use {@link Options#copy()} instead.
-	 */
-	@Deprecated
-	public static Options copyOf(Options options) {
-		return options.copy();
-	}
-
-	/**
 	 * Creates a new empty options instance.
 	 */
 	public static Options create() {
