@@ -22,7 +22,7 @@
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
 
     <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="2.4.1" />
+    <property name="project.version" value="2.5.0" />
 	
 	<property name="premainclass" value="com.clarkparsia.common.base.Instrumentor"/>
 	
