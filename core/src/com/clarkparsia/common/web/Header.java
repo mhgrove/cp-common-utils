@@ -187,7 +187,7 @@ public final class Header {
 													   .omitEmptyStrings()
 													   .split(theKeyValue));
 
-		return new Tuple(aStrings.toArray(new String[aStrings.size()]));
+		return new Tuple((Object[])aStrings.toArray(new String[aStrings.size()]));
 	}
 
 	/**

@@ -58,7 +58,7 @@ public class TestCopyables {
     public void testCollectionOfNonCopyable() {
         Set<String> aSet = Sets.newHashSet("a", "b", "c");
 
-        assertEquals(aSet, Copyables.copy(aSet));
+        assertEquals(aSet, Copyables.<Set<String>>copy(aSet));
     }
 
     @Test
