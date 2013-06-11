@@ -288,7 +288,10 @@ public class EnhancedProperties extends Properties implements Copyable<EnhancedP
 			int end = aNewValue.indexOf("}", aIndex);
 
             if (super.getProperty(aVar) != null) {
+            	int aLength = aNewValue.length();
                 aNewValue.replace(aNewValue.indexOf("${", aIndex), aNewValue.indexOf("}", aIndex)+1, replaceVariables(super.getProperty(aVar)));
+                int aNewLength = aNewValue.length();
+                end += aNewLength - aLength;
             }
 
             //aIndex = aNewValue.indexOf("}", aIndex);
