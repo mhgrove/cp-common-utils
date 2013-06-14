@@ -15,8 +15,7 @@
 
 package com.clarkparsia.common.base;
 
-import sun.misc.BASE64Encoder;
-import sun.misc.BASE64Decoder;
+import com.google.common.io.BaseEncoding;
 
 import java.nio.charset.Charset;
 import java.nio.ByteBuffer;
@@ -28,6 +27,7 @@ import java.util.BitSet;
 import java.util.Random;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -36,24 +36,15 @@ import com.google.common.base.Charsets;
 /**
  * <p>String utilities not provided by {@link com.google.common.base.Strings}.</p>
  *
- * @author Michael Grove
- * @version 2.0
- * @since 2.0
+ * @author  Michael Grove
+ * @since   2.0
+ * @version 2.5
  */
 public final class Strings2 {
 	private static final Random RANDOM = new Random();
-	
-	/**
-	 * A base 64 encoder
-	 */
-	private static BASE64Encoder mBase64Encoder;
-
-	/**
-	 * A base 64 decoder
-	 */
-	private static BASE64Decoder mBase64Decoder;
 
 	private Strings2() {
+        throw new AssertionError();
 	}
 
 	/**
@@ -190,7 +181,7 @@ public final class Strings2 {
 	 * @return the bytes base64 encoded
 	 */
 	public static String base64Encode(byte[] theArrayToEncode) {
-		return getBase64Encoder().encode(theArrayToEncode);
+        return BaseEncoding.base64().encode(theArrayToEncode);
 	}
 
 	/**
@@ -203,82 +194,6 @@ public final class Strings2 {
 	 * @throws java.io.IOException throw if there is an error while decoding
 	 */
 	public static byte[] base64Decode(String theStringToDecode) throws IOException {
-		return getBase64Decoder().decodeBuffer(theStringToDecode);
-	}
-
-	/**
-	 * Return a Base64 decoder
-	 * @return a Sun Base64 decoder
-	 */
-	private static BASE64Decoder getBase64Decoder() {
-		if (mBase64Decoder == null) {
-			mBase64Decoder = new BASE64Decoder();
-		}
-
-		return mBase64Decoder;
-	}
-
-	/**
-	 * Return a base64 encoder
-	 * @return an Sun encoder
-	 */
-	private static BASE64Encoder getBase64Encoder() {
-		if (mBase64Encoder == null) {
-			mBase64Encoder = new BASE64Encoder();
-		}
-
-		return mBase64Encoder;
-	}
-
-	private static class FastURLEncode {
-		static final char[] hexadecimal = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-
-		static BitSet safe = new BitSet(256);
-		static {
-			for (char i = 'a'; i <= 'z'; i++) {
-				safe.set(i);
-			}
-			for (char i = 'A'; i <= 'Z'; i++) {
-				safe.set(i);
-			}
-			for (char i = '0'; i <= '9'; i++) {
-				safe.set(i);
-			}
-			safe.set('.');
-			safe.set('-');
-			safe.set('*');
-			safe.set('_');
-		}
-
-		public static String encode(String s) {
-
-			// Guess a bit bigger for encoded form
-			StringBuilder buf = new StringBuilder(s.length() + 16);
-
-			for (int i = 0; i < s.length(); i++) {
-				char ch = s.charAt(i);
-				if (safe.get(ch)) {
-					buf.append(ch);
-				}
-				else if (ch == ' ') {
-					buf.append('+');
-				}
-				else {
-					byte[] b= ByteBuffer.allocate(2).putChar(ch).array();
-					for (int j = 0; j < b.length; j++) {
-						byte toEncode = b[j];
-						if (toEncode == 0 && j == 0) {
-							continue;
-						}
-						buf.append('%');
-						int high = (int) ((toEncode & 0xf0) >> 4);
-						int low = (int) (toEncode & 0x0f);
-						buf.append(hexadecimal[high]).append(hexadecimal[low]);
-					}
-				}
-			}
-
-			return buf.toString();
-		}
+		return BaseEncoding.base64().decode(theStringToDecode);
 	}
 }
