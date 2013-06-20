@@ -13,12 +13,12 @@
 	</configurations>
 
 	<publications>
-		<artifact name="cp-common-protobuf" type="jar" ext="jar" conf="runtime"/>
+		<artifact name="cp-common-protobuf" type="jar" ext="jar" conf="default"/>
 	</publications>
 
 	<dependencies>
 		<dependency org="com.complexible.common" name="core" rev="3.0"/>
 
-		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1" conf="runtime->default"/>
+		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1"/>
 	</dependencies>
 </ivy-module>
