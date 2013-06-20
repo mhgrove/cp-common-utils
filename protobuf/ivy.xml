@@ -7,9 +7,9 @@
 	</info>
 
 	<configurations>
-		<conf name="runtime" description="Everything required to run the module"/>
+		<conf name="default" description="Everything required to run the module"/>
 
-		<conf name="test" extends="runtime" description="Everything need to run the module and its test suite"/>
+		<conf name="test" extends="default" description="Everything need to run the module and its test suite"/>
 	</configurations>
 
 	<publications>
@@ -17,8 +17,8 @@
 	</publications>
 
 	<dependencies>
-		<dependency org="com.complexible.common" name="core" rev="3.0"/>
+		<dependency org="com.complexible.common" name="core" rev="3.0" conf="default"/>
 
-		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1"/>
+		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1" conf="default"/>
 	</dependencies>
 </ivy-module>

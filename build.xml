@@ -51,13 +51,13 @@
 	</target>
 
 	<target name="clean-ivy-cache">
-		<ivy:cleancache/>
 		<delete dir="settings/ivy-cache" failonerror="false"/>
+		<delete dir="settings/repo" failonerror="false"/>
 	</target>
 
 	<!-- *********************************************** -->	
 	
-    <target name="clean" description="Clean up build files">
+    <target name="clean" depends="clean-ivy-cache" description="Clean up build files">
         <delete dir="${build}" />
         <delete dir="${dist}" />
     </target>

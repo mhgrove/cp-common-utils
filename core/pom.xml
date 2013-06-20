@@ -18,19 +18,19 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.5</version>
-      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
       <version>1.7.5</version>
-      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>14.0.1</version>
-      <scope>runtime</scope>
+      <optional>true</optional>
       <exclusions>
         <exclusion>
           <groupId>com.google.code.findbugs</groupId>
