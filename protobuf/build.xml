@@ -1,32 +1,28 @@
 <?xml version="1.0"?>
 
-<project name="Core Utils" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="Utils Protobuf" default="dist" basedir="" xmlns:ivy="antlib:org.apache.ivy.ant">
     <description>
         Complexible Utility Classes
     </description>
 
 	<property file="../project.properties"/>
 
-    <!-- Global Properties -->
-	<property name="core" location="."/>
-    <property name="core.src" location="${core}/src" />
-	<property name="core.lib" location="${core}/lib" />
-	<property name="core.test" location="${core}/test" />
+	<!-- Global Properties -->
+	<property name="src" location="src" />
+	<property name="lib" location="lib" />
 
-    <property name="build" location="build" />
-	<property name="build.core" location="${build}/core" />
-	<property name="build.test" location="${build}/test" />
+	<property name="build" location="build" />
 
-    <property name="dist" location="dist" />
+	<property name="dist" location="dist" />
+
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
 
-	<property name="project.name" value="cp-common-utils" />
-	<property name="project.version" value="${core.version}" />
-	
-	<property name="premainclass" value="com.complexible.common.base.Instrumentor"/>
-	
+	<property name="project.name" value="cp-common-protobuf" />
+	<property name="project.version" value="${protobuf.version}" />
+
+	<property name="publish.repo" value="local.repo" />
+
 	<property name="ivy.settings" location="../settings/ivysettings.xml"/>
-	<property name="publish.repo" value="local.repo"/>
 
 	<!-- ******************** IVY ********************** -->
 
@@ -62,7 +58,6 @@
 	<target name="clean-ivy-cache">
 		<ivy:cleancache/>
 		<delete dir="settings/ivy-cache" failonerror="false"/>
-		<delete dir="settings/repo" failonerror="false"/>
 	</target>
 
 	<!-- *********************************************** -->
@@ -70,18 +65,18 @@
 	<target name="resolve" depends="clean-libs, init-ivy" description="--> retrieve dependencies with ivy">
 		<ivy:configure file="${ivy.settings}" />
 
-		<ivy:resolve file="${core}/ivy.xml"/>
-		<ivy:retrieve pattern="${core.lib}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar"/>
-		<ivy:cachepath pathid="core.classpath"/>
+		<ivy:resolve file="ivy.xml"/>
+		<ivy:retrieve pattern="${lib}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar"/>
+		<ivy:cachepath pathid="protobuf.classpath"/>
 	</target>
 
 	<target name="clean-libs">
-		<delete dir="${core.lib}" />
+		<delete dir="${lib}" />
 	</target>
 
     <target name="init" depends="resolve">
 		<path id="project.class.path">
-			<path refid="core.classpath"/>
+			<path refid="protobuf.classpath"/>
 		</path>
 
         <pathconvert targetos="unix" property="classpath" refid="project.class.path" />
@@ -91,30 +86,22 @@
 
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
-		<mkdir dir="${build.core}"/>
-		<mkdir dir="${build.test}"/>
+        <mkdir dir="${build}/protobuf"/>
 
 		<mkdir dir="${dist}"/>
     </target>
 
     <target name="compile" depends="init"
             description="Compile source files." >
-        <javac source="1.5" target="1.5" srcdir="${core.src}" destdir="${build.core}" debug="yes" deprecation="yes">
-            <classpath refid="project.class.path"/>
-        </javac>
-        
-		<javac source="1.5" target="1.5" srcdir="${core.test}" destdir="${build.test}" debug="yes" deprecation="yes">
-			<classpath>
-				<path refid="core.classpath"/>
-				<pathelement path="${build.core}"/>
-			</classpath>
+
+		<javac source="1.5" target="1.5" srcdir="${src}" destdir="${build}/protobuf" debug="yes" deprecation="yes" classpathref="protobuf.classpath">
 		</javac>
     </target>
 
     <target name="build" depends="compile"
             description="Compile sources and copy data files into build directory.">
-        <copy todir="${build}">
-            <fileset dir="${core.src}">
+        <copy todir="${build}/protobuf">
+            <fileset dir="${src}">
                 <exclude name="**/*.java" />
             </fileset>
         </copy>
@@ -125,7 +112,7 @@
         <mkdir dir="${dist}/lib" />
 
         <copy todir="${dist}/lib">
-            <fileset dir="${core.lib}">
+            <fileset dir="${lib}">
                 <include name="**/*.jar" />
                 <exclude name="**/${project.name}*.jar"/>
             </fileset>
@@ -137,15 +124,19 @@
 
         <echo>${Class-Path}</echo>
         <!-- Make Jar file. -->
-        <jar jarfile="${dist}/${project.name}-${project.version}.jar"
-             basedir="${build}/core">
-            <manifest>
-                <attribute name="Premain-Class" value="${premainclass}"/>
-            </manifest>
-        </jar>
+
+		<jar jarfile="${dist}/${project.name}-${project.version}.jar"
+			 basedir="${build}/protobuf">
+		</jar>
     </target>
 
-    <target name="clean" depends="clean-libs" description="Clean up build files">
+	<target name="publish">
+		<ivy:publish resolver="${publish.repo}" pubrevision="${project.version}" overwrite="true" revision="${project.version}" >
+			<artifacts pattern="${dist}/[artifact]-[revision].[ext]" />
+		</ivy:publish>
+	</target>
+
+    <target name="clean" description="Clean up build files">
         <delete dir="${build}" />
         <delete dir="${dist}" />
     </target>
@@ -160,39 +151,7 @@
 			<link href="http://docs.guava-libraries.googlecode.com/git-history/v14.0.1/javadoc/"/>
 
 			<classpath refid="project.class.path"/>
-			<fileset dir="${core.src}" defaultexcludes="yes"/>
+			<fileset dir="${src}" defaultexcludes="yes"/>
 		</javadoc>
-	</target>
-
-	<target name="publish">
-		<ivy:publish resolver="${publish.repo}" pubrevision="${project.version}" overwrite="true" revision="${project.version}" >
-			<artifacts pattern="${dist}/[artifact]-[revision].[ext]" />
-		</ivy:publish>
-	</target>
-	
-	<!-- ********************* TEST ********************** -->
-
-	<target name="test" depends="dist">
-		<mkdir dir="dist/test-reports"/>
-		<junit fork="yes" printsummary="yes" haltonfailure="yes" failureproperty="junit.failure">
-			<test name="AllTests" />
-
-			<formatter type="xml" />
-			<formatter type="brief" usefile="false"/>
-
-			<classpath>
-				<path refid="core.classpath"/>
-				<pathelement path="${build.core}"/>
-				<pathelement path="${build.test}"/>
-			</classpath>
-		</junit>
-
-		<junitreport todir="dist/test-reports">
-			<fileset dir="dist/test-reports">
-				<include name="TEST-*.xml" />
-				<include name="report.xml" />
-			</fileset>
-			<report todir="dist/test-reports" />
-		</junitreport>
 	</target>
 </project>

@@ -1,26 +1,23 @@
 <?xml version="1.0"?>
-<!--
-  ~ Copyright (c) 2005 - 2012, Clark & Parsia, LLC. <http://www.clarkparsia.com>
-  -->
 
 <project name="Master Utils" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
     <description>
-        Clark &amp; Parsia Utility Classes
+        Complexible Utility Classes
     </description>
+
+	<property file="project.properties"/>
 
     <!-- Global Properties -->
 	<property name="core" location="core"/>
+	<property name="protobuf" location="protobuf"/>
 
     <property name="build" location="build" />
 
     <property name="dist" location="dist" />
 
 	<property name="javadoc.dir" value="${dist}/javadocs"/>
-
-    <property name="project.name" value="cp-common-utils" />
-    <property name="project.version" value="2.5.0" />
 	
-	<property name="premainclass" value="com.clarkparsia.common.base.Instrumentor"/>
+	<property name="premainclass" value="com.complexible.common.base.Instrumentor"/>
 
 	<!-- ******************** IVY ********************** -->
 
@@ -79,17 +76,24 @@
 		</ivy:buildlist>
 		
 		<subant buildpathref="build-path" failonerror="true">
-		    <property name="core" value="${core}"/>
-		    <property name="build" value="${build}"/>
-		    <property name="dist" value="${dist}"/>
+		    <!--<property name="core" value="${core}"/>-->
+		    <!--<property name="build" value="${build}"/>-->
+		    <!--<property name="dist" value="${dist}"/>-->
 		    <property name="ivy.settings" location="settings/ivysettings.xml"/>
+			<property name="publish.repo" value="local.repo"/>
 		    
 		    <target name="clean"/>
 			<target name="resolve"/>
 			<target name="dist"/>
-		</subant>		
+			<target name="publish"/>
+		</subant>
 
 		<ivy:makepom ivyfile="${core}/ivy.xml" pomfile="${core}/pom.xml">
+			<mapping conf="core" scope="compile"/>
+			<mapping conf="runtime" scope="runtime"/>
+		</ivy:makepom>
+
+		<ivy:makepom ivyfile="${protobuf}/ivy.xml" pomfile="${protobuf}/pom.xml">
 			<mapping conf="core" scope="compile"/>
 			<mapping conf="runtime" scope="runtime"/>
 		</ivy:makepom>

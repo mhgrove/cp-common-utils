@@ -1,0 +1,73 @@
+// Copyright (c) 2010 - 2012 -- Clark & Parsia, LLC. <http://www.clarkparsia.com>
+// For more information about licensing and copyright of this software, please contact
+// inquiries@clarkparsia.com or visit http://stardog.com
+
+package com.clarkparsia.common.protobuf.core;
+
+option java_outer_classname = "Core";
+
+// This is default, but it's nice to be explicit
+option optimize_for = SPEED;
+
+// Here we define core language primitives which are not included in the standard set of primitives
+// supported by protobuf, but which are generally useful for representing some types of common
+// datastructures or objects, such as a Map
+
+/**
+ * A List of whose elements are strings.  nulls are not permitted.
+ *
+ * @see List<String>
+ */
+message ListOfStrings {
+	repeated string	strings	= 1;
+}
+
+/**
+ * Representation of a UUID as a 128-bit identifier.
+ *
+ * @see java.util.UUID
+ */
+message UID {
+	required int64 mostSigBits 	= 1;
+	required int64 leastSigBits = 2;
+}
+
+/**
+ * The internal element of a StringMap, represents a single key-value pair of strings.
+ *
+ * @see StringMap
+ */
+message StringMapEntry {
+	required string key		= 1;
+	required string value	= 2;
+}
+
+/**
+ * Internal element of a IntStringMap, represents a single key-value pair
+ *
+ * @see IntStringMap
+ */
+message IntStringMapEntry {
+	required int32	key		= 1;
+	required string	value	= 2;
+}
+
+/**
+ * A set of key-value pairs which are strings.  Putting together all the key-value pairs gives us a basic
+ * representation of a Map<String,String> (or Properties) in Protobuf.
+ *
+ * @see Map<String, String>
+ * @see Properties
+ */
+message StringMap {
+	repeated StringMapEntry	values = 1;
+}
+
+/**
+ * 'Map' implementation whose keys are integers and the values are strings.
+ *
+ * @see Map<Integer, String>
+ */
+message IntStringMap {
+	repeated IntStringMapEntry	values	= 1;
+}
