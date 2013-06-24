@@ -102,7 +102,7 @@ public final class Instrumentor {
 	}
 
     /**
-     * Return whether or not the JVM instrumentation has been initialized via the stardog JVM agent
+     * Return whether or not the JVM instrumentation has been initialized via the JVM agent
      * @return true if initialized, false otherwise
      */
     public static boolean isInitialized() {

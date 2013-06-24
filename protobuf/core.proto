@@ -1,7 +1,3 @@
-// Copyright (c) 2010 - 2012 -- Clark & Parsia, LLC. <http://www.clarkparsia.com>
-// For more information about licensing and copyright of this software, please contact
-// inquiries@clarkparsia.com or visit http://stardog.com
-
 package com.clarkparsia.common.protobuf.core;
 
 option java_outer_classname = "Core";

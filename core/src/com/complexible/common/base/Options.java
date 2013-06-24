@@ -188,7 +188,7 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
 	}
 
 	/**
-	 * Creates a new empty <i>immutable</i> StardogOptions instance.
+	 * Creates a new empty <i>immutable</i> Options instance.
 	 */
 	public static Options empty() {
 		return EMPTY;
