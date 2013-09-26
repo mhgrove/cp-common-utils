@@ -1,4 +1,4 @@
-package com.clarkparsia.common.protobuf.core;
+package com.complexible.common.protobuf.core;
 
 option java_outer_classname = "Core";
 

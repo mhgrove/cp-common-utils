@@ -16,6 +16,7 @@
 package com.complexible.common.io;
 
 import com.complexible.common.base.Dates;
+import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closer;
@@ -41,13 +42,18 @@ import java.util.zip.ZipOutputStream;
 /**
  * <p>Collection of utility functions for file-centric operations.</p>
  *
- * @author Michael Grove
- * @since 1.0
+ * @author  Michael Grove
+ * @since   1.0
  * @version 2.2
  */
 public final class Files2 {
 
 	private Files2() {
+		throw new AssertionError();
+	}
+
+	public static String path(final String theSegment, final String... theSegments) {
+		return Joiner.on(File.pathSeparatorChar).skipNulls().join(null, theSegment, theSegments);
 	}
 
 	/**

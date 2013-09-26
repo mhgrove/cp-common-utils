@@ -15,7 +15,6 @@
 
 package com.complexible.common.base;
 
-import com.complexible.common.base.Predicates2;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -35,7 +34,7 @@ public class TestPredicates2 {
 
 	@Test
 	public final void testWithPrefix() {
-		Predicate<String> aPrefixPred = Predicates2.Strings.withPrefix("foo");
+		Predicate<String> aPrefixPred = Predicates2.Strings.startsWith("foo");
 
 		assertTrue(aPrefixPred.apply("foo"));
 		assertTrue(aPrefixPred.apply("foobar"));

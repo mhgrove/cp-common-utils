@@ -20,9 +20,9 @@ import com.google.common.base.Function;
 /**
  * <p>Additional utility methods for working with Guava Functions</p>
  *
- * @author Michael Grove
- * @since 2.0.1
- * @version 2.2.1
+ * @author  Michael Grove
+ * @since   2.0.1
+ * @version 3.0
  */
 public final class Functions2 {
 
@@ -48,6 +48,7 @@ public final class Functions2 {
 		/**
 		 * @inheritDoc
 		 */
+        @Override
 		public O apply(final I theInput) {
 			return mClass.cast(theInput);
 		}
@@ -69,6 +70,10 @@ public final class Functions2 {
 			return new Substring(-1, theString);
 		}
 
+		public static Function<String, String> replace(final String theReplace, final String theReplaceWith) {
+			return new Replace(theReplace, theReplaceWith);
+		}
+
 		/**
 		 * Return a function that will create sub strings of the inputs beginning at the starting index and
 		 * ending with the starting location of the occurrence of the specified string.  If the specified string does
@@ -85,6 +90,21 @@ public final class Functions2 {
 
 		public static Function<String, String> substringUntil(final String theString) {
 			return new Substring(0, theString);
+		}
+
+		private static class Replace implements Function<String, String> {
+			private final String mReplace;
+			private final String mReplaceWith;
+
+			private Replace(final String theReplace, final String theReplaceWith) {
+				mReplace = theReplace;
+				mReplaceWith = theReplaceWith;
+			}
+
+			@Override
+			public String apply(final String theString) {
+				return theString.replace(mReplace, mReplaceWith);
+			}
 		}
 
 		private static class Substring implements Function<String, String> {

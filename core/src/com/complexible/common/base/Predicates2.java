@@ -20,9 +20,9 @@ import com.google.common.base.Predicate;
 /**
  * <p>Utility methods for working with Guava Predicates</p>
  *
- * @author Michael Grove
- * @since 2.2.1
- * @version 2.2.1
+ * @author  Michael Grove
+ * @since   2.2.1
+ * @version 3.0
  */
 public final class Predicates2 {
 
@@ -30,27 +30,67 @@ public final class Predicates2 {
 	 * No instances
 	 */
 	private Predicates2() {
+        throw new AssertionError();
 	}
 
 	public static final class Strings {
+        public static Predicate<String> contains(final String theString) {
+            return new ContainsPredicate(theString);
+        }
 
-		public static Predicate<String> withPrefix(final String theString) {
-			return new PrefixPredicate(theString);
+		public static Predicate<String> startsWith(final String theString) {
+			return new StartsWith(theString);
 		}
 
-		private static class PrefixPredicate implements Predicate<String> {
-			private String mPrefix;
-
-			private PrefixPredicate(final String thePrefix) {
-				mPrefix = thePrefix;
+		private static class StartsWith extends StringPredicate {
+			private StartsWith(final String thePrefix) {
+				super(thePrefix);
 			}
 
 			/**
 			 * @inheritDoc
 			 */
+            @Override
 			public boolean apply(final String theValue) {
-				return theValue.startsWith(mPrefix);
+				return theValue.startsWith(mString);
 			}
 		}
+
+        private static class EndsWith extends StringPredicate {
+            private EndsWith(final String theString) {
+                super(theString);
+            }
+
+            /**
+             * @inheritDoc
+             */
+            @Override
+            public boolean apply(final String theValue) {
+                return theValue.endsWith(mString);
+            }
+        }
+
+        private static class ContainsPredicate extends StringPredicate {
+            private ContainsPredicate(final String thePrefix) {
+                super(thePrefix);
+            }
+
+            /**
+             * @inheritDoc
+             */
+            @Override
+            public boolean apply(final String theValue) {
+                return theValue.contains(mString);
+            }
+        }
+
+        private static abstract class StringPredicate implements Predicate<String> {
+            protected final String mString;
+
+            private StringPredicate(final String theString) {
+                super();
+                mString = theString;
+            }
+        }
 	}
 }

@@ -235,4 +235,8 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
     public String toString() {
 	    return options.toString();
     }
+
+	public int size() {
+		return options.size();
+	}
 }

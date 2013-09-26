@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.complexible.common.iterations;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Function;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Lists;
 
@@ -33,9 +34,9 @@ import org.slf4j.Logger;
 /**
  * <p>Utility class for working with Iterations</p>
  *
- * @author Michael Grove
- * @since 2.0
- * @version 2.0
+ * @author  Michael Grove
+ * @since   2.0
+ * @version 3.0
  */
 public final class Iterations {
 	/**
@@ -43,7 +44,11 @@ public final class Iterations {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(Iterations.class);
 
-	/**
+    private Iterations() {
+        throw new AssertionError();
+    }
+
+    /**
 	 * Create an {@link Iteration} which iterates over the given array
 	 * @param theArray the array to iterate over
 	 * @return an Iteration over the array
@@ -63,8 +68,8 @@ public final class Iterations {
 	/**
 	 * <p>An {@link Iteration} implementation which is empty and does not iterate.
 	 *
-	 * @author Michael Grove
-	 * @since 2.0
+	 * @author  Michael Grove
+	 * @since   2.0
 	 * @version 2.0
 	 */
 	private static class EmptyIteration<T, E extends Exception> implements Iteration<T,E> {
@@ -321,8 +326,8 @@ public final class Iterations {
 
 	/**
 	 * Apply the provided predicate to each element in the Iteration.  The Iteration is closed when the method returns.
-	 * @param theIteration the iteration
-	 * @param thePred the predicate to apply
+	 * @param theIteration  the iteration
+	 * @param thePred       the predicate to apply
 	 * @param <T> the type of the iteration
 	 * @param <E> the error type of the iteration
 	 * @throws E if there is an error while iterating
@@ -340,8 +345,8 @@ public final class Iterations {
 
 	/**
 	 * Return a new iteration which is a filtered view of the original iteration. The original iteration will be exhausted by this process
-	 * @param theIteration the iteration
-	 * @param thePred the predicate to use for filtering
+	 * @param theIteration  the iteration
+	 * @param thePred       the predicate to use for filtering
 	 * @param <T> the type of the iteration
 	 * @param <E> the error type
 	 * @return a filtered view of the original iteration
@@ -353,8 +358,8 @@ public final class Iterations {
 
 	/**
 	 * Apply the function to the results of the Iteration and return a new Iteration with the transformed results
-	 * @param theIteration the iteration
-	 * @param theFunc the transforming function
+	 * @param theIteration  the iteration
+	 * @param theFunc       the transforming function
 	 * @param <I> the input type
 	 * @param <O> the output type
 	 * @param <E> the error type
@@ -368,12 +373,12 @@ public final class Iterations {
 	 * Apply the function to to transform the exceptions of an inner iterator to a different exception type while iteration
 	 * elements are returned unchanged.
 	 * 
-	 * @param theIteration the iteration
-	 * @param theFunc the transforming function for exceptions
-	 * @param <T> the iteration element type
-	 * @param <IE> the input exception type
-	 * @param <OE> the output exception type
-	 * @return the transformed iteration
+	 * @param theIteration  the iteration
+	 * @param theFunc       the transforming function for exceptions
+	 * @param <T>           the iteration element type
+	 * @param <IE>          the input exception type
+	 * @param <OE>          the output exception type
+	 * @return              the transformed iteration
 	 */
 	public static <T, IE extends Throwable, OE extends Throwable> Iteration<T, OE> transformException(final Iteration<T, IE> theIteration, final Function<IE ,OE> theFunc) {
 		return new TransformException<T,IE,OE>(theFunc, theIteration);
@@ -381,14 +386,14 @@ public final class Iterations {
 
 	/**
 	 * Return the size of the iteration.  The iteration will be exhausted (and closed) when this method returns.
-	 * @param theIteration the iteration whose size we are to retrieve
-	 * @param <E> the type of exception thrown
-	 * @return the number of elements in the iteration
-	 * @throws E if there is an error while iterating
+	 * @param theIteration  the iteration whose size we are to retrieve
+	 * @param <E>           the type of exception thrown
+	 * @return              the number of elements in the iteration
+	 * @throws E            if there is an error while iterating
 	 */
-	public static <E extends Exception> int size(final Iteration<?, E> theIteration) throws E {
+	public static <E extends Exception> long size(final Iteration<?, E> theIteration) throws E {
 		try {
-			int aSize = 0;
+            long aSize = 0;
 			while (theIteration.hasNext()) {
 				aSize++;
 				theIteration.next();
@@ -400,12 +405,22 @@ public final class Iterations {
 		}
 	}
 
+    /**
+     * Consume all of the results of the Iteration and then close it.
+     *
+     * @param theIteration  the Iteration to consume
+     * @throws E            if there is an error while iterating
+     */
+    public static <T, E extends Exception> void consume(final Iteration<T, E> theIteration) throws E {
+        each(theIteration, Predicates.<T>alwaysTrue());
+    }
+
 	/**
 	 * Create an Iteration over a single object
-	 * @param theObj the object to iterate over
-	 * @param <T> the object type
-	 * @param <E> the exception
-	 * @return a singleton iterator over the obj
+	 * @param theObj    the object to iterate over
+	 * @param <T>       the object type
+	 * @param <E>       the exception
+	 * @return          a singleton iterator over the obj
 	 */
 	public static <T,E extends Throwable> Iteration<T, E> singletonIteration(final T theObj) {
 		return new SingletonIteration<T,E>(theObj);
@@ -413,10 +428,12 @@ public final class Iterations {
 
 	/**
 	 * An Iteration over a single element
+     *
 	 * @param <T> the element type
 	 * @param <E> the exception type
-	 * @author Michael Grove
-	 * @since 0.6
+     *
+	 * @author  Michael Grove
+	 * @since   0.6
 	 * @version 0.6
 	 */
 	private static class SingletonIteration<T, E extends Throwable> extends AbstractIteration<T, E> {
@@ -440,10 +457,10 @@ public final class Iterations {
 	/**
 	 * An implementation of an Iteration which has a child iteration which it provides a filtered view of via the supplied Predicate.
 	 *
-	 * @author Michael Grove
+	 * @author  Michael Grove
 	 * @param <T> the type of the iteration
 	 * @param <E> the error type
-	 * @since 0.3.1
+	 * @since   0.3.1
 	 * @version 0.3.1
 	 */
 	private static class FilterIteration<T,E extends Throwable> extends AbstractIteration<T,E> {
@@ -471,6 +488,7 @@ public final class Iterations {
 		/**
 		 * @inheritDoc
 		 */
+        @Override
 		protected T computeNext() throws E {
 			boolean passesFilter = false;
 			T aObj = null;
@@ -507,9 +525,9 @@ public final class Iterations {
 	 * Create an Iteration that is backed by a standard Java Iterator
 	 *
 	 * @param <T> the type of the iterator
-	 * @author Michael Grove
-	 * @since 0.3.3
-	 * @version 0.3.
+	 * @author  Michael Grove
+	 * @since   0.3.3
+	 * @version 0.3.3
 	 */
 	private static class IteratorIteration<T, E extends Exception> extends AbstractIteration<T, E> {
 
@@ -529,6 +547,7 @@ public final class Iterations {
 		/**
 		 * @inheritDoc
 		 */
+        @Override
 		protected T computeNext() throws E {
 			if (mIter.hasNext()) {
 				return mIter.next();

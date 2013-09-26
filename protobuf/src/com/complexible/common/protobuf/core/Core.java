@@ -3,8 +3,6 @@
 
 package com.complexible.common.protobuf.core;
 
-import com.google.protobuf.AbstractMessage;
-
 public final class Core {
   private Core() {}
   public static void registerAllExtensions(
@@ -38,12 +36,12 @@ public final class Core {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_descriptor;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_ListOfStrings_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_fieldAccessorTable;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_ListOfStrings_fieldAccessorTable;
     }
     
     // repeated string strings = 1;
@@ -108,41 +106,41 @@ public final class Core {
       return super.writeReplace();
     }
     
-    public static Core.ListOfStrings parseFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.ListOfStrings parseFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.ListOfStrings parseFrom(byte[] data)
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.ListOfStrings parseFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.ListOfStrings parseFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.ListOfStrings parseFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static Core.ListOfStrings parseDelimitedFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -151,7 +149,7 @@ public final class Core {
         return null;
       }
     }
-    public static Core.ListOfStrings parseDelimitedFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -162,12 +160,12 @@ public final class Core {
         return null;
       }
     }
-    public static Core.ListOfStrings parseFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.ListOfStrings parseFrom(
+    public static com.complexible.common.protobuf.core.Core.ListOfStrings parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -177,7 +175,7 @@ public final class Core {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Core.ListOfStrings prototype) {
+    public static Builder newBuilder(com.complexible.common.protobuf.core.Core.ListOfStrings prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -190,18 +188,18 @@ public final class Core {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Core.ListOfStringsOrBuilder {
+       implements com.complexible.common.protobuf.core.Core.ListOfStringsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_descriptor;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_ListOfStrings_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_fieldAccessorTable;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_ListOfStrings_fieldAccessorTable;
       }
       
-      // Construct using Core.ListOfStrings.newBuilder()
+      // Construct using com.complexible.common.protobuf.core.Core.ListOfStrings.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -231,33 +229,33 @@ public final class Core {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Core.ListOfStrings.getDescriptor();
+        return com.complexible.common.protobuf.core.Core.ListOfStrings.getDescriptor();
       }
       
-      public Core.ListOfStrings getDefaultInstanceForType() {
-        return Core.ListOfStrings.getDefaultInstance();
+      public com.complexible.common.protobuf.core.Core.ListOfStrings getDefaultInstanceForType() {
+        return com.complexible.common.protobuf.core.Core.ListOfStrings.getDefaultInstance();
       }
       
-      public Core.ListOfStrings build() {
-        Core.ListOfStrings result = buildPartial();
+      public com.complexible.common.protobuf.core.Core.ListOfStrings build() {
+        com.complexible.common.protobuf.core.Core.ListOfStrings result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private Core.ListOfStrings buildParsed()
+      private com.complexible.common.protobuf.core.Core.ListOfStrings buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        Core.ListOfStrings result = buildPartial();
+        com.complexible.common.protobuf.core.Core.ListOfStrings result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return result;
       }
       
-      public Core.ListOfStrings buildPartial() {
-        Core.ListOfStrings result = new Core.ListOfStrings(this);
+      public com.complexible.common.protobuf.core.Core.ListOfStrings buildPartial() {
+        com.complexible.common.protobuf.core.Core.ListOfStrings result = new com.complexible.common.protobuf.core.Core.ListOfStrings(this);
         int from_bitField0_ = bitField0_;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           strings_ = new com.google.protobuf.UnmodifiableLazyStringList(
@@ -270,16 +268,16 @@ public final class Core {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Core.ListOfStrings) {
-          return mergeFrom((Core.ListOfStrings)other);
+        if (other instanceof com.complexible.common.protobuf.core.Core.ListOfStrings) {
+          return mergeFrom((com.complexible.common.protobuf.core.Core.ListOfStrings)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(Core.ListOfStrings other) {
-        if (other == Core.ListOfStrings.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.complexible.common.protobuf.core.Core.ListOfStrings other) {
+        if (other == com.complexible.common.protobuf.core.Core.ListOfStrings.getDefaultInstance()) return this;
         if (!other.strings_.isEmpty()) {
           if (strings_.isEmpty()) {
             strings_ = other.strings_;
@@ -388,7 +386,7 @@ public final class Core {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:com.clarkparsia.common.protobuf.core.ListOfStrings)
+      // @@protoc_insertion_point(builder_scope:com.complexible.common.protobuf.core.ListOfStrings)
     }
     
     static {
@@ -396,7 +394,7 @@ public final class Core {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.clarkparsia.common.protobuf.core.ListOfStrings)
+    // @@protoc_insertion_point(class_scope:com.complexible.common.protobuf.core.ListOfStrings)
   }
   
   public interface UIDOrBuilder
@@ -430,12 +428,12 @@ public final class Core {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_UID_descriptor;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_UID_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_UID_fieldAccessorTable;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_UID_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -518,41 +516,41 @@ public final class Core {
       return super.writeReplace();
     }
     
-    public static Core.UID parseFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.UID parseFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.UID parseFrom(byte[] data)
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.UID parseFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.UID parseFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.UID parseFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static Core.UID parseDelimitedFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.UID parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -561,7 +559,7 @@ public final class Core {
         return null;
       }
     }
-    public static Core.UID parseDelimitedFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -572,12 +570,12 @@ public final class Core {
         return null;
       }
     }
-    public static Core.UID parseFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.UID parseFrom(
+    public static com.complexible.common.protobuf.core.Core.UID parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -587,7 +585,7 @@ public final class Core {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Core.UID prototype) {
+    public static Builder newBuilder(com.complexible.common.protobuf.core.Core.UID prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -600,18 +598,18 @@ public final class Core {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Core.UIDOrBuilder {
+       implements com.complexible.common.protobuf.core.Core.UIDOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_UID_descriptor;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_UID_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_UID_fieldAccessorTable;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_UID_fieldAccessorTable;
       }
       
-      // Construct using Core.UID.newBuilder()
+      // Construct using com.complexible.common.protobuf.core.Core.UID.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -643,33 +641,33 @@ public final class Core {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Core.UID.getDescriptor();
+        return com.complexible.common.protobuf.core.Core.UID.getDescriptor();
       }
       
-      public Core.UID getDefaultInstanceForType() {
-        return Core.UID.getDefaultInstance();
+      public com.complexible.common.protobuf.core.Core.UID getDefaultInstanceForType() {
+        return com.complexible.common.protobuf.core.Core.UID.getDefaultInstance();
       }
       
-      public Core.UID build() {
-        Core.UID result = buildPartial();
+      public com.complexible.common.protobuf.core.Core.UID build() {
+        com.complexible.common.protobuf.core.Core.UID result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private Core.UID buildParsed()
+      private com.complexible.common.protobuf.core.Core.UID buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        Core.UID result = buildPartial();
+        com.complexible.common.protobuf.core.Core.UID result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return result;
       }
       
-      public Core.UID buildPartial() {
-        Core.UID result = new Core.UID(this);
+      public com.complexible.common.protobuf.core.Core.UID buildPartial() {
+        com.complexible.common.protobuf.core.Core.UID result = new com.complexible.common.protobuf.core.Core.UID(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -686,16 +684,16 @@ public final class Core {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Core.UID) {
-          return mergeFrom((Core.UID)other);
+        if (other instanceof com.complexible.common.protobuf.core.Core.UID) {
+          return mergeFrom((com.complexible.common.protobuf.core.Core.UID)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(Core.UID other) {
-        if (other == Core.UID.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.complexible.common.protobuf.core.Core.UID other) {
+        if (other == com.complexible.common.protobuf.core.Core.UID.getDefaultInstance()) return this;
         if (other.hasMostSigBits()) {
           setMostSigBits(other.getMostSigBits());
         }
@@ -799,7 +797,7 @@ public final class Core {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:com.clarkparsia.common.protobuf.core.UID)
+      // @@protoc_insertion_point(builder_scope:com.complexible.common.protobuf.core.UID)
     }
     
     static {
@@ -807,7 +805,7 @@ public final class Core {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.clarkparsia.common.protobuf.core.UID)
+    // @@protoc_insertion_point(class_scope:com.complexible.common.protobuf.core.UID)
   }
   
   public interface StringMapEntryOrBuilder
@@ -841,12 +839,12 @@ public final class Core {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_descriptor;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMapEntry_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_fieldAccessorTable;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMapEntry_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -973,41 +971,41 @@ public final class Core {
       return super.writeReplace();
     }
     
-    public static Core.StringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.StringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.StringMapEntry parseFrom(byte[] data)
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.StringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.StringMapEntry parseFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.StringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static Core.StringMapEntry parseDelimitedFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1016,7 +1014,7 @@ public final class Core {
         return null;
       }
     }
-    public static Core.StringMapEntry parseDelimitedFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1027,12 +1025,12 @@ public final class Core {
         return null;
       }
     }
-    public static Core.StringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.StringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMapEntry parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1042,7 +1040,7 @@ public final class Core {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Core.StringMapEntry prototype) {
+    public static Builder newBuilder(com.complexible.common.protobuf.core.Core.StringMapEntry prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1055,18 +1053,18 @@ public final class Core {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Core.StringMapEntryOrBuilder {
+       implements com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_descriptor;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMapEntry_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_fieldAccessorTable;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMapEntry_fieldAccessorTable;
       }
       
-      // Construct using Core.StringMapEntry.newBuilder()
+      // Construct using com.complexible.common.protobuf.core.Core.StringMapEntry.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1098,33 +1096,33 @@ public final class Core {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Core.StringMapEntry.getDescriptor();
+        return com.complexible.common.protobuf.core.Core.StringMapEntry.getDescriptor();
       }
       
-      public Core.StringMapEntry getDefaultInstanceForType() {
-        return Core.StringMapEntry.getDefaultInstance();
+      public com.complexible.common.protobuf.core.Core.StringMapEntry getDefaultInstanceForType() {
+        return com.complexible.common.protobuf.core.Core.StringMapEntry.getDefaultInstance();
       }
       
-      public Core.StringMapEntry build() {
-        Core.StringMapEntry result = buildPartial();
+      public com.complexible.common.protobuf.core.Core.StringMapEntry build() {
+        com.complexible.common.protobuf.core.Core.StringMapEntry result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private Core.StringMapEntry buildParsed()
+      private com.complexible.common.protobuf.core.Core.StringMapEntry buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        Core.StringMapEntry result = buildPartial();
+        com.complexible.common.protobuf.core.Core.StringMapEntry result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return result;
       }
       
-      public Core.StringMapEntry buildPartial() {
-        Core.StringMapEntry result = new Core.StringMapEntry(this);
+      public com.complexible.common.protobuf.core.Core.StringMapEntry buildPartial() {
+        com.complexible.common.protobuf.core.Core.StringMapEntry result = new com.complexible.common.protobuf.core.Core.StringMapEntry(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1141,16 +1139,16 @@ public final class Core {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Core.StringMapEntry) {
-          return mergeFrom((Core.StringMapEntry)other);
+        if (other instanceof com.complexible.common.protobuf.core.Core.StringMapEntry) {
+          return mergeFrom((com.complexible.common.protobuf.core.Core.StringMapEntry)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(Core.StringMapEntry other) {
-        if (other == Core.StringMapEntry.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.complexible.common.protobuf.core.Core.StringMapEntry other) {
+        if (other == com.complexible.common.protobuf.core.Core.StringMapEntry.getDefaultInstance()) return this;
         if (other.hasKey()) {
           setKey(other.getKey());
         }
@@ -1284,7 +1282,7 @@ public final class Core {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:com.clarkparsia.common.protobuf.core.StringMapEntry)
+      // @@protoc_insertion_point(builder_scope:com.complexible.common.protobuf.core.StringMapEntry)
     }
     
     static {
@@ -1292,7 +1290,7 @@ public final class Core {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.clarkparsia.common.protobuf.core.StringMapEntry)
+    // @@protoc_insertion_point(class_scope:com.complexible.common.protobuf.core.StringMapEntry)
   }
   
   public interface IntStringMapEntryOrBuilder
@@ -1326,12 +1324,12 @@ public final class Core {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_descriptor;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_fieldAccessorTable;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -1436,41 +1434,41 @@ public final class Core {
       return super.writeReplace();
     }
     
-    public static Core.IntStringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.IntStringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.IntStringMapEntry parseFrom(byte[] data)
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.IntStringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.IntStringMapEntry parseFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.IntStringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static Core.IntStringMapEntry parseDelimitedFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1479,7 +1477,7 @@ public final class Core {
         return null;
       }
     }
-    public static Core.IntStringMapEntry parseDelimitedFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1490,12 +1488,12 @@ public final class Core {
         return null;
       }
     }
-    public static Core.IntStringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.IntStringMapEntry parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMapEntry parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1505,7 +1503,7 @@ public final class Core {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Core.IntStringMapEntry prototype) {
+    public static Builder newBuilder(com.complexible.common.protobuf.core.Core.IntStringMapEntry prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1518,18 +1516,18 @@ public final class Core {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Core.IntStringMapEntryOrBuilder {
+       implements com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_descriptor;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_fieldAccessorTable;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_fieldAccessorTable;
       }
       
-      // Construct using Core.IntStringMapEntry.newBuilder()
+      // Construct using com.complexible.common.protobuf.core.Core.IntStringMapEntry.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1561,33 +1559,33 @@ public final class Core {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Core.IntStringMapEntry.getDescriptor();
+        return com.complexible.common.protobuf.core.Core.IntStringMapEntry.getDescriptor();
       }
       
-      public Core.IntStringMapEntry getDefaultInstanceForType() {
-        return Core.IntStringMapEntry.getDefaultInstance();
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry getDefaultInstanceForType() {
+        return com.complexible.common.protobuf.core.Core.IntStringMapEntry.getDefaultInstance();
       }
       
-      public Core.IntStringMapEntry build() {
-        Core.IntStringMapEntry result = buildPartial();
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry build() {
+        com.complexible.common.protobuf.core.Core.IntStringMapEntry result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private Core.IntStringMapEntry buildParsed()
+      private com.complexible.common.protobuf.core.Core.IntStringMapEntry buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        Core.IntStringMapEntry result = buildPartial();
+        com.complexible.common.protobuf.core.Core.IntStringMapEntry result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return result;
       }
       
-      public Core.IntStringMapEntry buildPartial() {
-        Core.IntStringMapEntry result = new Core.IntStringMapEntry(this);
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry buildPartial() {
+        com.complexible.common.protobuf.core.Core.IntStringMapEntry result = new com.complexible.common.protobuf.core.Core.IntStringMapEntry(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1604,16 +1602,16 @@ public final class Core {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Core.IntStringMapEntry) {
-          return mergeFrom((Core.IntStringMapEntry)other);
+        if (other instanceof com.complexible.common.protobuf.core.Core.IntStringMapEntry) {
+          return mergeFrom((com.complexible.common.protobuf.core.Core.IntStringMapEntry)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(Core.IntStringMapEntry other) {
-        if (other == Core.IntStringMapEntry.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.complexible.common.protobuf.core.Core.IntStringMapEntry other) {
+        if (other == com.complexible.common.protobuf.core.Core.IntStringMapEntry.getDefaultInstance()) return this;
         if (other.hasKey()) {
           setKey(other.getKey());
         }
@@ -1732,7 +1730,7 @@ public final class Core {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:com.clarkparsia.common.protobuf.core.IntStringMapEntry)
+      // @@protoc_insertion_point(builder_scope:com.complexible.common.protobuf.core.IntStringMapEntry)
     }
     
     static {
@@ -1740,20 +1738,20 @@ public final class Core {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.clarkparsia.common.protobuf.core.IntStringMapEntry)
+    // @@protoc_insertion_point(class_scope:com.complexible.common.protobuf.core.IntStringMapEntry)
   }
   
   public interface StringMapOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // repeated .com.clarkparsia.common.protobuf.core.StringMapEntry values = 1;
-    java.util.List<Core.StringMapEntry>
+    // repeated .com.complexible.common.protobuf.core.StringMapEntry values = 1;
+    java.util.List<com.complexible.common.protobuf.core.Core.StringMapEntry> 
         getValuesList();
-    Core.StringMapEntry getValues(int index);
+    com.complexible.common.protobuf.core.Core.StringMapEntry getValues(int index);
     int getValuesCount();
-    java.util.List<? extends Core.StringMapEntryOrBuilder>
+    java.util.List<? extends com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder> 
         getValuesOrBuilderList();
-    Core.StringMapEntryOrBuilder getValuesOrBuilder(
+    com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder getValuesOrBuilder(
         int index);
   }
   public static final class StringMap extends
@@ -1776,31 +1774,31 @@ public final class Core {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMap_descriptor;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMap_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMap_fieldAccessorTable;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMap_fieldAccessorTable;
     }
     
-    // repeated .com.clarkparsia.common.protobuf.core.StringMapEntry values = 1;
+    // repeated .com.complexible.common.protobuf.core.StringMapEntry values = 1;
     public static final int VALUES_FIELD_NUMBER = 1;
-    private java.util.List<Core.StringMapEntry> values_;
-    public java.util.List<Core.StringMapEntry> getValuesList() {
+    private java.util.List<com.complexible.common.protobuf.core.Core.StringMapEntry> values_;
+    public java.util.List<com.complexible.common.protobuf.core.Core.StringMapEntry> getValuesList() {
       return values_;
     }
-    public java.util.List<? extends Core.StringMapEntryOrBuilder>
+    public java.util.List<? extends com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder> 
         getValuesOrBuilderList() {
       return values_;
     }
     public int getValuesCount() {
       return values_.size();
     }
-    public Core.StringMapEntry getValues(int index) {
+    public com.complexible.common.protobuf.core.Core.StringMapEntry getValues(int index) {
       return values_.get(index);
     }
-    public Core.StringMapEntryOrBuilder getValuesOrBuilder(
+    public com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder getValuesOrBuilder(
         int index) {
       return values_.get(index);
     }
@@ -1854,41 +1852,41 @@ public final class Core {
       return super.writeReplace();
     }
     
-    public static Core.StringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.StringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.StringMap parseFrom(byte[] data)
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.StringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.StringMap parseFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.StringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static Core.StringMap parseDelimitedFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.StringMap parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1897,7 +1895,7 @@ public final class Core {
         return null;
       }
     }
-    public static Core.StringMap parseDelimitedFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1908,12 +1906,12 @@ public final class Core {
         return null;
       }
     }
-    public static Core.StringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.StringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.StringMap parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1923,7 +1921,7 @@ public final class Core {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Core.StringMap prototype) {
+    public static Builder newBuilder(com.complexible.common.protobuf.core.Core.StringMap prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1936,18 +1934,18 @@ public final class Core {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Core.StringMapOrBuilder {
+       implements com.complexible.common.protobuf.core.Core.StringMapOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMap_descriptor;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMap_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_StringMap_fieldAccessorTable;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_StringMap_fieldAccessorTable;
       }
       
-      // Construct using Core.StringMap.newBuilder()
+      // Construct using com.complexible.common.protobuf.core.Core.StringMap.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1982,33 +1980,33 @@ public final class Core {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Core.StringMap.getDescriptor();
+        return com.complexible.common.protobuf.core.Core.StringMap.getDescriptor();
       }
       
-      public Core.StringMap getDefaultInstanceForType() {
-        return Core.StringMap.getDefaultInstance();
+      public com.complexible.common.protobuf.core.Core.StringMap getDefaultInstanceForType() {
+        return com.complexible.common.protobuf.core.Core.StringMap.getDefaultInstance();
       }
       
-      public Core.StringMap build() {
-        Core.StringMap result = buildPartial();
+      public com.complexible.common.protobuf.core.Core.StringMap build() {
+        com.complexible.common.protobuf.core.Core.StringMap result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private Core.StringMap buildParsed()
+      private com.complexible.common.protobuf.core.Core.StringMap buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        Core.StringMap result = buildPartial();
+        com.complexible.common.protobuf.core.Core.StringMap result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return result;
       }
       
-      public Core.StringMap buildPartial() {
-        Core.StringMap result = new Core.StringMap(this);
+      public com.complexible.common.protobuf.core.Core.StringMap buildPartial() {
+        com.complexible.common.protobuf.core.Core.StringMap result = new com.complexible.common.protobuf.core.Core.StringMap(this);
         int from_bitField0_ = bitField0_;
         if (valuesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2024,16 +2022,16 @@ public final class Core {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Core.StringMap) {
-          return mergeFrom((Core.StringMap)other);
+        if (other instanceof com.complexible.common.protobuf.core.Core.StringMap) {
+          return mergeFrom((com.complexible.common.protobuf.core.Core.StringMap)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(Core.StringMap other) {
-        if (other == Core.StringMap.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.complexible.common.protobuf.core.Core.StringMap other) {
+        if (other == com.complexible.common.protobuf.core.Core.StringMap.getDefaultInstance()) return this;
         if (valuesBuilder_ == null) {
           if (!other.values_.isEmpty()) {
             if (values_.isEmpty()) {
@@ -2098,7 +2096,7 @@ public final class Core {
               break;
             }
             case 10: {
-              Core.StringMapEntry.Builder subBuilder = Core.StringMapEntry.newBuilder();
+              com.complexible.common.protobuf.core.Core.StringMapEntry.Builder subBuilder = com.complexible.common.protobuf.core.Core.StringMapEntry.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addValues(subBuilder.buildPartial());
               break;
@@ -2109,20 +2107,20 @@ public final class Core {
       
       private int bitField0_;
       
-      // repeated .com.clarkparsia.common.protobuf.core.StringMapEntry values = 1;
-      private java.util.List<Core.StringMapEntry> values_ =
+      // repeated .com.complexible.common.protobuf.core.StringMapEntry values = 1;
+      private java.util.List<com.complexible.common.protobuf.core.Core.StringMapEntry> values_ =
         java.util.Collections.emptyList();
       private void ensureValuesIsMutable() {
         if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          values_ = new java.util.ArrayList<Core.StringMapEntry>(values_);
+          values_ = new java.util.ArrayList<com.complexible.common.protobuf.core.Core.StringMapEntry>(values_);
           bitField0_ |= 0x00000001;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          Core.StringMapEntry, Core.StringMapEntry.Builder, Core.StringMapEntryOrBuilder> valuesBuilder_;
+          com.complexible.common.protobuf.core.Core.StringMapEntry, com.complexible.common.protobuf.core.Core.StringMapEntry.Builder, com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder> valuesBuilder_;
       
-      public java.util.List<Core.StringMapEntry> getValuesList() {
+      public java.util.List<com.complexible.common.protobuf.core.Core.StringMapEntry> getValuesList() {
         if (valuesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(values_);
         } else {
@@ -2136,7 +2134,7 @@ public final class Core {
           return valuesBuilder_.getCount();
         }
       }
-      public Core.StringMapEntry getValues(int index) {
+      public com.complexible.common.protobuf.core.Core.StringMapEntry getValues(int index) {
         if (valuesBuilder_ == null) {
           return values_.get(index);
         } else {
@@ -2144,7 +2142,7 @@ public final class Core {
         }
       }
       public Builder setValues(
-          int index, Core.StringMapEntry value) {
+          int index, com.complexible.common.protobuf.core.Core.StringMapEntry value) {
         if (valuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2158,7 +2156,7 @@ public final class Core {
         return this;
       }
       public Builder setValues(
-          int index, Core.StringMapEntry.Builder builderForValue) {
+          int index, com.complexible.common.protobuf.core.Core.StringMapEntry.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           values_.set(index, builderForValue.build());
@@ -2168,7 +2166,7 @@ public final class Core {
         }
         return this;
       }
-      public Builder addValues(Core.StringMapEntry value) {
+      public Builder addValues(com.complexible.common.protobuf.core.Core.StringMapEntry value) {
         if (valuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2182,7 +2180,7 @@ public final class Core {
         return this;
       }
       public Builder addValues(
-          int index, Core.StringMapEntry value) {
+          int index, com.complexible.common.protobuf.core.Core.StringMapEntry value) {
         if (valuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2196,7 +2194,7 @@ public final class Core {
         return this;
       }
       public Builder addValues(
-          Core.StringMapEntry.Builder builderForValue) {
+          com.complexible.common.protobuf.core.Core.StringMapEntry.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           values_.add(builderForValue.build());
@@ -2207,7 +2205,7 @@ public final class Core {
         return this;
       }
       public Builder addValues(
-          int index, Core.StringMapEntry.Builder builderForValue) {
+          int index, com.complexible.common.protobuf.core.Core.StringMapEntry.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           values_.add(index, builderForValue.build());
@@ -2218,7 +2216,7 @@ public final class Core {
         return this;
       }
       public Builder addAllValues(
-          java.lang.Iterable<? extends Core.StringMapEntry> values) {
+          java.lang.Iterable<? extends com.complexible.common.protobuf.core.Core.StringMapEntry> values) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           super.addAll(values, values_);
@@ -2248,18 +2246,18 @@ public final class Core {
         }
         return this;
       }
-      public Core.StringMapEntry.Builder getValuesBuilder(
+      public com.complexible.common.protobuf.core.Core.StringMapEntry.Builder getValuesBuilder(
           int index) {
         return getValuesFieldBuilder().getBuilder(index);
       }
-      public Core.StringMapEntryOrBuilder getValuesOrBuilder(
+      public com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder getValuesOrBuilder(
           int index) {
         if (valuesBuilder_ == null) {
           return values_.get(index);  } else {
           return valuesBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends Core.StringMapEntryOrBuilder>
+      public java.util.List<? extends com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder> 
            getValuesOrBuilderList() {
         if (valuesBuilder_ != null) {
           return valuesBuilder_.getMessageOrBuilderList();
@@ -2267,25 +2265,25 @@ public final class Core {
           return java.util.Collections.unmodifiableList(values_);
         }
       }
-      public Core.StringMapEntry.Builder addValuesBuilder() {
+      public com.complexible.common.protobuf.core.Core.StringMapEntry.Builder addValuesBuilder() {
         return getValuesFieldBuilder().addBuilder(
-            Core.StringMapEntry.getDefaultInstance());
+            com.complexible.common.protobuf.core.Core.StringMapEntry.getDefaultInstance());
       }
-      public Core.StringMapEntry.Builder addValuesBuilder(
+      public com.complexible.common.protobuf.core.Core.StringMapEntry.Builder addValuesBuilder(
           int index) {
         return getValuesFieldBuilder().addBuilder(
-            index, Core.StringMapEntry.getDefaultInstance());
+            index, com.complexible.common.protobuf.core.Core.StringMapEntry.getDefaultInstance());
       }
-      public java.util.List<Core.StringMapEntry.Builder>
+      public java.util.List<com.complexible.common.protobuf.core.Core.StringMapEntry.Builder> 
            getValuesBuilderList() {
         return getValuesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          Core.StringMapEntry, Core.StringMapEntry.Builder, Core.StringMapEntryOrBuilder>
+          com.complexible.common.protobuf.core.Core.StringMapEntry, com.complexible.common.protobuf.core.Core.StringMapEntry.Builder, com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder> 
           getValuesFieldBuilder() {
         if (valuesBuilder_ == null) {
           valuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              Core.StringMapEntry, Core.StringMapEntry.Builder, Core.StringMapEntryOrBuilder>(
+              com.complexible.common.protobuf.core.Core.StringMapEntry, com.complexible.common.protobuf.core.Core.StringMapEntry.Builder, com.complexible.common.protobuf.core.Core.StringMapEntryOrBuilder>(
                   values_,
                   ((bitField0_ & 0x00000001) == 0x00000001),
                   getParentForChildren(),
@@ -2295,7 +2293,7 @@ public final class Core {
         return valuesBuilder_;
       }
       
-      // @@protoc_insertion_point(builder_scope:com.clarkparsia.common.protobuf.core.StringMap)
+      // @@protoc_insertion_point(builder_scope:com.complexible.common.protobuf.core.StringMap)
     }
     
     static {
@@ -2303,20 +2301,20 @@ public final class Core {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.clarkparsia.common.protobuf.core.StringMap)
+    // @@protoc_insertion_point(class_scope:com.complexible.common.protobuf.core.StringMap)
   }
   
   public interface IntStringMapOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // repeated .com.clarkparsia.common.protobuf.core.IntStringMapEntry values = 1;
-    java.util.List<Core.IntStringMapEntry>
+    // repeated .com.complexible.common.protobuf.core.IntStringMapEntry values = 1;
+    java.util.List<com.complexible.common.protobuf.core.Core.IntStringMapEntry> 
         getValuesList();
-    Core.IntStringMapEntry getValues(int index);
+    com.complexible.common.protobuf.core.Core.IntStringMapEntry getValues(int index);
     int getValuesCount();
-    java.util.List<? extends Core.IntStringMapEntryOrBuilder>
+    java.util.List<? extends com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder> 
         getValuesOrBuilderList();
-    Core.IntStringMapEntryOrBuilder getValuesOrBuilder(
+    com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder getValuesOrBuilder(
         int index);
   }
   public static final class IntStringMap extends
@@ -2339,31 +2337,31 @@ public final class Core {
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_descriptor;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMap_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_fieldAccessorTable;
+      return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMap_fieldAccessorTable;
     }
     
-    // repeated .com.clarkparsia.common.protobuf.core.IntStringMapEntry values = 1;
+    // repeated .com.complexible.common.protobuf.core.IntStringMapEntry values = 1;
     public static final int VALUES_FIELD_NUMBER = 1;
-    private java.util.List<Core.IntStringMapEntry> values_;
-    public java.util.List<Core.IntStringMapEntry> getValuesList() {
+    private java.util.List<com.complexible.common.protobuf.core.Core.IntStringMapEntry> values_;
+    public java.util.List<com.complexible.common.protobuf.core.Core.IntStringMapEntry> getValuesList() {
       return values_;
     }
-    public java.util.List<? extends Core.IntStringMapEntryOrBuilder>
+    public java.util.List<? extends com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder> 
         getValuesOrBuilderList() {
       return values_;
     }
     public int getValuesCount() {
       return values_.size();
     }
-    public Core.IntStringMapEntry getValues(int index) {
+    public com.complexible.common.protobuf.core.Core.IntStringMapEntry getValues(int index) {
       return values_.get(index);
     }
-    public Core.IntStringMapEntryOrBuilder getValuesOrBuilder(
+    public com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder getValuesOrBuilder(
         int index) {
       return values_.get(index);
     }
@@ -2417,41 +2415,41 @@ public final class Core {
       return super.writeReplace();
     }
     
-    public static Core.IntStringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.IntStringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.IntStringMap parseFrom(byte[] data)
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static Core.IntStringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static Core.IntStringMap parseFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.IntStringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static Core.IntStringMap parseDelimitedFrom(java.io.InputStream input)
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2460,7 +2458,7 @@ public final class Core {
         return null;
       }
     }
-    public static Core.IntStringMap parseDelimitedFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2471,12 +2469,12 @@ public final class Core {
         return null;
       }
     }
-    public static Core.IntStringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static Core.IntStringMap parseFrom(
+    public static com.complexible.common.protobuf.core.Core.IntStringMap parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2486,7 +2484,7 @@ public final class Core {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(Core.IntStringMap prototype) {
+    public static Builder newBuilder(com.complexible.common.protobuf.core.Core.IntStringMap prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -2499,18 +2497,18 @@ public final class Core {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements Core.IntStringMapOrBuilder {
+       implements com.complexible.common.protobuf.core.Core.IntStringMapOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_descriptor;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMap_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Core.internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_fieldAccessorTable;
+        return com.complexible.common.protobuf.core.Core.internal_static_com_complexible_common_protobuf_core_IntStringMap_fieldAccessorTable;
       }
       
-      // Construct using Core.IntStringMap.newBuilder()
+      // Construct using com.complexible.common.protobuf.core.Core.IntStringMap.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2545,33 +2543,33 @@ public final class Core {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Core.IntStringMap.getDescriptor();
+        return com.complexible.common.protobuf.core.Core.IntStringMap.getDescriptor();
       }
       
-      public Core.IntStringMap getDefaultInstanceForType() {
-        return Core.IntStringMap.getDefaultInstance();
+      public com.complexible.common.protobuf.core.Core.IntStringMap getDefaultInstanceForType() {
+        return com.complexible.common.protobuf.core.Core.IntStringMap.getDefaultInstance();
       }
       
-      public Core.IntStringMap build() {
-        Core.IntStringMap result = buildPartial();
+      public com.complexible.common.protobuf.core.Core.IntStringMap build() {
+        com.complexible.common.protobuf.core.Core.IntStringMap result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private Core.IntStringMap buildParsed()
+      private com.complexible.common.protobuf.core.Core.IntStringMap buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        Core.IntStringMap result = buildPartial();
+        com.complexible.common.protobuf.core.Core.IntStringMap result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return result;
       }
       
-      public Core.IntStringMap buildPartial() {
-        Core.IntStringMap result = new Core.IntStringMap(this);
+      public com.complexible.common.protobuf.core.Core.IntStringMap buildPartial() {
+        com.complexible.common.protobuf.core.Core.IntStringMap result = new com.complexible.common.protobuf.core.Core.IntStringMap(this);
         int from_bitField0_ = bitField0_;
         if (valuesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2587,16 +2585,16 @@ public final class Core {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Core.IntStringMap) {
-          return mergeFrom((Core.IntStringMap)other);
+        if (other instanceof com.complexible.common.protobuf.core.Core.IntStringMap) {
+          return mergeFrom((com.complexible.common.protobuf.core.Core.IntStringMap)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(Core.IntStringMap other) {
-        if (other == Core.IntStringMap.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.complexible.common.protobuf.core.Core.IntStringMap other) {
+        if (other == com.complexible.common.protobuf.core.Core.IntStringMap.getDefaultInstance()) return this;
         if (valuesBuilder_ == null) {
           if (!other.values_.isEmpty()) {
             if (values_.isEmpty()) {
@@ -2661,7 +2659,7 @@ public final class Core {
               break;
             }
             case 10: {
-              Core.IntStringMapEntry.Builder subBuilder = Core.IntStringMapEntry.newBuilder();
+              com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder subBuilder = com.complexible.common.protobuf.core.Core.IntStringMapEntry.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addValues(subBuilder.buildPartial());
               break;
@@ -2672,20 +2670,20 @@ public final class Core {
       
       private int bitField0_;
       
-      // repeated .com.clarkparsia.common.protobuf.core.IntStringMapEntry values = 1;
-      private java.util.List<Core.IntStringMapEntry> values_ =
+      // repeated .com.complexible.common.protobuf.core.IntStringMapEntry values = 1;
+      private java.util.List<com.complexible.common.protobuf.core.Core.IntStringMapEntry> values_ =
         java.util.Collections.emptyList();
       private void ensureValuesIsMutable() {
         if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          values_ = new java.util.ArrayList<Core.IntStringMapEntry>(values_);
+          values_ = new java.util.ArrayList<com.complexible.common.protobuf.core.Core.IntStringMapEntry>(values_);
           bitField0_ |= 0x00000001;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          Core.IntStringMapEntry, Core.IntStringMapEntry.Builder, Core.IntStringMapEntryOrBuilder> valuesBuilder_;
+          com.complexible.common.protobuf.core.Core.IntStringMapEntry, com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder, com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder> valuesBuilder_;
       
-      public java.util.List<Core.IntStringMapEntry> getValuesList() {
+      public java.util.List<com.complexible.common.protobuf.core.Core.IntStringMapEntry> getValuesList() {
         if (valuesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(values_);
         } else {
@@ -2699,7 +2697,7 @@ public final class Core {
           return valuesBuilder_.getCount();
         }
       }
-      public Core.IntStringMapEntry getValues(int index) {
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry getValues(int index) {
         if (valuesBuilder_ == null) {
           return values_.get(index);
         } else {
@@ -2707,7 +2705,7 @@ public final class Core {
         }
       }
       public Builder setValues(
-          int index, Core.IntStringMapEntry value) {
+          int index, com.complexible.common.protobuf.core.Core.IntStringMapEntry value) {
         if (valuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2721,7 +2719,7 @@ public final class Core {
         return this;
       }
       public Builder setValues(
-          int index, Core.IntStringMapEntry.Builder builderForValue) {
+          int index, com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           values_.set(index, builderForValue.build());
@@ -2731,7 +2729,7 @@ public final class Core {
         }
         return this;
       }
-      public Builder addValues(Core.IntStringMapEntry value) {
+      public Builder addValues(com.complexible.common.protobuf.core.Core.IntStringMapEntry value) {
         if (valuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2745,7 +2743,7 @@ public final class Core {
         return this;
       }
       public Builder addValues(
-          int index, Core.IntStringMapEntry value) {
+          int index, com.complexible.common.protobuf.core.Core.IntStringMapEntry value) {
         if (valuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2759,7 +2757,7 @@ public final class Core {
         return this;
       }
       public Builder addValues(
-          Core.IntStringMapEntry.Builder builderForValue) {
+          com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           values_.add(builderForValue.build());
@@ -2770,7 +2768,7 @@ public final class Core {
         return this;
       }
       public Builder addValues(
-          int index, Core.IntStringMapEntry.Builder builderForValue) {
+          int index, com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           values_.add(index, builderForValue.build());
@@ -2781,7 +2779,7 @@ public final class Core {
         return this;
       }
       public Builder addAllValues(
-          java.lang.Iterable<? extends Core.IntStringMapEntry> values) {
+          java.lang.Iterable<? extends com.complexible.common.protobuf.core.Core.IntStringMapEntry> values) {
         if (valuesBuilder_ == null) {
           ensureValuesIsMutable();
           super.addAll(values, values_);
@@ -2811,18 +2809,18 @@ public final class Core {
         }
         return this;
       }
-      public Core.IntStringMapEntry.Builder getValuesBuilder(
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder getValuesBuilder(
           int index) {
         return getValuesFieldBuilder().getBuilder(index);
       }
-      public Core.IntStringMapEntryOrBuilder getValuesOrBuilder(
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder getValuesOrBuilder(
           int index) {
         if (valuesBuilder_ == null) {
           return values_.get(index);  } else {
           return valuesBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends Core.IntStringMapEntryOrBuilder>
+      public java.util.List<? extends com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder> 
            getValuesOrBuilderList() {
         if (valuesBuilder_ != null) {
           return valuesBuilder_.getMessageOrBuilderList();
@@ -2830,25 +2828,25 @@ public final class Core {
           return java.util.Collections.unmodifiableList(values_);
         }
       }
-      public Core.IntStringMapEntry.Builder addValuesBuilder() {
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder addValuesBuilder() {
         return getValuesFieldBuilder().addBuilder(
-            Core.IntStringMapEntry.getDefaultInstance());
+            com.complexible.common.protobuf.core.Core.IntStringMapEntry.getDefaultInstance());
       }
-      public Core.IntStringMapEntry.Builder addValuesBuilder(
+      public com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder addValuesBuilder(
           int index) {
         return getValuesFieldBuilder().addBuilder(
-            index, Core.IntStringMapEntry.getDefaultInstance());
+            index, com.complexible.common.protobuf.core.Core.IntStringMapEntry.getDefaultInstance());
       }
-      public java.util.List<Core.IntStringMapEntry.Builder>
+      public java.util.List<com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder> 
            getValuesBuilderList() {
         return getValuesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          Core.IntStringMapEntry, Core.IntStringMapEntry.Builder, Core.IntStringMapEntryOrBuilder>
+          com.complexible.common.protobuf.core.Core.IntStringMapEntry, com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder, com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder> 
           getValuesFieldBuilder() {
         if (valuesBuilder_ == null) {
           valuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              Core.IntStringMapEntry, Core.IntStringMapEntry.Builder, Core.IntStringMapEntryOrBuilder>(
+              com.complexible.common.protobuf.core.Core.IntStringMapEntry, com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder, com.complexible.common.protobuf.core.Core.IntStringMapEntryOrBuilder>(
                   values_,
                   ((bitField0_ & 0x00000001) == 0x00000001),
                   getParentForChildren(),
@@ -2858,7 +2856,7 @@ public final class Core {
         return valuesBuilder_;
       }
       
-      // @@protoc_insertion_point(builder_scope:com.clarkparsia.common.protobuf.core.IntStringMap)
+      // @@protoc_insertion_point(builder_scope:com.complexible.common.protobuf.core.IntStringMap)
     }
     
     static {
@@ -2866,39 +2864,39 @@ public final class Core {
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:com.clarkparsia.common.protobuf.core.IntStringMap)
+    // @@protoc_insertion_point(class_scope:com.complexible.common.protobuf.core.IntStringMap)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_descriptor;
+    internal_static_com_complexible_common_protobuf_core_ListOfStrings_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_fieldAccessorTable;
+      internal_static_com_complexible_common_protobuf_core_ListOfStrings_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_clarkparsia_common_protobuf_core_UID_descriptor;
+    internal_static_com_complexible_common_protobuf_core_UID_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_clarkparsia_common_protobuf_core_UID_fieldAccessorTable;
+      internal_static_com_complexible_common_protobuf_core_UID_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_descriptor;
+    internal_static_com_complexible_common_protobuf_core_StringMapEntry_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_fieldAccessorTable;
+      internal_static_com_complexible_common_protobuf_core_StringMapEntry_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_descriptor;
+    internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_fieldAccessorTable;
+      internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_clarkparsia_common_protobuf_core_StringMap_descriptor;
+    internal_static_com_complexible_common_protobuf_core_StringMap_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_clarkparsia_common_protobuf_core_StringMap_fieldAccessorTable;
+      internal_static_com_complexible_common_protobuf_core_StringMap_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_descriptor;
+    internal_static_com_complexible_common_protobuf_core_IntStringMap_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_fieldAccessorTable;
+      internal_static_com_complexible_common_protobuf_core_IntStringMap_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2908,16 +2906,16 @@ public final class Core {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\ncore.proto\022$com.clarkparsia.common.pro" +
+      "\n\ncore.proto\022$com.complexible.common.pro" +
       "tobuf.core\" \n\rListOfStrings\022\017\n\007strings\030\001" +
       " \003(\t\"0\n\003UID\022\023\n\013mostSigBits\030\001 \002(\003\022\024\n\014leas" +
       "tSigBits\030\002 \002(\003\",\n\016StringMapEntry\022\013\n\003key\030" +
       "\001 \002(\t\022\r\n\005value\030\002 \002(\t\"/\n\021IntStringMapEntr" +
       "y\022\013\n\003key\030\001 \002(\005\022\r\n\005value\030\002 \002(\t\"Q\n\tStringM" +
-      "ap\022D\n\006values\030\001 \003(\01324.com.clarkparsia.com" +
+      "ap\022D\n\006values\030\001 \003(\01324.com.complexible.com" +
       "mon.protobuf.core.StringMapEntry\"W\n\014IntS" +
-      "tringMap\022G\n\006values\030\001 \003(\01327.com.clarkpars" +
-      "ia.common.protobuf.core.IntStringMapEntr",
+      "tringMap\022G\n\006values\030\001 \003(\01327.com.complexib" +
+      "le.common.protobuf.core.IntStringMapEntr",
       "yB\010B\004CoreH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
@@ -2925,54 +2923,54 @@ public final class Core {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_descriptor =
+          internal_static_com_complexible_common_protobuf_core_ListOfStrings_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_fieldAccessorTable = new
+          internal_static_com_complexible_common_protobuf_core_ListOfStrings_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_clarkparsia_common_protobuf_core_ListOfStrings_descriptor,
+              internal_static_com_complexible_common_protobuf_core_ListOfStrings_descriptor,
               new java.lang.String[] { "Strings", },
-              Core.ListOfStrings.class,
-              Core.ListOfStrings.Builder.class);
-          internal_static_com_clarkparsia_common_protobuf_core_UID_descriptor =
+              com.complexible.common.protobuf.core.Core.ListOfStrings.class,
+              com.complexible.common.protobuf.core.Core.ListOfStrings.Builder.class);
+          internal_static_com_complexible_common_protobuf_core_UID_descriptor =
             getDescriptor().getMessageTypes().get(1);
-          internal_static_com_clarkparsia_common_protobuf_core_UID_fieldAccessorTable = new
+          internal_static_com_complexible_common_protobuf_core_UID_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_clarkparsia_common_protobuf_core_UID_descriptor,
+              internal_static_com_complexible_common_protobuf_core_UID_descriptor,
               new java.lang.String[] { "MostSigBits", "LeastSigBits", },
-              Core.UID.class,
-              Core.UID.Builder.class);
-          internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_descriptor =
+              com.complexible.common.protobuf.core.Core.UID.class,
+              com.complexible.common.protobuf.core.Core.UID.Builder.class);
+          internal_static_com_complexible_common_protobuf_core_StringMapEntry_descriptor =
             getDescriptor().getMessageTypes().get(2);
-          internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_fieldAccessorTable = new
+          internal_static_com_complexible_common_protobuf_core_StringMapEntry_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_clarkparsia_common_protobuf_core_StringMapEntry_descriptor,
+              internal_static_com_complexible_common_protobuf_core_StringMapEntry_descriptor,
               new java.lang.String[] { "Key", "Value", },
-              Core.StringMapEntry.class,
-              Core.StringMapEntry.Builder.class);
-          internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_descriptor =
+              com.complexible.common.protobuf.core.Core.StringMapEntry.class,
+              com.complexible.common.protobuf.core.Core.StringMapEntry.Builder.class);
+          internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_descriptor =
             getDescriptor().getMessageTypes().get(3);
-          internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_fieldAccessorTable = new
+          internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_clarkparsia_common_protobuf_core_IntStringMapEntry_descriptor,
+              internal_static_com_complexible_common_protobuf_core_IntStringMapEntry_descriptor,
               new java.lang.String[] { "Key", "Value", },
-              Core.IntStringMapEntry.class,
-              Core.IntStringMapEntry.Builder.class);
-          internal_static_com_clarkparsia_common_protobuf_core_StringMap_descriptor =
+              com.complexible.common.protobuf.core.Core.IntStringMapEntry.class,
+              com.complexible.common.protobuf.core.Core.IntStringMapEntry.Builder.class);
+          internal_static_com_complexible_common_protobuf_core_StringMap_descriptor =
             getDescriptor().getMessageTypes().get(4);
-          internal_static_com_clarkparsia_common_protobuf_core_StringMap_fieldAccessorTable = new
+          internal_static_com_complexible_common_protobuf_core_StringMap_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_clarkparsia_common_protobuf_core_StringMap_descriptor,
+              internal_static_com_complexible_common_protobuf_core_StringMap_descriptor,
               new java.lang.String[] { "Values", },
-              Core.StringMap.class,
-              Core.StringMap.Builder.class);
-          internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_descriptor =
+              com.complexible.common.protobuf.core.Core.StringMap.class,
+              com.complexible.common.protobuf.core.Core.StringMap.Builder.class);
+          internal_static_com_complexible_common_protobuf_core_IntStringMap_descriptor =
             getDescriptor().getMessageTypes().get(5);
-          internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_fieldAccessorTable = new
+          internal_static_com_complexible_common_protobuf_core_IntStringMap_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_clarkparsia_common_protobuf_core_IntStringMap_descriptor,
+              internal_static_com_complexible_common_protobuf_core_IntStringMap_descriptor,
               new java.lang.String[] { "Values", },
-              Core.IntStringMap.class,
-              Core.IntStringMap.Builder.class);
+              com.complexible.common.protobuf.core.Core.IntStringMap.class,
+              com.complexible.common.protobuf.core.Core.IntStringMap.Builder.class);
           return null;
         }
       };

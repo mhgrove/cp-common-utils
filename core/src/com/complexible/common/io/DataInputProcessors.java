@@ -17,10 +17,15 @@ package com.complexible.common.io;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Function;
+import com.google.common.base.Preconditions;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * <p>Utility class which contains readers for the standard primitives & serializable types.</p>
@@ -41,6 +46,10 @@ public final class DataInputProcessors {
     public static <T extends Serializable> DataInputProcessor<T, DataInput> serializable() {
         return new SerializableDataInputProcessor<T>();
     }
+
+	public static <T extends Serializable> DataInputProcessor<T, DataInput> serializable(final Function<InputStream, ObjectInputStream> theStreamFunction) {
+		return new SerializableDataInputProcessor<T>(theStreamFunction);
+	}
 
     public static enum Primitives implements DataInputProcessor {
         Int(new DataInputProcessor<Integer, DataInput>() {
@@ -75,7 +84,7 @@ public final class DataInputProcessors {
         private final DataInputProcessor mInputProcessor;
 
         private Primitives(final DataInputProcessor theInputProcessor) {
-            mInputProcessor = theInputProcessor;
+            mInputProcessor = checkNotNull(theInputProcessor);
         }
 
         @Override
@@ -86,18 +95,42 @@ public final class DataInputProcessors {
 
     private static class SerializableDataInputProcessor<T extends Serializable> implements DataInputProcessor<T, DataInput> {
 
-        /**
+
+	    private final Function<InputStream, ObjectInputStream> mStreamFunction;
+
+	    private SerializableDataInputProcessor() {
+		    this(new Function<InputStream, ObjectInputStream>() {
+			    @Override
+			    public ObjectInputStream apply(final InputStream theInputStream) {
+				    try {
+					    return new ObjectInputStream(theInputStream);
+				    }
+				    catch (IOException e) {
+					    throw new RuntimeException(e);
+				    }
+			    }
+		    });
+	    }
+
+	    public SerializableDataInputProcessor(final Function<InputStream, ObjectInputStream> theStreamFunction) {
+		    mStreamFunction = checkNotNull(theStreamFunction);
+	    }
+
+	    /**
          * @inheritDoc
          */
         @Override
         @SuppressWarnings("unchecked")
         public T processInput(final DataInput theInput) throws IOException {
             try {
-                return (T) new ObjectInputStream(DataInputToInputStreamAdapter.create(theInput)).readObject();
+                return (T) mStreamFunction.apply(DataInputToInputStreamAdapter.create(theInput)).readObject();
             }
             catch (ClassNotFoundException e) {
                 throw new IOException("Malformed object", e);
             }
+	        catch (RuntimeException e) {
+		        throw new IOException("Unable to construct stream", e);
+	        }
         }
     }
 }

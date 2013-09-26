@@ -98,4 +98,11 @@
 			<mapping conf="runtime" scope="runtime"/>
 		</ivy:makepom>
 	</target>
+
+	<target name="deploy">
+		<ivy:configure file="settings/cp.ivysettings.xml" />
+
+		<ivy:install organisation="com.complexible.common" module="core" revision="${core.version}" from="local.repo" to="cp.repo"/>
+		<ivy:install organisation="com.complexible.common" module="protobuf" revision="${protobuf.version}" from="local.repo" to="cp.repo"/>
+	</target>
 </project>
