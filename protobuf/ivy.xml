@@ -7,18 +7,19 @@
 	</info>
 
 	<configurations>
+		<conf name="compile" description="Everything required to compile the module"/>
 		<conf name="default" description="Everything required to run the module"/>
 
-		<conf name="test" extends="default" description="Everything need to run the module and its test suite"/>
+		<conf name="test" extends="default" description="Everything needed to run the module and its test suite"/>
 	</configurations>
 
 	<publications>
 		<artifact name="cp-common-protobuf" type="jar" ext="jar" conf="default"/>
 	</publications>
 
-	<dependencies>
-		<dependency org="com.complexible.common" name="core" rev="3.1" conf="default"/>
+	<dependencies defaultconf="compile,default,test">
+		<dependency org="com.complexible.common" name="core" rev="3.0"/>
 
-		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1" conf="default"/>
+		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1" conf="compile,default,test->default"/>
 	</dependencies>
 </ivy-module>

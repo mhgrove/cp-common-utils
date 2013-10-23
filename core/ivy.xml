@@ -8,9 +8,8 @@
 
 	<configurations>
 		<conf name="compile" description="Everything required to run the core module"/>
-		<conf name="test" extends="compile" description="Everything need to run the module and its test suite"/>
-
 		<conf name="default" description="Everything required to run the module"/>
+		<conf name="test" extends="default" description="Everything needed to run the module and its test suite"/>
 	</configurations>
 
 	<publications>
@@ -18,10 +17,10 @@
 	</publications>
 
 	<dependencies>
-		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.5" conf="default;compile->default"/>
-		<dependency org="org.slf4j" name="slf4j-jdk14" rev="1.7.5" conf="default;compile->default"/>
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.5" conf="compile,default,test->default"/>
+		<dependency org="org.slf4j" name="slf4j-jdk14" rev="1.7.5" conf="compile,default,test->default"/>
 
-		<dependency org="com.google.guava" name="guava" rev="15.0" conf="default;compile->default">
+		<dependency org="com.google.guava" name="guava" rev="14.0.1" conf="compile,default,test->default">
 			<exclude org="com.google.code.findbugs"/>
 		</dependency>
 
