@@ -87,16 +87,6 @@
 			<target name="dist"/>
 			<target name="publish"/>
 		</subant>
-
-		<ivy:makepom ivyfile="${core}/ivy.xml" pomfile="${core}/pom.xml">
-			<mapping conf="core" scope="compile"/>
-			<mapping conf="runtime" scope="runtime"/>
-		</ivy:makepom>
-
-		<ivy:makepom ivyfile="${protobuf}/ivy.xml" pomfile="${protobuf}/pom.xml">
-			<mapping conf="core" scope="compile"/>
-			<mapping conf="runtime" scope="runtime"/>
-		</ivy:makepom>
 	</target>
 
 	<target name="deploy">
