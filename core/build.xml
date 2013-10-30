@@ -74,7 +74,7 @@
 		<ivy:configure file="${ivy.settings}" />
 
 		<ivy:resolve file="${core}/ivy.xml"/>
-		<ivy:retrieve pattern="${core.lib}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar"/>
+		<ivy:retrieve pattern="${core.lib}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar, bundle"/>
 		<ivy:cachepath pathid="core.classpath"/>
 	</target>
 

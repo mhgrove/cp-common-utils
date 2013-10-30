@@ -76,9 +76,6 @@
 		</ivy:buildlist>
 		
 		<subant buildpathref="build-path" failonerror="true">
-		    <!--<property name="core" value="${core}"/>-->
-		    <!--<property name="build" value="${build}"/>-->
-		    <!--<property name="dist" value="${dist}"/>-->
 		    <property name="ivy.settings" location="settings/ivysettings.xml"/>
 			<property name="publish.repo" value="local.repo"/>
 		    
@@ -88,7 +85,47 @@
 			<target name="publish"/>
 		</subant>
 	</target>
+	
+	<target name="javadocs" depends="init" description="project dist">
+		<ivy:configure file="settings/ivysettings.xml" />
 
+		<ivy:buildlist reference="build-path" onMissingDescriptor="skip">
+			<fileset dir="." includes="**/build.xml"/>
+		</ivy:buildlist>
+		
+		<subant buildpathref="build-path" failonerror="true">
+		    <property name="ivy.settings" location="settings/ivysettings.xml"/>
+			<property name="publish.repo" value="local.repo"/>
+		    
+		    <target name="javadocs"/>
+		</subant>	
+	</target>
+	
+	<target name="javadocs-single" depends="init">
+		<javadoc destdir="${javadoc.dir}" access="public" use="true" notree="false"
+			nonavbar="false" noindex="false" splitindex="true" author="true"
+			version="true" nodeprecatedlist="false" nodeprecated="false"
+			doctitle="Complexible Utils"
+			bottom="Copyright &#169; 2010-2013 Complexible. All Rights Reserved.">
+
+			<link href="http://docs.guava-libraries.googlecode.com/git-history/v15.0/javadoc/"/>
+
+			<classpath>
+				<path>
+					<fileset dir="core/lib">
+						<include name="**/*.jar" />
+					</fileset>
+					<fileset dir="protobuf/lib">
+						<include name="**/*.jar" />
+					</fileset>
+				</path>
+			</classpath>
+			
+			<fileset dir="core/src" defaultexcludes="yes"/>
+			<fileset dir="protobuf/src" defaultexcludes="yes"/>
+		</javadoc>
+	</target>
+	
 	<target name="deploy">
 		<ivy:configure file="settings/cp.ivysettings.xml" />
 
