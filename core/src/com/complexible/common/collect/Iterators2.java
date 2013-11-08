@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.PeekingIterator;
@@ -29,10 +30,10 @@ import com.google.common.collect.UnmodifiableIterator;
  * in Iterators but which are slightly faster than their Guava counterparts because they avoid all safety checks.  These can be used when you know there are no nulls in your collections
  * and the Predicate/Function itself will not be null or ever return a null value.</p>
  *
- * @author Michael Grove
- * @author Pedro Oliveira
- * @since 2.0
- * @version 2.0
+ * @author  Michael Grove
+ * @author  Pedro Oliveira
+ * @since   2.0
+ * @version 3.1.1
  */
 public final class Iterators2 {
 
@@ -40,6 +41,16 @@ public final class Iterators2 {
 	 * Private constructor
 	 */
 	private Iterators2() {
+		throw new AssertionError();
+	}
+
+	public static <T> PeekingIterator<T> peekingIterator(final Iterator<T> theIterator) {
+		if (theIterator instanceof PeekingIterator) {
+			return (PeekingIterator<T>) theIterator;
+		}
+		else {
+			return new PeekingIteratorAdapter<T>(theIterator);
+		}
 	}
 
 	/**
@@ -66,6 +77,20 @@ public final class Iterators2 {
 		};
 	}
 
+	public static <T> Iterator<T> present(final Iterator<Optional<T>> theIter) {
+		return new AbstractIterator<T>() {
+			@Override
+			protected T computeNext() {
+				while (theIter.hasNext()) {
+					Optional<T> aOptional = theIter.next();
+					if (aOptional.isPresent()) {
+						return aOptional.get();
+					}
+				}
+				return endOfData();
+			}
+		};
+	}
 
 	/**
 	 * Returns the elements of {@code unfiltered} that satisfy a predicate.
@@ -163,5 +188,23 @@ public final class Iterators2 {
 	@SuppressWarnings("unchecked")
     public static <T> PeekingIterator<T> emptyPeekingIterator() {	
 		return (PeekingIterator<T>) EMPTY_PEEKING_ITERATOR;
+	}
+
+	private static final class PeekingIteratorAdapter<T> extends AbstractIterator<T> implements PeekingIterator<T> {
+		private final Iterator<T> mIter;
+
+		private PeekingIteratorAdapter(final Iterator<T> theIter) {
+			mIter = theIter;
+		}
+
+		@Override
+		protected T computeNext() {
+			if (mIter.hasNext()) {
+				return mIter.next();
+			}
+			else {
+				return endOfData();
+			}
+		}
 	}
 }

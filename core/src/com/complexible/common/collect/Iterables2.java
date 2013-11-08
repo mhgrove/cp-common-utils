@@ -15,9 +15,12 @@
 
 package com.complexible.common.collect;
 
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Function;
 import static com.google.common.collect.Iterables.find;
+
+import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Iterables;
 
 import java.util.Iterator;
@@ -28,13 +31,34 @@ import java.util.NoSuchElementException;
  * in Iterables but which are slightly faster than their Guava counterparts because they avoid all safety checks.  These can be used when you know there are no nulls in your collections
  * and the Predicate/Function itself will not be null or ever return a null value.</p>
  *
- * @author Michael Grove
- * @since 2.0
- * @version 2.0
+ * @author  Michael Grove
+ * @since   2.0
+ * @version 3.1.1
  */
 public final class Iterables2 {
 
 	private Iterables2() {
+		throw new AssertionError();
+	}
+
+	public static <T> Iterable<T> present(final Iterable<Optional<T>> theIterable) {
+		return new Iterable<T>() {
+			public Iterator<T> iterator() {
+				return new AbstractIterator<T>() {
+					private Iterator<Optional<T>> theIter = theIterable.iterator();
+					@Override
+					protected T computeNext() {
+						while (theIter.hasNext()) {
+							Optional<T> aOptional = theIter.next();
+							if (aOptional.isPresent()) {
+								return aOptional.get();
+							}
+						}
+						return endOfData();
+					}
+				};
+			}
+		};
 	}
 
 	/**
