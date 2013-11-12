@@ -22,17 +22,19 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.zip.GZIPOutputStream;
 
 import com.google.common.io.ByteStreams;
 import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
 
 /**
  * <p>Utility class to hold functionality not already contained in {@link com.google.common.io.ByteStreams}</p>
  *
  * @author  Michael Grove
  * @since   2.3.1
- * @version 2.4.1
+ * @version 3.1.1
  */
 public final class ByteStreams2 {
 
@@ -76,8 +78,22 @@ public final class ByteStreams2 {
     }
 
     public static void writeInt(final OutputStream theStream, final int theInt) throws IOException {
-        theStream.write(Ints.toByteArray(theInt));
+	    theStream.write((byte) (theInt >> 24));
+	    theStream.write((byte) (theInt >> 16));
+	    theStream.write((byte) (theInt >> 8));
+	    theStream.write((byte) (theInt));
     }
+
+	public static void writeLong(final OutputStream theStream, final long theLong) throws IOException {
+		theStream.write((byte) (theLong >> 56));
+		theStream.write((byte) (theLong >> 48));
+		theStream.write((byte) (theLong >> 40));
+		theStream.write((byte) (theLong >> 32));
+		theStream.write((byte) (theLong >> 24));
+		theStream.write((byte) (theLong >> 16));
+		theStream.write((byte) (theLong >> 8));
+		theStream.write((byte) (theLong));
+	}
 
     public static byte[] gzip(final byte[] theBytes) throws IOException {
         ByteArrayOutputStream aOut = new ByteArrayOutputStream(theBytes.length);
