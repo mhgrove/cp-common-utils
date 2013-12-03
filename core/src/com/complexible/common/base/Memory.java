@@ -78,19 +78,19 @@ public final class Memory {
 	 * guaranteed to be 4 characters or less unless the given value is greater than 999TB. The last character in the
 	 * returned string is one of 'B', 'K', 'M', 'G', or 'T' representing bytes, kilobytes, megabytes, gigabytes or
 	 * terabytes. This function uses the binary unit system where 1K = 1024B.
-	 * 
+	 *
 	 * <p>
 	 * Examples:
-	 * 
+	 *
 	 * <pre>
 	 *         482 = 482B
 	 *        1245 = 1.2K
-	 *      126976 = 124K 
+	 *      126976 = 124K
 	 *     4089471 = 3.9M
-	 *    43316209 =  41M 
+	 *    43316209 =  41M
 	 *  1987357695 = 1.9G
 	 * </pre>
-	 * 
+	 *
 	 * </p>
 	 */
 	public static String readable(long bytes) {
@@ -150,6 +150,15 @@ public final class Memory {
 	 */
 	public static long max() {
 		return RUNTIME.maxMemory();
+	}
+
+	/**
+	 * Return the total memory available to the system, ie how much RAM the computer has.
+	 * @return  the system memory.
+	 */
+	public static long system() {
+		return ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean())
+			.getTotalPhysicalMemorySize();
 	}
 
 	/**
