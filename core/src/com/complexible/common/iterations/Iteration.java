@@ -15,6 +15,8 @@
 
 package com.complexible.common.iterations;
 
+import com.complexible.common.base.Closeable;
+
 /**
  * <p>New iterator interface.  Mimics {@link java.util.Iterator} in signature, but throws exceptions from its methods and is closeable.
  * Intended for use in cases where the implementation is iterating over something such that calls to {@link #next} or {@link #hasNext}
@@ -25,7 +27,7 @@ package com.complexible.common.iterations;
  * @since   2.0
  * @version 2.0
  */
-public interface Iteration<T, E extends Throwable> {
+public interface Iteration<T, E extends Throwable> extends Closeable {
 
 	/**
 	 * Return the next element
