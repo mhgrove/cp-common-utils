@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,12 +36,12 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.Sets;
 
 /**
- * <p></p>
+ * <p>Utility class for memory related information.</p>
  *
  * @author  Evren Sirin
  * @author  Michael Grove
  *
- * @version 2.0
+ * @since 2.0
  * @version 3.1.1
  */
 public final class Memory {
@@ -150,6 +150,15 @@ public final class Memory {
 	 */
 	public static long max() {
 		return RUNTIME.maxMemory();
+	}
+
+	/**
+	 * Returns the current amount of memory available on the heap.  Shorthand for: {@code Memory.max() - Memory.used()}
+	 *
+	 * @return  available heap memory
+	 */
+	public static long available() {
+		return max() - used();
 	}
 
 	/**
