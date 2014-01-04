@@ -35,6 +35,15 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Sets;
 
+/**
+ * <p></p>
+ *
+ * @author  Evren Sirin
+ * @author  Michael Grove
+ *
+ * @version 2.0
+ * @version 3.1.1
+ */
 public final class Memory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Memory.class);
 
@@ -61,6 +70,7 @@ public final class Memory {
 	public static final long GB = (1 << 30);
 
 	private Memory() {
+		throw new AssertionError();
 	}
 
 	/**
@@ -92,6 +102,32 @@ public final class Memory {
 		}
 		DecimalFormat formatter = (result < 10 && i > 0) ? ONE_FRACTION_DIGIT : NO_FRACTION_DIGIT;
 		return formatter.format(result) + BYTE_COUNT_SUFFIX.charAt(i);
+	}
+
+	/**
+	 * Take a representation from {@link #readable(long)} and turn it back into bytes.  For example, if the
+	 * input is "2K" the output would be 2048.
+	 *
+	 * @param theBytes  the byte string
+	 * @return          the number of bytes
+	 */
+	public static long fromReadable(final String theBytes) {
+		final char aSuffix = theBytes.toUpperCase().charAt(theBytes.length()-1);
+		final double aBytes = Double.parseDouble(theBytes.substring(0, theBytes.length()-1));
+		switch (aSuffix) {
+			case 'B':
+				return (long) aBytes;
+			case 'K':
+				return (long) (aBytes * KB);
+			case 'M':
+				return (long) (aBytes * MB);
+			case 'G':
+				return (long) (aBytes * GB);
+			case 'T':
+				return (long) (aBytes * (1L << 40));
+			default:
+				throw new IllegalArgumentException("Unknown byte count suffix");
+		}
 	}
 
 	/**

@@ -26,7 +26,8 @@ import org.junit.runners.Suite;
  * @version 2.5
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class, TestOptionals.class, DurationTests.class, PropertiesTests.class })
+@Suite.SuiteClasses({ TestFunctions2.class, TestPredicates2.class, TestCopyables.class, TestOptionals.class,
+                      DurationTests.class, PropertiesTests.class, MemoryTests.class })
 public class AllBaseTests {
 
 }
