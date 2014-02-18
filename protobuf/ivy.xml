@@ -20,6 +20,6 @@
 	<dependencies defaultconf="compile,default,test">
 		<dependency org="com.complexible.common" name="core" rev="3.1.1"/>
 
-		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.4.1" conf="compile,default,test->default"/>
+		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.5.0" conf="compile,default,test->default"/>
 	</dependencies>
 </ivy-module>
