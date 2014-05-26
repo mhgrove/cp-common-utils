@@ -8,3 +8,4 @@ settings/ivysettings.properties
 out
 build
 dist
+*.iml
