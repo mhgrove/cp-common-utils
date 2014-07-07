@@ -2,8 +2,8 @@
 	<info organisation="com.complexible.common" module="protobuf">
 		<license name="APL 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
 		<ivyauthor name="Michael Grove"/>
-		<description homepage="https://github.com/clarkparsia/common-utils">Core utility classes for various common tasks.  In many cases classes extend or supplement
-			functionality provided by Guava, but also includes a number of general purpose utility classes.</description>
+		<description homepage="https://github.com/clarkparsia/common-utils">Core utility classes working with the
+		protobuf library</description>
 	</info>
 
 	<configurations>
@@ -18,7 +18,7 @@
 	</publications>
 
 	<dependencies defaultconf="compile,default,test">
-		<dependency org="com.complexible.common" name="core" rev="3.1.1"/>
+		<dependency org="com.complexible.common" name="core" rev="3.1.2"/>
 
 		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.5.0" conf="compile,default,test->default"/>
 	</dependencies>
