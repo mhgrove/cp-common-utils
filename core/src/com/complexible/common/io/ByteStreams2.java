@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.zip.GZIPOutputStream;
 
 import com.google.common.io.ByteStreams;
+import com.google.common.io.Closer;
 import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 
@@ -34,7 +35,7 @@ import com.google.common.primitives.Longs;
  *
  * @author  Michael Grove
  * @since   2.3.1
- * @version 3.1.1
+ * @version 3.1.2
  */
 public final class ByteStreams2 {
 
@@ -96,13 +97,21 @@ public final class ByteStreams2 {
 	}
 
     public static byte[] gzip(final byte[] theBytes) throws IOException {
-        ByteArrayOutputStream aOut = new ByteArrayOutputStream(theBytes.length);
+        final ByteArrayOutputStream aOut = new ByteArrayOutputStream(theBytes.length);
 
-        GZIPOutputStream aZipped = new GZIPOutputStream(aOut);
-        ByteStreams.copy(new ByteArrayInputStream(theBytes), aZipped);
+	    final GZIPOutputStream aZipped = new GZIPOutputStream(aOut);
+	    final ByteArrayInputStream aIn = new ByteArrayInputStream(theBytes);
 
-        aZipped.flush();
-        aZipped.close();
+	    Closer aCloser = Closer.create();
+	    aCloser.register(aZipped);
+	    aCloser.register(aIn);
+
+	    try {
+		    ByteStreams.copy(aIn, aZipped);
+	    }
+	    finally {
+		    aCloser.close();
+	    }
 
         return aOut.toByteArray();
     }

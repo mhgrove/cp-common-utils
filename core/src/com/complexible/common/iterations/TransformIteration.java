@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,21 +24,22 @@ import java.util.NoSuchElementException;
  * @param <I> the input type
  * @param <O> the iteration type
  * @param <E> the exception thrown
- * @author Michael Grove
- * @since 2.0
- * @version 2.0
+ *
+ * @author  Michael Grove
+ * @since   2.0
+ * @version 3.1.2
  */
 public final class TransformIteration<I,O,E extends Throwable> implements Iteration<O, E> {
 
 	/**
-	 * The function that transforms the resuts
+	 * The function that transforms the results
 	 */
-	private Function<I,O> mFunc;
+	private final Function<I,O> mFunc;
 
 	/**
 	 * The iteration whose results should be transformed
 	 */
-	private Iteration<I, E> mIter;
+	private final Iteration<I, E> mIter;
 
 	/**
 	 * Create a new TransformIteration
@@ -51,21 +52,21 @@ public final class TransformIteration<I,O,E extends Throwable> implements Iterat
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public O next() throws E, NoSuchElementException {
 		return mFunc.apply(mIter.next());
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean hasNext() throws E {
 		return mIter.hasNext();
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void close() throws E {
 		mIter.close();

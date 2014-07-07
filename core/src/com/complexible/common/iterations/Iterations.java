@@ -468,12 +468,12 @@ public final class Iterations {
 		/**
 		 * The iteration being filtered
 		 */
-		private Iteration<T,E> mIter;
+		private final Iteration<T,E> mIter;
 
 		/**
 		 * The filter
 		 */
-		private Predicate<T> mFilter;
+		private final Predicate<T> mFilter;
 
 		/**
 		 * Create a new FilterIteration
@@ -516,8 +516,12 @@ public final class Iterations {
 		 */
 		@Override
 		public void close() throws E {
-			super.close();
-			mIter.close();
+			try {
+				super.close();
+			}
+			finally {
+				mIter.close();
+			}
 		}
 	}
 

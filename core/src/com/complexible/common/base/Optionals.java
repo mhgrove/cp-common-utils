@@ -16,21 +16,35 @@
 package com.complexible.common.base;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.List;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 
 /**
  * <p>Utility class for Optional</p>
  *
  * @author  Michael Grove
  * @since   2.4
- * @version 2.4
+ * @version 3.1.2
  */
 public final class Optionals {
 
     private Optionals() {
         throw new AssertionError();
     }
+
+	public static <T> List<T> all(final Collection<Optional<T>> theCollection) {
+		List<T> aList = Lists.newArrayList();
+		for (Optional<T> aOpt : theCollection) {
+			if (aOpt.isPresent()) {
+				aList.add(aOpt.get());
+			}
+		}
+
+		return aList;
+	}
 
     public static <T> T require(final Optional<T> theOptional) throws IllegalArgumentException {
         return require(theOptional, "The required optional value is not present.");
