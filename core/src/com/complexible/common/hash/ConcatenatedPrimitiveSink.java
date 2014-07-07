@@ -174,15 +174,6 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
      * @inheritDoc
      */
     @Override
-    @SuppressWarnings("deprecation")
-    public PrimitiveSink putString(final CharSequence theCharSequence) {
-        return putUnencodedChars(theCharSequence);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
     public PrimitiveSink putUnencodedChars(final CharSequence theCharSequence) {
         return putString(theCharSequence, Charsets.UTF_8);
     }

@@ -79,15 +79,6 @@ public abstract class AbstractHasher implements Hasher {
 		return putString(theCharSequence, Charsets.UTF_8);
 	}
 
-    /**
-     * @inheritDoc
-     */
-    @SuppressWarnings("deprecation")
-    @Override
-    public Hasher putString(final CharSequence theCharSequence) {
-        return putUnencodedChars(theCharSequence);
-    }
-
 	/**
 	 * @inheritDoc
 	 */

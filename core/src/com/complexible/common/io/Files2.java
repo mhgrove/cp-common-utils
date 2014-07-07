@@ -53,7 +53,7 @@ public final class Files2 {
 	}
 
 	public static String path(final String theSegment, final String... theSegments) {
-		return Joiner.on(File.pathSeparatorChar).skipNulls().join(null, theSegment, theSegments);
+		return Joiner.on(File.pathSeparatorChar).skipNulls().join(null, theSegment, (String[]) theSegments);
 	}
 
 	/**

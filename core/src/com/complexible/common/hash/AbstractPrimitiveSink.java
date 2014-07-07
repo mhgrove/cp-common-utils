@@ -125,13 +125,4 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	public PrimitiveSink putString(final CharSequence theCharSequence, final Charset theCharset) {
         return putBytes(theCharSequence.toString().getBytes(theCharset));
 	}
-
-    /**
-     * @inheritDoc
-     */
-    @SuppressWarnings("deprecation")
-    @Override
-    public PrimitiveSink putString(final CharSequence theCharSequence) {
-        return putUnencodedChars(theCharSequence);
-    }
 }
