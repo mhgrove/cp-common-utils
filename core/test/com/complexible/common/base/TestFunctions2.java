@@ -78,4 +78,22 @@ public class TestFunctions2 {
 		assertEquals("bar", aFunc.apply("foo.bar"));
 		assertEquals("foo_bar", aFunc.apply("foo_bar"));
 	}
+
+	@Test
+	public void testPrefix() {
+		final String aPrefix = "prefix";
+		final String aValue = "value";
+		final String aExpected = aPrefix + aValue;
+
+		assertEquals(aExpected, Functions2.Strings.prefix(aPrefix).apply(aValue));
+	}
+
+	@Test
+	public void testPostfix() {
+		final String aPostfix = "postfix";
+		final String aValue = "value";
+		final String aExpected = aValue + aPostfix;
+
+		assertEquals(aExpected, Functions2.Strings.postfix(aPostfix).apply(aValue));
+	}
 }

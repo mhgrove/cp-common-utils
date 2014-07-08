@@ -19,7 +19,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 
 /**
@@ -34,6 +36,24 @@ public final class Optionals {
     private Optionals() {
         throw new AssertionError();
     }
+
+	public static <T> Predicate<Optional<T>> present() {
+		return new Predicate<Optional<T>>() {
+			@Override
+			public boolean apply(final Optional<T> input) {
+				return input.isPresent();
+			}
+		};
+	}
+
+	public static <T> Function<Optional<T>, T> map() {
+		return new Function<Optional<T>, T>() {
+			@Override
+			public T apply(final Optional<T> input) {
+				return require(input);
+			}
+		};
+	}
 
 	public static <T> List<T> all(final Collection<Optional<T>> theCollection) {
 		List<T> aList = Lists.newArrayList();

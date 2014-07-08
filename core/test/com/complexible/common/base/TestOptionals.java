@@ -22,6 +22,8 @@ import com.google.common.base.Optional;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -65,4 +67,23 @@ public class TestOptionals {
             assertEquals(aMsg, e.getMessage());
         }
     }
+
+	@Test
+	public void testPresent() {
+		assertFalse(Optionals.<String>present().apply(Optional.<String>absent()));
+		assertTrue(Optionals.<String>present().apply(Optional.of("")));
+	}
+
+	@Test
+	public void testMap() {
+		final String aValue = "foo";
+		Optional<String> aOpt = Optional.of(aValue);
+
+		assertEquals(aValue, Optionals.<String>map().apply(aOpt));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testMapAbsent() {
+		Optionals.<String>map().apply(Optional.<String>absent());
+	}
 }

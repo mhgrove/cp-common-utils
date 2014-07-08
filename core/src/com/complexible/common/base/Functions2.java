@@ -16,6 +16,7 @@
 package com.complexible.common.base;
 
 import com.google.common.base.Function;
+import com.google.common.base.Functions;
 
 /**
  * <p>Additional utility methods for working with Guava Functions</p>
@@ -55,7 +56,11 @@ public final class Functions2 {
 	}
 
 	/**
-	 * String based functions.
+	 * <p>String based functions.</p>
+	 *
+	 * @author  Michael Grove
+	 * @since   3.0
+	 * @version 3.1.3
 	 */
 	public final static class Strings {
 		public static Function<String, String> substring(final int theStart) {
@@ -90,6 +95,48 @@ public final class Functions2 {
 
 		public static Function<String, String> substringUntil(final String theString) {
 			return new Substring(0, theString);
+		}
+
+		public static Function<String, String> prefix(final String thePrefix) {
+			return new Prefix(thePrefix);
+		}
+
+		public static Function<String, String> postfix(final String thePostfix) {
+			return new Postfix(thePostfix);
+		}
+
+		private static final class Prefix implements Function<String, String> {
+			private Function<?, String> mFunc;
+
+			public Prefix(final String thePrefix) {
+				this(Functions.constant(thePrefix));
+			}
+
+			public Prefix(final Function<?, String> theFunc) {
+				mFunc = theFunc;
+			}
+
+			@Override
+			public String apply(final String input) {
+				return String.format("%s%s", mFunc.apply(null), input);
+			}
+		}
+
+		private static final class Postfix implements Function<String, String> {
+			private Function<?, String> mFunc;
+
+			public Postfix(final String thePrefix) {
+				this(Functions.constant(thePrefix));
+			}
+
+			public Postfix(final Function<?, String> theFunc) {
+				mFunc = theFunc;
+			}
+
+			@Override
+			public String apply(final String input) {
+				return String.format("%s%s", input, mFunc.apply(null));
+			}
 		}
 
 		private static class Replace implements Function<String, String> {
