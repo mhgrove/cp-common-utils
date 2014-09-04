@@ -18,11 +18,11 @@ package com.complexible.common.iterations;
 /**
  * <p>Implementation of an {@link Iteration} backed by an array.</p>
  *
- * @author Michael Grove
- * @since 2.0
+ * @author  Michael Grove
+ * @since   2.0
  * @version 2.0
  */
-public final class ArrayIteration<T, E extends Exception> extends AbstractIteration<T, E> {
+public final class ArrayIteration<T, E extends Throwable> extends AbstractIteration<T, E> {
 
 	/**
 	 * The current iteration index into the array
