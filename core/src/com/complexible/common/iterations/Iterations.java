@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,10 @@ import org.slf4j.Logger;
  * <p>Utility class for working with Iterations</p>
  *
  * @author  Michael Grove
+ * @author  Fernando Hernandez
+ *
  * @since   2.0
- * @version 3.0
+ * @version 4.0
  */
 public final class Iterations {
 	/**
@@ -182,7 +184,7 @@ public final class Iterations {
 	 * @param <E> the error type thrown by the iteration
 	 * @return an Iterator wrapping the iteration.
 	 */
-	public static <T, E extends Throwable> Iterator<T> toIterator(final Iteration<T, E> theIteration) {
+	public static <T, E extends Exception> Iterator<T> toIterator(final Iteration<T, E> theIteration) {
 		return new Iterator<T>() {
             @Override
 			public boolean hasNext() {
@@ -238,7 +240,7 @@ public final class Iterations {
 	 * @param <E> the error type
 	 * @return an Iteration that will iterate over the contents of <b>all</b> the provided iterations
 	 */
-	public static <T, E extends Throwable> Iteration<T,E> all(final Iterable<Iteration<T,E>> theIterations) {
+	public static <T, E extends Exception> Iteration<T,E> all(final Iterable<Iteration<T,E>> theIterations) {
 		return new MultiIteration<T,E>(theIterations);
 	}
 
@@ -249,7 +251,7 @@ public final class Iterations {
 	 * @param <E> the error type
 	 * @return an Iteration that will iterate over the contents of <b>all</b> the provided iterations
 	 */
-	public static <T, E extends Throwable> Iteration<T,E> all(final Iteration<T,E>... theIterations) {
+	public static <T, E extends Exception> Iteration<T,E> all(final Iteration<T,E>... theIterations) {
 		return new MultiIteration<T,E>(Arrays.asList(theIterations));
 	}
 
@@ -261,7 +263,7 @@ public final class Iterations {
 	 * @return the contents of the iteration as a set
 	 * @throws E if there is an error getting the elements from the iteration
 	 */
-	public static <T, E extends Throwable> Set<T> set(final Iteration<T,E> theIteration) throws E {
+	public static <T, E extends Exception> Set<T> set(final Iteration<T,E> theIteration) throws E {
 		try {
 			Set<T> aSet = Sets.newHashSet();
 			while (theIteration.hasNext()) {
@@ -284,7 +286,7 @@ public final class Iterations {
      * @return              true if the iterations have the same exact contents, false otherwise.
      * @throws E            if one of the iterations threw something while comparing
      */
-    public static <T, E extends Throwable> boolean equals(final Iteration<T,E> theLeftIter,
+    public static <T, E extends Exception> boolean equals(final Iteration<T,E> theLeftIter,
                                                           final Iteration<T,E> theRightIter) throws E {
         while (theLeftIter.hasNext()) {
             if (!theRightIter.hasNext()) {
@@ -310,7 +312,7 @@ public final class Iterations {
 	 * @return the contents of the iteration as a list
 	 * @throws E if there is an error getting the elements from the Iteration
 	 */
-	public static <T, E extends Throwable> List<T> list(final Iteration<T,E> theIteration) throws E {
+	public static <T, E extends Exception> List<T> list(final Iteration<T,E> theIteration) throws E {
 		try {
 			List<T> aList = Lists.newArrayList();
 			while (theIteration.hasNext()) {
@@ -332,7 +334,7 @@ public final class Iterations {
 	 * @param <E> the error type of the iteration
 	 * @throws E if there is an error while iterating
 	 */
-	public static <T, E extends Throwable> void each(final Iteration<T,E> theIteration, final Predicate<T> thePred) throws E {
+	public static <T, E extends Exception> void each(final Iteration<T,E> theIteration, final Predicate<T> thePred) throws E {
 		try {
 			while (theIteration.hasNext()) {
 				thePred.apply(theIteration.next());
@@ -352,7 +354,7 @@ public final class Iterations {
 	 * @return a filtered view of the original iteration
 	 * @throws E if there is an error while iterating
 	 */
-	public static <T, E extends Throwable> Iteration<T,E> filter(final Iteration<T,E> theIteration, final Predicate<T> thePred) throws E {
+	public static <T, E extends Exception> Iteration<T,E> filter(final Iteration<T,E> theIteration, final Predicate<T> thePred) throws E {
 		return new FilterIteration<T,E>(theIteration, thePred);
 	}
 
@@ -365,7 +367,7 @@ public final class Iterations {
 	 * @param <E> the error type
 	 * @return the transformed iteration
 	 */
-	public static <I, O, E extends Throwable> Iteration<O, E> transform(final Iteration<I, E> theIteration, final Function<I, O> theFunc) {
+	public static <I, O, E extends Exception> Iteration<O, E> transform(final Iteration<I, E> theIteration, final Function<I, O> theFunc) {
 		return new TransformIteration<I,O,E>(theFunc, theIteration);
 	}
 
@@ -380,7 +382,7 @@ public final class Iterations {
 	 * @param <OE>          the output exception type
 	 * @return              the transformed iteration
 	 */
-	public static <T, IE extends Throwable, OE extends Throwable> Iteration<T, OE> transformException(final Iteration<T, IE> theIteration, final Function<IE ,OE> theFunc) {
+	public static <T, IE extends Exception, OE extends Exception> Iteration<T, OE> transformException(final Iteration<T, IE> theIteration, final Function<IE ,OE> theFunc) {
 		return new TransformException<T,IE,OE>(theFunc, theIteration);
 	}
 
@@ -422,7 +424,7 @@ public final class Iterations {
 	 * @param <E>       the exception
 	 * @return          a singleton iterator over the obj
 	 */
-	public static <T,E extends Throwable> Iteration<T, E> singletonIteration(final T theObj) {
+	public static <T,E extends Exception> Iteration<T, E> singletonIteration(final T theObj) {
 		return new SingletonIteration<T,E>(theObj);
 	}
 
@@ -436,7 +438,7 @@ public final class Iterations {
 	 * @since   0.6
 	 * @version 0.6
 	 */
-	private static class SingletonIteration<T, E extends Throwable> extends AbstractIteration<T, E> {
+	private static class SingletonIteration<T, E extends Exception> extends AbstractIteration<T, E> {
 		private final T mObj;
 		private boolean hasNext = true;
 
@@ -463,7 +465,7 @@ public final class Iterations {
 	 * @since   0.3.1
 	 * @version 0.3.1
 	 */
-	private static class FilterIteration<T,E extends Throwable> extends AbstractIteration<T,E> {
+	private static class FilterIteration<T,E extends Exception> extends AbstractIteration<T,E> {
 
 		/**
 		 * The iteration being filtered

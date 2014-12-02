@@ -18,7 +18,7 @@
 	</publications>
 
 	<dependencies defaultconf="compile,default,test">
-		<dependency org="com.complexible.common" name="core" rev="3.1.2"/>
+		<dependency org="com.complexible.common" name="core" rev="4.0"/>
 
 		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.5.0" conf="compile,default,test->default"/>
 	</dependencies>
