@@ -55,7 +55,7 @@ public final class Iterations {
 	 * @param theArray the array to iterate over
 	 * @return an Iteration over the array
 	 */
-	public static <T, E extends Throwable> Iteration<T,E> forArray(final T[] theArray) {
+	public static <T, E extends Exception> Iteration<T,E> forArray(final T[] theArray) {
 		return new ArrayIteration<T, E>(theArray);
 	}
 
@@ -63,7 +63,7 @@ public final class Iterations {
 	 * Return an empty {@link Iteration} which does not iterate.
 	 * @return an empty Iteration
 	 */
-	public static <T, E extends Throwable> Iteration<T,E> emptyIteration() {
+	public static <T, E extends Exception> Iteration<T,E> emptyIteration() {
 		return new EmptyIteration<T,E>();
 	}
 
@@ -74,7 +74,7 @@ public final class Iterations {
 	 * @since   2.0
 	 * @version 2.0
 	 */
-	private static class EmptyIteration<T, E extends Throwable> implements Iteration<T,E> {
+	private static class EmptyIteration<T, E extends Exception> implements Iteration<T,E> {
 
 		/**
 		 * @inheritDoc
@@ -112,7 +112,7 @@ public final class Iterations {
 	 * @return a unique iteration
 	 * @throws E if there was an error while computing the result.
 	 */
-	public static <T, E extends Throwable> Iteration<T,E> unique(final Iteration<T,E> theIteration) throws E {
+	public static <T, E extends Exception> Iteration<T,E> unique(final Iteration<T,E> theIteration) throws E {
 		return filter(theIteration, new UniqueFilter<T>());
 	}
 
@@ -145,7 +145,7 @@ public final class Iterations {
 	 * @param <E> the exception that can be thrown during use
 	 * @return a concatenated iteration which will iterate over all the provided Iterations
 	 */
-	public static <T, E extends Throwable, I extends Iteration<T, E>> Iteration<T, E> concat(final Iterable<I> theIterations) {
+	public static <T, E extends Exception, I extends Iteration<T, E>> Iteration<T, E> concat(final Iterable<I> theIterations) {
 		return new MultiIteration<T,E>(theIterations);
 	}
 
@@ -156,7 +156,7 @@ public final class Iterations {
 	 * @param <E> the exception that can be thrown during use
 	 * @return a concatenated iteration which will iterate over all the provided Iterations
 	 */
-	public static <T, E extends Throwable, I extends Iteration<T, E>> Iteration<T, E> concat(final I ... theIterations) {
+	public static <T, E extends Exception, I extends Iteration<T, E>> Iteration<T, E> concat(final I ... theIterations) {
 		return new MultiIteration<T,E>(Arrays.asList(theIterations));
 	}
 
@@ -229,7 +229,7 @@ public final class Iterations {
 	 * @param <T> the return type
 	 * @return an Iteration backed by the Iterator
 	 */
-	public static <T, E extends Throwable> Iteration<T, E> toIteration(final Iterator<T> theIterator) {
+	public static <T, E extends Exception> Iteration<T, E> toIteration(final Iterator<T> theIterator) {
 		return new IteratorIteration<T, E>(theIterator);
 	}
 
@@ -393,7 +393,7 @@ public final class Iterations {
 	 * @return              the number of elements in the iteration
 	 * @throws E            if there is an error while iterating
 	 */
-	public static <E extends Throwable> long size(final Iteration<?, E> theIteration) throws E {
+	public static <E extends Exception> long size(final Iteration<?, E> theIteration) throws E {
 		try {
             long aSize = 0;
 			while (theIteration.hasNext()) {
@@ -413,7 +413,7 @@ public final class Iterations {
      * @param theIteration  the Iteration to consume
      * @throws E            if there is an error while iterating
      */
-    public static <T, E extends Throwable> void consume(final Iteration<T, E> theIteration) throws E {
+    public static <T, E extends Exception> void consume(final Iteration<T, E> theIteration) throws E {
         each(theIteration, Predicates.<T>alwaysTrue());
     }
 
@@ -535,7 +535,7 @@ public final class Iterations {
 	 * @since   0.3.3
 	 * @version 0.3.3
 	 */
-	private static class IteratorIteration<T, E extends Throwable> extends AbstractIteration<T, E> {
+	private static class IteratorIteration<T, E extends Exception> extends AbstractIteration<T, E> {
 
 		/**
 		 * The base iterator
