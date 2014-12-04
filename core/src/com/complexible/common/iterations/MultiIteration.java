@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,12 @@ import java.util.Iterator;
  * <p>An adapter to provide a single iteration over a list of iterations.  This will iterate over each child iteration in the order they are provided in the constructor.</p>
  *
  * @author  Michael Grove
+ * @author  Fernando Hernandez
+ *
  * @since   2.0
- * @version 2.0
+ * @version 4.0
  */
-public class MultiIteration<T, E extends Throwable> extends AbstractIteration<T, E> {
+public class MultiIteration<T, E extends Exception> extends AbstractIteration<T, E> {
 
 	/**
 	 * The list of iterations to iterate over

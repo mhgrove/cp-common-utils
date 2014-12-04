@@ -102,11 +102,11 @@
 
     <target name="compile" depends="init"
             description="Compile source files." >
-        <javac source="1.5" target="1.5" srcdir="${core.src}" destdir="${build.core}" debug="yes" deprecation="yes">
+        <javac source="1.7" target="1.7" srcdir="${core.src}" destdir="${build.core}" debug="yes" deprecation="yes">
             <classpath refid="project.class.path"/>
         </javac>
         
-		<javac source="1.5" target="1.5" srcdir="${core.test}" destdir="${build.test}" debug="yes" deprecation="yes">
+		<javac source="1.7" target="1.7" srcdir="${core.test}" destdir="${build.test}" debug="yes" deprecation="yes">
 			<classpath>
 				<path refid="core.classpath"/>
 				<pathelement path="${build.core}"/>

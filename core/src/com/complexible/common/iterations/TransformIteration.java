@@ -26,10 +26,12 @@ import java.util.NoSuchElementException;
  * @param <E> the exception thrown
  *
  * @author  Michael Grove
+ * @author  Fernando Hernandez
+ *
  * @since   2.0
- * @version 3.1.2
+ * @version 4.0
  */
-public final class TransformIteration<I,O,E extends Throwable> implements Iteration<O, E> {
+public final class TransformIteration<I,O,E extends Exception> implements Iteration<O, E> {
 
 	/**
 	 * The function that transforms the results
@@ -81,7 +83,7 @@ public final class TransformIteration<I,O,E extends Throwable> implements Iterat
 	 * @param <E> the exception thrown
 	 * @return a new TransformIteration
 	 */
-	public static <I,O, E extends Throwable> TransformIteration<I, O, E> create(final Function<I,O> theFunc, final Iteration<I,E> theIter) {
+	public static <I,O, E extends Exception> TransformIteration<I, O, E> create(final Function<I,O> theFunc, final Iteration<I,E> theIter) {
 		return new TransformIteration<I,O,E>(theFunc, theIter);
 	}
 }

@@ -23,10 +23,12 @@ import java.util.NoSuchElementException;
  *
  * @author Based on the AbstractIterator implementation from Google Collections/Guava. (by Kevin Bourrillion)
  * @author Michael Grove
- * @since 2.0
- * @version 2.0
+ * @author Fernando Hernandez
+ *
+ * @since   2.0
+ * @version 4.0
  */
-public abstract class AbstractIteration<T, E extends Throwable> implements Iteration<T,E> {
+public abstract class AbstractIteration<T, E extends Exception> implements Iteration<T,E> {
 
 	/**
 	 * Enumeration of the internal states the iterator can be in

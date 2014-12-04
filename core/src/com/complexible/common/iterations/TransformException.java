@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,13 @@ import com.google.common.base.Throwables;
  * @param <T> the iteration element type
  * @param <IE> the input exception type
  * @param <OE> the output exception thrown
- * @author Evren Sirin
- * @since 2.2
- * @version 2.2
+ * @author  Evren Sirin
+ * @author  Fernando Hernandez
+ *
+ * @since   2.2
+ * @version 4.0
  */
-public class TransformException<T,IE extends Throwable,OE extends Throwable> implements Iteration<T, OE> {
+public class TransformException<T,IE extends Exception,OE extends Exception> implements Iteration<T, OE> {
 	/**
 	 * The function that transforms the results
 	 */
