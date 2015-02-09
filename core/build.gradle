@@ -1,0 +1,9 @@
+group = "com.complexible.common.core"
+version = "4.0"
+archivesBaseName = "cp-common-utils"
+
+dependencies {
+	compile (group: "com.google.guava", name: "guava", version: "18.0") {
+		exclude group: "com.google.code.findbugs"
+	}
+}

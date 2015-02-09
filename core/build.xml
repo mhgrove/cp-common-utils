@@ -9,7 +9,7 @@
 
     <!-- Global Properties -->
 	<property name="core" location="."/>
-    <property name="core.src" location="${core}/src" />
+    <property name="core.src" location="/core/main/src" />
 	<property name="core.lib" location="${core}/lib" />
 	<property name="core.test" location="${core}/test" />
 
@@ -117,7 +117,7 @@
     <target name="build" depends="compile"
             description="Compile sources and copy data files into build directory.">
         <copy todir="${build}">
-            <fileset dir="${core.src}">
+            <fileset dir="/core/main/src">
                 <exclude name="**/*.java" />
             </fileset>
         </copy>
@@ -195,7 +195,7 @@ artifactId=${ivy.module}
 			<link href="http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/"/>
 
 			<classpath refid="project.class.path"/>
-			<fileset dir="${core.src}" defaultexcludes="yes"/>
+			<fileset dir="/core/main/src" defaultexcludes="yes"/>
 		</javadoc>
 	</target>
 

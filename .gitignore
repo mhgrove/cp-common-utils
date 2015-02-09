@@ -11,3 +11,7 @@ dist
 *.iml
 *.ipr
 *.iws
+
+# where gradle properties are stored
+gradle.properties
+.gradle/
