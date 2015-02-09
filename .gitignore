@@ -1,10 +1,4 @@
-install.xml
-*/lib
-settings/cp.ivysettings.xml
-settings/repo
-settings/ivy-cache
-settings/local.ivysettings.xml
-settings/ivysettings.properties
+
 out
 build
 dist
