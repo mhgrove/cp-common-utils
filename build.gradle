@@ -146,4 +146,22 @@ dependencies {
 	compile project(":protobuf")
 }
 
+evaluationDependsOnChildren()
+
+subprojects {
+	task javadocs(type: Javadoc) {
+		println "generating docs: ${archivesBaseName}-${project.version}"
+		source sourceSets.main.allJava
+		classpath = configurations.compile
+		destinationDir = file("${rootProject.buildDir}/javadocs/${project.name}")
+		configure(options) {
+			windowTitle "${project.archivesBaseName}-${project.version} API"
+			docTitle "${project.archivesBaseName}-${project.version}"
+			bottom "Copyright &#169; 2010-2015 Complexible. All Rights Reserved."
+			links "http://docs.oracle.com/javase/7/docs/api/",
+				  "http://docs.guava-libraries.googlecode.com/git-history/v18.0/javadoc/"
+		}
+	}
+}
+
 
