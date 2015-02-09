@@ -1,4 +1,4 @@
-group = "com.complexible.common.protobuf"
+group = "com.complexible.common"
 version = "1.2"
 archivesBaseName = "cp-common-protobuf"
 

@@ -1,4 +1,4 @@
-group = "com.complexible.common.core"
+group = "com.complexible.common"
 version = "4.0"
 archivesBaseName = "cp-common-utils"
 
