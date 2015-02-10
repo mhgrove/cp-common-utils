@@ -1,0 +1,9 @@
+group = "com.complexible.common"
+version = "1.2"
+archivesBaseName = "cp-common-protobuf"
+
+dependencies {
+	compile "com.google.protobuf:protobuf-java:2.5.0"
+
+	compile project(":core")
+}
