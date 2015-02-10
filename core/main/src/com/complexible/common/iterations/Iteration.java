@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2015 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 
 package com.complexible.common.iterations;
 
+import com.complexible.common.base.Closeable;
+
 /**
  * <p>New iterator interface.  Mimics {@link java.util.Iterator} in signature, but throws exceptions from its methods and is closeable.
  * Intended for use in cases where the implementation is iterating over something such that calls to {@link #next} or {@link #hasNext}
@@ -27,7 +29,7 @@ package com.complexible.common.iterations;
  * @since   2.0
  * @version 4.0
  */
-public interface Iteration<T, E extends Exception> extends AutoCloseable {
+public interface Iteration<T, E extends Exception> extends Closeable {
 
 	/**
 	 * Return the next element

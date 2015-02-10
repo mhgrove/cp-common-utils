@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2015 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,15 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.complexible.common.iterations;
 
 /**
  * <p>Implementation of an {@link Iteration} backed by an array.</p>
  *
  * @author  Michael Grove
- * @author  Fernando Hernandez
- *
  * @since   2.0
  * @version 4.0
  */

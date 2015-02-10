@@ -20,8 +20,8 @@ task wrapper(type: Wrapper) {
 
 allprojects {
 	group = "com.complexible.common"
-	sourceCompatibility = '1.7'
-	targetCompatibility = '1.7'
+	sourceCompatibility = '1.6'
+	targetCompatibility = '1.6'
 
 	repositories {
 		mavenCentral()
@@ -159,7 +159,7 @@ subprojects {
 			windowTitle "${project.archivesBaseName}-${project.version} API"
 			docTitle "${project.archivesBaseName}-${project.version}"
 			bottom "Copyright &#169; 2010-2015 Complexible. All Rights Reserved."
-			links "http://docs.oracle.com/javase/7/docs/api/",
+			links "http://docs.oracle.com/javase/6/docs/api/",
 				  "http://docs.guava-libraries.googlecode.com/git-history/v18.0/javadoc/"
 		}
 	}
