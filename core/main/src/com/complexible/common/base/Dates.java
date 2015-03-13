@@ -22,9 +22,9 @@ import java.text.ParseException;
 /**
  * <p>Utility methods for working with the Date object</p>
  *
- * @author Michael Grove
- * @version 2.0
- * @since 2.0
+ * @author  Michael Grove
+ * @since   2.0
+ * @version 4.0
  */
 public final class Dates {
 
@@ -32,13 +32,14 @@ public final class Dates {
 	}
 
 	/**
-	  * Formats the given string as a java.util.Date object.
-	  * @param theDate the date string
-	  * @return the string as a java.util.Date object
-	  */
-	 public static Date asDate(String theDate) {
+	 * Formats the given string as a java.util.Date object.
+	 * @param theDate the date string
+	 * @return the string as a java.util.Date object
+	 */
+	public static Date asDate(String theDate) {
+
 		try {
-			return new SimpleDateFormat("MM/dd/yy hh:mm").parse(theDate);
+			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(theDate);
 		}
 		catch (ParseException pe) {
 		}
@@ -56,7 +57,18 @@ public final class Dates {
 		}
 
 		try {
+			return new SimpleDateFormat("MM dd yyyy HH:mm:ss").parse(theDate);
+		}
+		catch (ParseException pe) {
+		}
+
+		try {
 			return new SimpleDateFormat("MM/dd/yyyy hh:mm").parse(theDate);
+		}
+		catch (ParseException pe) {
+		}
+		try {
+			return new SimpleDateFormat("MM/dd/yy hh:mm").parse(theDate);
 		}
 		catch (ParseException pe) {
 		}
@@ -98,12 +110,6 @@ public final class Dates {
 		}
 
 		try {
-			return new SimpleDateFormat("MM dd yyyy HH:mm:ss").parse(theDate);
-		}
-		catch (ParseException pe) {
-		}
-
-		try {
 			return new Date(Long.parseLong(theDate));
 		}
 		catch (Exception pe) {
@@ -112,12 +118,15 @@ public final class Dates {
 		throw new IllegalArgumentException("Invalid date format supplied: " + theDate);
 	}
 
-	 public static String date(Date theDate) {
-		 return new SimpleDateFormat("yyyy-MM-dd").format(theDate);
-	 }
+	public static String date(Date theDate) {
+		return new SimpleDateFormat("yyyy-MM-dd").format(theDate);
+	}
 
-	 public static String datetime(Date theDate) {
-		 return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(theDate);
-	 }
+	public static String datetime(Date theDate) {
+		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(theDate);
+	}
 
+	public static String datetimeISO(Date theDate) {
+		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(theDate);
+	}
 }
