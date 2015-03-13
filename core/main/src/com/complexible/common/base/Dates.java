@@ -39,7 +39,7 @@ public final class Dates {
 	public static Date asDate(String theDate) {
 
 		try {
-			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(theDate);
+			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(theDate);
 		}
 		catch (ParseException pe) {
 		}
@@ -127,6 +127,6 @@ public final class Dates {
 	}
 
 	public static String datetimeISO(Date theDate) {
-		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(theDate);
+		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(theDate);
 	}
 }
