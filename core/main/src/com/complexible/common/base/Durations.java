@@ -80,7 +80,7 @@ public final class Durations {
 	public static String readable(long theDuration, TimeUnit theUnit) {
 		// special case for 0
 		if (theDuration == 0) {
-			return "Oms";
+			return "0ms";
 		}
 		
 		Iterator<Entry<TimeUnit,String>> aAbbrs = ABBR.entrySet().iterator();

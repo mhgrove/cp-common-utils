@@ -42,7 +42,7 @@ public class DurationTests {
 		roundTrip("2000ms", 2000, MILLISECONDS, "2s");
 		roundTrip("24000ms", 24000, MILLISECONDS, "24s");
 		
-		roundTrip("0s", 0, SECONDS, "Oms");
+		roundTrip("0s", 0, SECONDS, "0ms");
 		roundTrip("30s", 30 , SECONDS);
 		roundTrip("90s", 90, SECONDS);
 		roundTrip("240s", 240, SECONDS, "4m");
