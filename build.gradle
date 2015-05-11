@@ -1,18 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 
-buildscript {
-	repositories {
-		maven {
-			url "http://jcenter.bintray.com"
-		}
-
-		dependencies {
-			classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '2.2.5')
-		}
-	}
-}
-
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.0'
 	distributionUrl = "http://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
@@ -37,9 +25,7 @@ ext {
 }
 
 subprojects {
-	apply plugin: "java"
-	apply plugin: "maven"
-	apply plugin: "artifactory"
+	apply plugin: 'java'
 
 	dependencies {
 		compile 'org.slf4j:slf4j-api:1.7.7'
@@ -77,69 +63,7 @@ subprojects {
 		testRuntime testJar // include the tests of other subprojects
 	}
 
-	if (project.hasProperty('publishUrl')
-		&& project.hasProperty('artifactoryUser')
-		&& project.hasProperty('artifactoryPassword')) {
-
-		// this task is just so artifactory picks up the pom changes
-		task('uploadMvn', type: Upload) {
-			configuration = configurations.archives
-			repositories {
-				mavenDeployer {
-					repository(url: publishUrl)
-					pom.project {
-						name = archivesBaseName
-						packaging = 'jar'
-						description projectDescription
-						url  projectUrl
-					}
-
-					//mess with the generated pom to remove test dependencies from published artifacts
-					pom.withXml { XmlProvider xmlProvider ->
-						def xml = xmlProvider.asString()
-						def pomXml = new XmlParser().parse(new ByteArrayInputStream(xml.toString().bytes))
-
-						pomXml.dependencies.dependency.each { dep ->
-							if (dep.scope.text() != 'compile') {
-								def parent = dep.parent()
-								parent.remove(dep)
-							}
-						}
-
-						def newXml = new StringWriter()
-						def printer = new XmlNodePrinter(new PrintWriter(newXml))
-						printer.preserveWhitespace = true
-						printer.print(pomXml)
-						xml.setLength(0)
-						xml.append(newXml.toString())
-					}
-
-				}
-			}
-		}
-
-		artifactory {
-			// publishUrl is defined in gradle.properties
-			publish {
-				contextUrl = publishUrl
-				repository {
-					repoKey = publishId //The Artifactory repository key to publish to
-					username = "${artifactoryUser}" //The publisher user name
-					password = "${artifactoryPassword}" //The publisher password
-				}
-			}
-			resolve {
-				contextUrl = publishUrl
-				repository {
-					repoKey = publishId //The Artifactory (preferably virtual) repository key to resolve from
-					username = "${artifactoryUser}" //Optional resolver user name (leave out to use anonymous resolution)
-					password = "${artifactoryPassword}" //The resolver password
-					maven = true
-				}
-			}
-
-		}
-	}
+	apply from: "$rootDir/maven.gradle"
 }
 
 evaluationDependsOnChildren()

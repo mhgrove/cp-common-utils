@@ -1,4 +1,4 @@
-publishId=theId
-publishUrl=/url/to/repo
-artifactoryUser=user
+publicRepository=/path/to/your/maven/checkout
+artifactoryUrl=/url/to/repo
+artifactoryUsername=user
 artifactoryPassword=secret
