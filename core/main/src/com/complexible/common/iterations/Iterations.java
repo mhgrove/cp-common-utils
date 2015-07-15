@@ -112,7 +112,7 @@ public final class Iterations {
 	 * @return a unique iteration
 	 * @throws E if there was an error while computing the result.
 	 */
-	public static <T, E extends Exception> Iteration<T,E> unique(final Iteration<T,E> theIteration) throws E {
+	public static <T, E extends Exception> Iteration<T,E> unique(final Iteration<T,E> theIteration) {
 		return filter(theIteration, new UniqueFilter<T>());
 	}
 
@@ -234,28 +234,6 @@ public final class Iterations {
 	}
 
 	/**
-	 * Create an Iteration that is the union of all the provided iterations
-	 * @param theIterations the child iteratinos
-	 * @param <T> the return type
-	 * @param <E> the error type
-	 * @return an Iteration that will iterate over the contents of <b>all</b> the provided iterations
-	 */
-	public static <T, E extends Exception> Iteration<T,E> all(final Iterable<Iteration<T,E>> theIterations) {
-		return new MultiIteration<T,E>(theIterations);
-	}
-
-	/**
-	 * Create an Iteration that is the union of all the provided iterations
-	 * @param theIterations the child iteratinos
-	 * @param <T> the return type
-	 * @param <E> the error type
-	 * @return an Iteration that will iterate over the contents of <b>all</b> the provided iterations
-	 */
-	public static <T, E extends Exception> Iteration<T,E> all(final Iteration<T,E>... theIterations) {
-		return new MultiIteration<T,E>(Arrays.asList(theIterations));
-	}
-
-	/**
 	 * Return the contents of the Iteration as a Set.  The Iteration is closed when the method returns.
 	 * @param theIteration the iteration
 	 * @param <T> the type returned by the iteration
@@ -352,9 +330,8 @@ public final class Iterations {
 	 * @param <T> the type of the iteration
 	 * @param <E> the error type
 	 * @return a filtered view of the original iteration
-	 * @throws E if there is an error while iterating
 	 */
-	public static <T, E extends Exception> Iteration<T,E> filter(final Iteration<T,E> theIteration, final Predicate<T> thePred) throws E {
+	public static <T, E extends Exception> Iteration<T,E> filter(final Iteration<T,E> theIteration, final Predicate<T> thePred) {
 		return new FilterIteration<T,E>(theIteration, thePred);
 	}
 
