@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.complexible.common.base;
+package com.complexible.common.hash;
 
 import java.lang.reflect.Array;
 
