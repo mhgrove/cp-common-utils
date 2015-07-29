@@ -35,7 +35,7 @@ public final class Functions2 {
 	 * @return a function that will perform the cast
 	 */
 	public static <I, O> Function<I,O> cast(final Class<O> theClass) {
-		return new CastFunction<I,O>(theClass);
+		return new CastFunction<>(theClass);
 	}
 
 	private static class CastFunction<I, O> implements Function<I, O> {

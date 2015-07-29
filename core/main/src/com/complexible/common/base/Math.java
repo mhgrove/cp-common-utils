@@ -25,14 +25,12 @@ import java.math.BigInteger;
  */
 public final class Math {
 
-	private Math() {}
-	
+	private Math() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Returns the base 10 logarithm of a {@link BigInteger}.
-	 * 
-	 * @param theValue
-	 * @return
 	 */
 	public static double log10(final BigInteger theValue) {
 		/*

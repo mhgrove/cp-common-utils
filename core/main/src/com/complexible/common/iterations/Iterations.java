@@ -15,18 +15,19 @@
 
 package com.complexible.common.iterations;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Predicate;
-import com.google.common.base.Function;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Lists;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -56,7 +57,7 @@ public final class Iterations {
 	 * @return an Iteration over the array
 	 */
 	public static <T, E extends Exception> Iteration<T,E> forArray(final T[] theArray) {
-		return new ArrayIteration<T, E>(theArray);
+		return new ArrayIteration<>(theArray);
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class Iterations {
 	 * @return an empty Iteration
 	 */
 	public static <T, E extends Exception> Iteration<T,E> emptyIteration() {
-		return new EmptyIteration<T,E>();
+		return new EmptyIteration<>();
 	}
 
 	/**
@@ -77,7 +78,7 @@ public final class Iterations {
 	private static class EmptyIteration<T, E extends Exception> implements Iteration<T,E> {
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		@Override
 		public T next() throws E {
@@ -85,7 +86,7 @@ public final class Iterations {
 		}
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean hasNext() throws E {
@@ -93,12 +94,16 @@ public final class Iterations {
 		}
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void close() throws E {
 			// no-op
 		}
+	}
+
+	public static <T, E extends Exception> Stream<T> stream(final Iteration<T, E> theIter) {
+		return StreamSupport.<T>stream(new IterationStream<>(theIter), false /* is parallel */);
 	}
 
 	/**
@@ -113,7 +118,7 @@ public final class Iterations {
 	 * @throws E if there was an error while computing the result.
 	 */
 	public static <T, E extends Exception> Iteration<T,E> unique(final Iteration<T,E> theIteration) {
-		return filter(theIteration, new UniqueFilter<T>());
+		return filter(theIteration, new UniqueFilter<>());
 	}
 
 	/**
@@ -124,10 +129,10 @@ public final class Iterations {
 		private final Set<T> mResults = Sets.newHashSet();
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		@Override
-		public boolean apply(final T theResource) {
+		public boolean test(final T theResource) {
 			boolean aResult = !mResults.contains(theResource);
 
 			if (aResult) {
@@ -146,7 +151,7 @@ public final class Iterations {
 	 * @return a concatenated iteration which will iterate over all the provided Iterations
 	 */
 	public static <T, E extends Exception, I extends Iteration<T, E>> Iteration<T, E> concat(final Iterable<I> theIterations) {
-		return new MultiIteration<T,E>(theIterations);
+		return new MultiIteration<>(theIterations);
 	}
 
 	/**
@@ -156,8 +161,9 @@ public final class Iterations {
 	 * @param <E> the exception that can be thrown during use
 	 * @return a concatenated iteration which will iterate over all the provided Iterations
 	 */
+	@SafeVarargs
 	public static <T, E extends Exception, I extends Iteration<T, E>> Iteration<T, E> concat(final I ... theIterations) {
-		return new MultiIteration<T,E>(Arrays.asList(theIterations));
+		return new MultiIteration<>(Arrays.asList(theIterations));
 	}
 
     /**
@@ -230,7 +236,7 @@ public final class Iterations {
 	 * @return an Iteration backed by the Iterator
 	 */
 	public static <T, E extends Exception> Iteration<T, E> toIteration(final Iterator<T> theIterator) {
-		return new IteratorIteration<T, E>(theIterator);
+		return new IteratorIteration<>(theIterator);
 	}
 
 	/**
@@ -274,7 +280,7 @@ public final class Iterations {
             final T aLeft = theLeftIter.next();
             final T aRight = theRightIter.next();
 
-            if (!Objects.equal(aLeft, aRight)) {
+            if (!Objects.equals(aLeft, aRight)) {
                 return false;
             }
         }
@@ -305,25 +311,6 @@ public final class Iterations {
 	}
 
 	/**
-	 * Apply the provided predicate to each element in the Iteration.  The Iteration is closed when the method returns.
-	 * @param theIteration  the iteration
-	 * @param thePred       the predicate to apply
-	 * @param <T> the type of the iteration
-	 * @param <E> the error type of the iteration
-	 * @throws E if there is an error while iterating
-	 */
-	public static <T, E extends Exception> void each(final Iteration<T,E> theIteration, final Predicate<T> thePred) throws E {
-		try {
-			while (theIteration.hasNext()) {
-				thePred.apply(theIteration.next());
-			}
-		}
-		finally {
-			theIteration.close();
-		}
-	}
-
-	/**
 	 * Return a new iteration which is a filtered view of the original iteration. The original iteration will be exhausted by this process
 	 * @param theIteration  the iteration
 	 * @param thePred       the predicate to use for filtering
@@ -345,7 +332,7 @@ public final class Iterations {
 	 * @return the transformed iteration
 	 */
 	public static <I, O, E extends Exception> Iteration<O, E> transform(final Iteration<I, E> theIteration, final Function<I, O> theFunc) {
-		return new TransformIteration<I,O,E>(theFunc, theIteration);
+		return new TransformIteration<>(theFunc, theIteration);
 	}
 
 	/**
@@ -391,7 +378,11 @@ public final class Iterations {
      * @throws E            if there is an error while iterating
      */
     public static <T, E extends Exception> void consume(final Iteration<T, E> theIteration) throws E {
-        each(theIteration, Predicates.<T>alwaysTrue());
+	    try (Iteration<T, E> aIter = theIteration) {
+		    while (aIter.hasNext()) {
+			    aIter.next();
+		    }
+	    }
     }
 
 	/**
@@ -402,7 +393,7 @@ public final class Iterations {
 	 * @return          a singleton iterator over the obj
 	 */
 	public static <T,E extends Exception> Iteration<T, E> singletonIteration(final T theObj) {
-		return new SingletonIteration<T,E>(theObj);
+		return new SingletonIteration<>(theObj);
 	}
 
 	/**
@@ -423,6 +414,10 @@ public final class Iterations {
 			mObj = theObj;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		protected T computeNext() throws E {
 			if (hasNext) {
 				hasNext = false;
@@ -465,9 +460,9 @@ public final class Iterations {
 		}
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
-        @Override
+		@Override
 		protected T computeNext() throws E {
 			boolean passesFilter = false;
 			T aObj = null;
@@ -475,10 +470,10 @@ public final class Iterations {
 			if (mIter.hasNext()) {
 				aObj = mIter.next();
 
-				passesFilter = mFilter.apply(aObj);
+				passesFilter = mFilter.test(aObj);
 				while (!passesFilter && mIter.hasNext()) {
 					aObj = mIter.next();
-					passesFilter = mFilter.apply(aObj);
+					passesFilter = mFilter.test(aObj);
 				}
 			}
 
@@ -491,7 +486,7 @@ public final class Iterations {
 		}
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		@Override
 		public void close() throws E {
@@ -528,9 +523,9 @@ public final class Iterations {
 		}
 
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
-        @Override
+		@Override
 		protected T computeNext() throws E {
 			if (mIter.hasNext()) {
 				return mIter.next();
