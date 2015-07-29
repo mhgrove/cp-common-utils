@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
+import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.stream.Stream;
@@ -30,6 +32,14 @@ public final class Paths2 {
 
 	public static String toString(final Path thePath, final Charset theCharset) throws IOException {
 		return new String(Files.readAllBytes(thePath), theCharset);
+	}
+	public static Path classPath(final String thePath) {
+		try {
+			return Paths.get(Paths2.class.getResource(thePath).toURI());
+		}
+		catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static ByteSource asByteSource(final Path thePath) {
