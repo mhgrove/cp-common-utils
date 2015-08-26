@@ -34,6 +34,7 @@ public final class SystemUtil {
 	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	private SystemUtil() {
+		throw new AssertionError();
 	}
 
 	public static boolean getPropertyAsBoolean(final String theProperty, final boolean theDefault) {

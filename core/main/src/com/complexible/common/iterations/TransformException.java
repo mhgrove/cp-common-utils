@@ -16,8 +16,8 @@
 package com.complexible.common.iterations;
 
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 
-import com.google.common.base.Function;
 import com.google.common.base.Throwables;
 
 /**
@@ -68,8 +68,9 @@ public class TransformException<T,IE extends Exception,OE extends Exception> imp
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
+	@Override
 	public T next() throws OE, NoSuchElementException {
 		try {
             return mIter.next();
@@ -80,8 +81,9 @@ public class TransformException<T,IE extends Exception,OE extends Exception> imp
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean hasNext() throws OE {
 		try {
             return mIter.hasNext();
@@ -92,8 +94,9 @@ public class TransformException<T,IE extends Exception,OE extends Exception> imp
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void close() throws OE {
 		try {
             mIter.close();

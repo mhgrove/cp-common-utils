@@ -15,9 +15,8 @@
 
 package com.complexible.common.iterations;
 
-import com.google.common.base.Function;
-
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 
 /**
  * Implementation of an Iteration which will apply a function to transform the results of an inner iterator to a different type.
@@ -29,7 +28,7 @@ import java.util.NoSuchElementException;
  * @author  Fernando Hernandez
  *
  * @since   2.0
- * @version 4.0
+ * @version 5.0
  */
 public final class TransformIteration<I,O,E extends Exception> implements Iteration<O, E> {
 
@@ -56,6 +55,7 @@ public final class TransformIteration<I,O,E extends Exception> implements Iterat
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public O next() throws E, NoSuchElementException {
 		return mFunc.apply(mIter.next());
 	}
@@ -63,6 +63,7 @@ public final class TransformIteration<I,O,E extends Exception> implements Iterat
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean hasNext() throws E {
 		return mIter.hasNext();
 	}
@@ -70,6 +71,7 @@ public final class TransformIteration<I,O,E extends Exception> implements Iterat
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void close() throws E {
 		mIter.close();
 	}
@@ -84,6 +86,6 @@ public final class TransformIteration<I,O,E extends Exception> implements Iterat
 	 * @return a new TransformIteration
 	 */
 	public static <I,O, E extends Exception> TransformIteration<I, O, E> create(final Function<I,O> theFunc, final Iteration<I,E> theIter) {
-		return new TransformIteration<I,O,E>(theFunc, theIter);
+		return new TransformIteration<>(theFunc, theIter);
 	}
 }
