@@ -22,10 +22,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.InputStream;
 import java.io.IOException;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import com.complexible.common.base.Copyable;
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Maps;
 
 /**
@@ -51,9 +51,9 @@ import com.google.common.collect.Maps;
  * key_a => a, key_b => b, key_c => c.  Lastly, getting the property "some_other_property" yields the value "some_value/foo" via
  * variable substitution.</p>
  *
- * @author Michael Grove
- * @since 1.0
- * @version 1.1
+ * @author  Michael Grove
+ * @since   1.0
+ * @version 5.0
  */
 public class EnhancedProperties extends Properties implements Copyable<EnhancedProperties> {
 
@@ -320,7 +320,7 @@ public class EnhancedProperties extends Properties implements Copyable<EnhancedP
 		final EnhancedProperties aProps = new EnhancedProperties();
 
 		for (Object aKey : keySet()) {
-			if (theKeySelector.apply(aKey.toString())) {
+			if (theKeySelector.test(aKey.toString())) {
 				aProps.put(aKey, get(aKey));
 			}
 		}
