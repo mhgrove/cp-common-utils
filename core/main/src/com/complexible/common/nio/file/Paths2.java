@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +18,9 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.stream.Stream;
 
+import com.google.common.collect.Maps;
 import com.google.common.io.ByteSource;
+import com.google.common.io.Resources;
 
 /**
  * <p>Utility class for working with {@link Path}</p>
@@ -33,6 +38,23 @@ public final class Paths2 {
 	public static String toString(final Path thePath, final Charset theCharset) throws IOException {
 		return new String(Files.readAllBytes(thePath), theCharset);
 	}
+
+	/**
+	 * Returns a {@link Path} object for the given context using a new {@link FileSystem jar-based FileSystem}.
+	 * The new {@link FileSystem} probably needs to be closed after using the {@link Path} object.
+	 */
+	public static Path withJarFileSystem(final String thePath, final Class<?> theClass) {
+		try {
+			String aUri = Resources.getResource(theClass, thePath).toURI().toString();
+			final String[] aSplit = aUri.split("!");
+			FileSystem aFs = FileSystems.newFileSystem(URI.create(aSplit[0]), Maps.newHashMap());
+			return aFs.getPath(aSplit[1]);
+		}
+		catch (IOException | URISyntaxException e1) {
+			throw new RuntimeException(e1);
+		}
+	}
+
 	public static Path classPath(final String thePath) {
 		try {
 			return Paths.get(Paths2.class.getResource(thePath).toURI());
