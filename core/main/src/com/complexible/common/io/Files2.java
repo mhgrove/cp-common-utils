@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileFilter;
 
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -44,12 +45,21 @@ import java.util.zip.ZipOutputStream;
  *
  * @author  Michael Grove
  * @since   1.0
- * @version 2.2
+ * @version 5.0
  */
 public final class Files2 {
 
 	private Files2() {
 		throw new AssertionError();
+	}
+
+	public static File classPath(final String thePath) {
+		try {
+			return new File(Files2.class.getResource(thePath).toURI());
+		}
+		catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static String path(final String theSegment, final String... theSegments) {

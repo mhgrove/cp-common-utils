@@ -23,8 +23,8 @@ import com.google.common.base.Optional;
  * <p>A series of basic Reflect based utility functions.  In most cases, exceptions thrown by the Reflect API methods
  * are caught and ignored choosing to return an {@link com.google.common.base.Optional} with no value instead.</p>
  *
- * @author Michael Grove
- * @since 2.2.1
+ * @author  Michael Grove
+ * @since   2.2.1
  * @version 2.2.1
  */
 public final class Reflect {
@@ -33,6 +33,7 @@ public final class Reflect {
 	 * No instances
 	 */
 	private Reflect() {
+		throw new AssertionError();
 	}
 
 	/**
