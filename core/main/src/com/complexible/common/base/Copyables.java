@@ -19,13 +19,15 @@ import java.util.Collection;
 import java.util.Arrays;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 
 /**
  * <p>Utility methods for copying collections of {@link Copyable} objects.</p>
  *
  * @author  Michael Grove
  * @since   2.1
- * @version 2.3.1
+ * @version 5.0.1
  */
 public final class Copyables {
 
@@ -33,6 +35,39 @@ public final class Copyables {
 	 * Private constructor
 	 */
 	private Copyables() {
+		throw new AssertionError();
+	}
+
+	/**
+	 * Perform a copy of an ImmutableList; while the list itself cannot change, the elements it contains *may*
+	 * be mutable, so this will perform a {@link #copy(Object)} of each element and return a new ImmutableList
+	 *
+	 * @param theList   the list to copy
+	 * @return          a new list with the elements copied
+	 */
+	public static <T> ImmutableList<T> copy(final ImmutableList<T> theList) {
+		ImmutableList.Builder<T> aBuilder = ImmutableList.builder();
+		for (T aElem : theList) {
+			aBuilder.add(copy(aElem));
+		}
+
+		return aBuilder.build();
+	}
+
+	/**
+	 * Perform a copy of an {@link ImmutableSet}. The set is immutable, but the elements it contains may not be,
+	 * so this will make a {@link #copy(Object)} of each element and add them to a new set.
+	 *
+	 * @param theSet    the set to copy
+	 * @return          a copy of the set and its elementse
+	 */
+	public static <T> ImmutableSet<T> copy(final ImmutableSet<T> theSet) {
+		ImmutableSet.Builder<T> aBuilder = ImmutableSet.builder();
+		for (T aElem : theSet) {
+			aBuilder.add(copy(aElem));
+		}
+
+		return aBuilder.build();
 	}
 
 	/**
@@ -55,10 +90,7 @@ public final class Copyables {
 
 			return aCopy;
 		}
-		catch (InstantiationException e) {
-			throw new IllegalArgumentException(e);
-		}
-		catch (IllegalAccessException e) {
+		catch (InstantiationException | IllegalAccessException e) {
 			throw new IllegalArgumentException(e);
 		}
 	}
