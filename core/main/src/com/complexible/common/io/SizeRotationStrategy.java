@@ -44,7 +44,7 @@ public final class SizeRotationStrategy implements FileRotationStrategy {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean needsRotation(final File theFile) {

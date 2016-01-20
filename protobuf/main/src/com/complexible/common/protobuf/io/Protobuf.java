@@ -211,7 +211,7 @@ public final class Protobuf {
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public void write(final MessageLite theMessage) throws IOException {
@@ -235,7 +235,7 @@ public final class Protobuf {
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         @SuppressWarnings("unchecked")

@@ -27,7 +27,7 @@ import java.io.Serializable;
 public class ToStringComparator<T> implements Comparator<T>, Serializable {
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
     public int compare(T one, T two) {
         return one.toString().toLowerCase().compareTo(two.toString().toLowerCase());

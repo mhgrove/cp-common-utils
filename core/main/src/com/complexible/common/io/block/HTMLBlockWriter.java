@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2012 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.complexible.common.io.block;
 import java.io.Writer;
 
 /**
- * Concrete implementation of {@link BlockWriter} for HTML output. Due to differences in font sizes the strategy of
+ * <p>Concrete implementation of {@link BlockWriter} for HTML output. Due to differences in font sizes the strategy of
  * printing spaces as in {@link TextBlockWriter} do not work for HTML output. </p>
  * <p>
  * This implementation uses a rather crude strategy of tracking the actual HTML printed in one line and prints the exact
@@ -31,11 +31,11 @@ import java.io.Writer;
  * explanation might highlight the invisible parts. The solution for this is to use the
  * <code>JTextPane.setHighlighter(null)</code> call.
  * </p>
- * </p> <b>IMPORTANT:</b> This class is not intended for general HTML output and would fail miserably under certain
+ * <p> <b>IMPORTANT:</b> This class is not intended for general HTML output and would fail miserably under certain
  * conditions. Using tables and images in the output are some examples. Unfortunately, any alternative strategy for
  * alignment (e.g. using nested HTML tables) has even more disadvantages. Some of the hackiness in this implementation
  * can be overcome by generating HTML through DOM elements.
- * <p>
+ * </p>
  * 
  * @author Evren Sirin
  * @deprecated This class is not robust at all and should not be used for the reasons explained above.

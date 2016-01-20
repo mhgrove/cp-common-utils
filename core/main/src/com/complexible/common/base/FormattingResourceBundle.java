@@ -76,7 +76,7 @@ public final class FormattingResourceBundle extends ResourceBundle {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Object handleGetObject(final String key) {
@@ -84,7 +84,7 @@ public final class FormattingResourceBundle extends ResourceBundle {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Enumeration<String> getKeys() {

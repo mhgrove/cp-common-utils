@@ -38,7 +38,7 @@ public class PeekingInputStream extends InputStream {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int read() throws IOException {

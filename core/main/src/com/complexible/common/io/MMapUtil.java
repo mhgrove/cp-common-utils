@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * <p>Utility class which provides a method for attempting to directly unmap a {@link MappedByteBuffer} rather than
- * waiting for the JVM & OS eventually unmap.</p>
+ * waiting for the JVM &amp; OS eventually unmap.</p>
  *
  * @author  Evren Sirin
  * @author  Michael Grove
@@ -67,9 +67,10 @@ public final class MMapUtil {
     }
 
     /**
-     * Try to unmap the given {@link java.nio.MappedByteBuffer}. This method enables the workaround for unmapping the buffers from
-     * address space after closing {@link IndexInput}, that is mentioned in the bug report. This hack may fail on
-     * non-Sun JVMs. It forcefully unmaps the buffer on close by using an undocumented internal cleanup functionality.
+     * Try to unmap the given {@link java.nio.MappedByteBuffer}. This method enables the workaround for unmapping the
+     * buffers from address space after closing {@link java.nio.MappedByteBuffer}, that is mentioned in the bug report.
+     * This hack may fail on non-Sun JVMs. It forcefully unmaps the buffer on close by using an undocumented internal
+     * cleanup functionality.
      *
      * @return <code>true</code> if unmap was successful, <code>false</code> if unmap is not supported by the JVM or if
      * there was an exception while trying to unmap.

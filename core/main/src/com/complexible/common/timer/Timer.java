@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 
 package com.complexible.common.timer;
 
-import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -190,8 +189,6 @@ public class Timer {
 	/**
 	 * Check if the elapsed time is greater than the timeout limit and throw a TimeoutException
 	 * if that is the case. Check the parent timer if there is one.
-	 *
-	 * @throws TimeoutException 
 	 */
 	public void check() {
 		

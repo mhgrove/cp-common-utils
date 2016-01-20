@@ -115,7 +115,7 @@ public final class ChangeList<E extends Enum & ChangeType, T> implements Iterabl
     }
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<Change<E, T>> iterator() {

@@ -34,7 +34,7 @@ public abstract class AbstractPeekingIterator<T> implements PeekingIterator<T> {
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
 	public T next() {
@@ -44,7 +44,7 @@ public abstract class AbstractPeekingIterator<T> implements PeekingIterator<T> {
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
 	public T peek() {
@@ -58,7 +58,7 @@ public abstract class AbstractPeekingIterator<T> implements PeekingIterator<T> {
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
 	public void remove() {
@@ -66,7 +66,7 @@ public abstract class AbstractPeekingIterator<T> implements PeekingIterator<T> {
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
 	public boolean hasNext() {

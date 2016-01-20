@@ -35,7 +35,7 @@ public final class ListComparator<T extends Comparable> implements Comparator<Li
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int compare(final List<T> o1, final List<T> o2) {

@@ -35,7 +35,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     protected DataInput delegate() {
@@ -43,7 +43,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean readBoolean() throws IOException {
@@ -51,7 +51,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public byte readByte() throws IOException {
@@ -59,7 +59,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public char readChar() throws IOException {
@@ -67,7 +67,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double readDouble() throws IOException {
@@ -75,7 +75,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float readFloat() throws IOException {
@@ -83,7 +83,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void readFully(final byte[] theBytes) throws IOException {
@@ -91,7 +91,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void readFully(final byte[] theBytes, final int i, final int i2) throws IOException {
@@ -99,7 +99,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int readInt() throws IOException {
@@ -107,7 +107,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String readLine() throws IOException {
@@ -115,7 +115,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public long readLong() throws IOException {
@@ -123,7 +123,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public short readShort() throws IOException {
@@ -131,7 +131,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int readUnsignedByte() throws IOException {
@@ -139,7 +139,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int readUnsignedShort() throws IOException {
@@ -147,7 +147,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String readUTF() throws IOException {
@@ -155,7 +155,7 @@ public class ForwardingDataInput extends ForwardingObject implements DataInput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int skipBytes(final int i) throws IOException {

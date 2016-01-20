@@ -46,7 +46,7 @@ public final class Pair<K1, K2> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -67,7 +67,7 @@ public final class Pair<K1, K2> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
@@ -75,7 +75,7 @@ public final class Pair<K1, K2> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

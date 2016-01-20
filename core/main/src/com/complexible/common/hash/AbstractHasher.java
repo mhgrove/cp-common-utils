@@ -31,7 +31,7 @@ import com.google.common.hash.Hasher;
  */
 public abstract class AbstractHasher implements Hasher {
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 
 	@Override
@@ -39,7 +39,7 @@ public abstract class AbstractHasher implements Hasher {
 		return putByte(b ? (byte) 1 : (byte) 0);
 	}
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 
 	@Override
@@ -47,7 +47,7 @@ public abstract class AbstractHasher implements Hasher {
 		return putLong(Double.doubleToRawLongBits(d));
 	}
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 
 	@Override
@@ -56,7 +56,7 @@ public abstract class AbstractHasher implements Hasher {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Hasher putBytes(final byte[] theBytes) {
@@ -64,7 +64,7 @@ public abstract class AbstractHasher implements Hasher {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Hasher putString(final CharSequence theCharSequence, final Charset theCharset) {
@@ -72,7 +72,7 @@ public abstract class AbstractHasher implements Hasher {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Hasher putUnencodedChars(final CharSequence theCharSequence) {
@@ -80,7 +80,7 @@ public abstract class AbstractHasher implements Hasher {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public <T> Hasher putObject(final T theT, final Funnel<? super T> theFunnel) {

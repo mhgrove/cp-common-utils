@@ -51,7 +51,7 @@ public final class ArrayIterable<T> implements Iterable<T> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public Iterator<T> iterator() {
 		return new ArrayIterator<T>(mArray, mStart, mEnd);
