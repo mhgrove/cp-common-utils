@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,8 @@
 
 package com.complexible.common.base;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
+import java.util.Objects;
 
 /**
  * <p>Class which represents a logical change to a resource.  It has an associated {@link ChangeType type}
@@ -91,7 +92,7 @@ public final class Change<E extends Enum & ChangeType, T> {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object theObj) {
@@ -105,7 +106,7 @@ public final class Change<E extends Enum & ChangeType, T> {
             Change aChange = (Change) theObj;
 
             return mChangeType == aChange.getChangeType()
-                   && Objects.equal(mChange, aChange.getChange());
+                   && Objects.equals(mChange, aChange.getChange());
         }
         else {
             return false;
@@ -113,21 +114,21 @@ public final class Change<E extends Enum & ChangeType, T> {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(mChange, mChangeType);
+        return Objects.hash(mChange, mChangeType);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return Objects.toStringHelper("Change")
-            .add("type", mChangeType)
-            .add("data", mChange)
-            .toString();
+        return MoreObjects.toStringHelper("Change")
+                          .add("type", mChangeType)
+                          .add("data", mChange)
+                          .toString();
     }
 }

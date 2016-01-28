@@ -41,7 +41,7 @@ public class DataInputToInputStreamAdapter extends InputStream {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int read() throws IOException {

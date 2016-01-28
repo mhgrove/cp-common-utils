@@ -37,7 +37,7 @@ public final class WritableByteChannelDataOutputAdapter extends ForwardingDataOu
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isOpen() {
@@ -45,7 +45,7 @@ public final class WritableByteChannelDataOutputAdapter extends ForwardingDataOu
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void close() throws IOException {
@@ -53,7 +53,7 @@ public final class WritableByteChannelDataOutputAdapter extends ForwardingDataOu
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int write(final ByteBuffer theByteBuffer) throws IOException {

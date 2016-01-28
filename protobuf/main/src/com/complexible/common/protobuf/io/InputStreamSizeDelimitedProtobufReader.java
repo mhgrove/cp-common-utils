@@ -53,7 +53,7 @@ public final class InputStreamSizeDelimitedProtobufReader<T extends MessageLite>
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	@SuppressWarnings("unchecked")

@@ -49,7 +49,7 @@ public final class InputStreamRawProtobufReader<T extends MessageLite> implement
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	@SuppressWarnings("unchecked")

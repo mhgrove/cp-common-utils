@@ -59,21 +59,21 @@ public final class ArrayIterator<T> extends UnmodifiableIterator<T> implements P
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean hasNext() {
 		return mPos < mEnd;
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public T next() {
 		return mArray[mPos++];
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
     public T peek() {

@@ -72,11 +72,14 @@ subprojects {
 		source sourceSets.main.allJava
 		classpath = configurations.compile
 		destinationDir = file("${rootProject.buildDir}/javadocs/${project.name}")
+		options.addBooleanOption("nodeprecatedlist", false)
+		options.addBooleanOption("nodeprecated", false)
+		options.addStringOption('Xdoclint:none', '-quiet')
 		configure(options) {
 			windowTitle "${project.archivesBaseName}-${project.version} API"
 			docTitle "${project.archivesBaseName}-${project.version}"
-			bottom "Copyright &#169; 2010-2015 Complexible. All Rights Reserved."
-			links "http://docs.oracle.com/javase/6/docs/api/",
+			bottom "Copyright &#169; 2010-2016 Complexible. All Rights Reserved."
+			links "http://docs.oracle.com/javase/8/docs/api/",
 				  "http://docs.guava-libraries.googlecode.com/git-history/v18.0/javadoc/"
 		}
 	}

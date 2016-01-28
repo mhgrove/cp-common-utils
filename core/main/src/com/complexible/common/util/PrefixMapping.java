@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ public class PrefixMapping {
 	}
 
 	/**
-	 * Add a new prefix/namespace mapping.  This will not overrwrite existing mappings for the given prefix & namespace.  If you wish to overwrite an existing mapping,
+	 * Add a new prefix/namespace mapping.  This will not overrwrite existing mappings for the given prefix and namespace.  If you wish to overwrite an existing mapping,
 	 * use {@link #setMapping}
 	 * @param prefix the prefix
 	 * @param uri the namespace URI for the prefix
@@ -252,7 +252,7 @@ public class PrefixMapping {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

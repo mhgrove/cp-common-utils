@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2012 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import java.io.Writer;
  * Concrete implementation of {@link BlockWriter} for purely textual output like console output. It can
  * probably be used for any kind of output where monospaced font is used.
  * </p>
+ * <p>
  * This implementation simply counts the number of characters printed on one line and pads the next line with the same
  * number of spaces.
  * </p>

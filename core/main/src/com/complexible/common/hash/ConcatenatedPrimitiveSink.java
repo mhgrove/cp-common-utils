@@ -55,7 +55,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<T> iterator() {
@@ -63,7 +63,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putBoolean(final boolean theBool) {
@@ -74,7 +74,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putByte(final byte theByte) {
@@ -85,7 +85,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putBytes(final byte[] theBytes) {
@@ -93,7 +93,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putBytes(final byte[] theBytes, final int theOffset, final int theLength) {
@@ -105,7 +105,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putShort(final short theShort) {
@@ -116,7 +116,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putInt(final int theInt) {
@@ -127,7 +127,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putLong(final long theLong) {
@@ -138,7 +138,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putFloat(final float theFloat) {
@@ -149,7 +149,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putDouble(final double theDouble) {
@@ -160,7 +160,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putChar(final char theChar) {
@@ -171,7 +171,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PrimitiveSink putUnencodedChars(final CharSequence theCharSequence) {
@@ -179,7 +179,7 @@ public final class ConcatenatedPrimitiveSink<T extends PrimitiveSink> implements
     }
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putString(final CharSequence theCharSequence, final Charset theCharset) {

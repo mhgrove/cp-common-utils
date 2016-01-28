@@ -46,7 +46,7 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Iterator<Option<Object>> iterator() {
@@ -202,7 +202,7 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(final Object o) {
@@ -219,7 +219,7 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
@@ -229,7 +229,7 @@ public class Options implements Iterable<Option<Object>>, Copyable<Options> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
     public String toString() {

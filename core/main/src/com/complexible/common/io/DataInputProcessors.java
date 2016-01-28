@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import com.google.common.base.Preconditions;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * <p>Utility class which contains readers for the standard primitives & serializable types.</p>
+ * <p>Utility class which contains readers for the standard primitives &amp; serializable types.</p>
  *
  * @author  Michael Grove
  * @since   1.0
@@ -117,7 +117,7 @@ public final class DataInputProcessors {
 	    }
 
 	    /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         @SuppressWarnings("unchecked")

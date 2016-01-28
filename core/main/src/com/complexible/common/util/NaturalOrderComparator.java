@@ -33,7 +33,7 @@ public final class NaturalOrderComparator<T extends Comparable<T>> implements Co
     }
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int compare(final T o1, final T o2) {
