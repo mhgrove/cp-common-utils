@@ -35,7 +35,7 @@ public final class OutputStreamProtobufWriter implements ProtobufWriter {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void write(final MessageLite theMessage) throws IOException {

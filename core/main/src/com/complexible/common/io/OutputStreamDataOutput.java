@@ -38,7 +38,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void write(final byte[] theBytes) throws IOException {
@@ -46,7 +46,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void write(final byte[] theBytes, final int theOffset, final int theLimit) throws IOException {
@@ -54,7 +54,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void write(final int theInt) throws IOException {
@@ -62,7 +62,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeBoolean(final boolean theBool) throws IOException {
@@ -70,7 +70,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeByte(final int theByte) throws IOException {
@@ -78,7 +78,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeBytes(final String theString) throws IOException {
@@ -86,7 +86,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeChar(final int theChar) throws IOException {
@@ -94,7 +94,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeChars(final String theString) throws IOException {
@@ -102,7 +102,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeDouble(final double theDouble) throws IOException {
@@ -110,7 +110,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeFloat(final float theFloat) throws IOException {
@@ -118,7 +118,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeInt(final int theInt) throws IOException {
@@ -126,7 +126,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeLong(final long theLong) throws IOException {
@@ -134,7 +134,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeShort(final int theShort) throws IOException {
@@ -142,7 +142,7 @@ public class OutputStreamDataOutput extends OutputStream implements DataOutput {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void writeUTF(final String theString) throws IOException {

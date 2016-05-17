@@ -31,7 +31,7 @@ import com.google.common.hash.PrimitiveSink;
 public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putByte(final byte b) {
@@ -39,7 +39,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putBytes(final byte[] theBytes) {
@@ -47,7 +47,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putBytes(final byte[] theBytes, final int theStart, final int theLength) {
@@ -55,7 +55,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putShort(final short i) {
@@ -63,7 +63,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putInt(final int i) {
@@ -71,7 +71,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putLong(final long theLong) {
@@ -79,7 +79,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putFloat(final float v) {
@@ -87,7 +87,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putDouble(final double v) {
@@ -95,7 +95,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putBoolean(final boolean b) {
@@ -103,7 +103,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putChar(final char c) {
@@ -111,7 +111,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putUnencodedChars(final CharSequence theCharSequence) {
@@ -119,7 +119,7 @@ public abstract class AbstractPrimitiveSink implements PrimitiveSink {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PrimitiveSink putString(final CharSequence theCharSequence, final Charset theCharset) {

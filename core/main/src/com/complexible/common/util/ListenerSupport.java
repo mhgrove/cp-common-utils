@@ -63,7 +63,7 @@ public class ListenerSupport<T extends EventListener> implements Iterable<T> {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public Iterator<T> iterator() {
         return getListeners().iterator();

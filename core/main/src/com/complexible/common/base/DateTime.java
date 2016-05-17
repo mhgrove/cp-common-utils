@@ -51,7 +51,7 @@ public final class DateTime {
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
     public int hashCode() {
@@ -59,7 +59,7 @@ public final class DateTime {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
     public boolean equals(Object obj) {

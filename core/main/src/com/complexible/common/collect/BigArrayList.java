@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,12 +22,14 @@ import java.util.List;
 import com.google.common.collect.UnmodifiableIterator;
 
 /**
- * Simple implementation of a list that can have more than Integer.MAX_VALUE values.
+ * <p>Simple implementation of a list that can have more than Integer.MAX_VALUE values.
  * Works as a normal {@link ArrayList} until the size gets bigger than Integer.MAX_VALUE. 
  * After that, it works as a {@link List} of {@link ArrayList}s, so {@link #get(long)} will be a little bit more expensive.
- * <p/>
+ * </p>
+ * <p>
  * For now, only {@link #add(Object)}, {@link #get(long)}, and {@link #size()} are supported.
- * 
+ * </p>
+ *
  * @author Pedro Oliveira
  *
  * @param   <T>

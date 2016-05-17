@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -203,7 +203,7 @@ public final class Files2 {
     /**
      * Rotates a file.  Moves the specified file to a new file in the same directory, the name of the
      * new file is postfixed with the current date (YYYY-mm-dd).  If this file exists, that file name
-     * is post-fixed .<num> where number is continuously incremented counter until a unique file
+     * is post-fixed {@code .<num>} where number is continuously incremented counter until a unique file
      * name is found.
      *
      * @param theFile       the file name to be rotated

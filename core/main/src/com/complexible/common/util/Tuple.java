@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,15 +68,15 @@ public class Tuple implements Iterable<Object> {
 
 	/**
 	 * Return the Tuple value at the given index.  This will return the value as whatever it's being assigned to:
-	 * <code>
+	 * {@code
 	 *   Integer aInt = aTuple.get(2);
-	 * </code>
+	 * }
 	 *
 	 * Or you can explicitly request the type:
 	 *
-	 * <code>
+	 * {@code
 	 *   return aTuple.<Boolean>get(0);
-	 * </code>
+	 * }
 	 *
 	 * This is done by default in "safe" mode.  Safe mode will catch the possible ClassCastException and return null
 	 * instead.  You can disable safe mode to get the 
@@ -111,7 +111,7 @@ public class Tuple implements Iterable<Object> {
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public Iterator<Object> iterator() {
 		return mData.iterator();

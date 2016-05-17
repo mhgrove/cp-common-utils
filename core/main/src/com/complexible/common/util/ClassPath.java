@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,11 +72,8 @@ public class ClassPath {
 	 * @return all matching classes
 	 */
 	public static Collection<Class> instantiableClasses(Class<?> theClass) {
-		return Collections2.filter(classes(theClass), new Predicate<Class>() {
-			public boolean apply(final Class theClass) {
-				return !theClass.isInterface() && !Modifier.isAbstract(theClass.getModifiers());
-			}
-		});
+		return Collections2.filter(classes(theClass),
+		                           theClass1 -> !theClass1.isInterface() && !Modifier.isAbstract(theClass1.getModifiers()));
 	}
 
 	/**
@@ -85,11 +82,7 @@ public class ClassPath {
 	 * @return all matching classes
 	 */
 	public static Collection<Class> classes(final Class<?> theInterface) {
-		return Collections2.filter(classes(), new Predicate<Class>() {
-			public boolean apply(final Class theObject) {
-				return theInterface.isAssignableFrom(theObject);
-			}
-		});
+		return Collections2.filter(classes(), theInterface::isAssignableFrom);
 	}
 
 	/**
@@ -114,7 +107,7 @@ public class ClassPath {
 	}
 
 	/**
-	 * Add Files on the local disk that the utility should look into for jars & classes in addition to just what is
+	 * Add Files on the local disk that the utility should look into for jars and classes in addition to just what is
 	 * specified on the system class path.
 	 * @param theFiles the files to add
 	 */
@@ -359,7 +352,7 @@ public class ClassPath {
 	 */
 	private static class ClassFileFilter implements FileFilter {
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		public boolean accept(final File thePathname) {
 			return thePathname.getName().toLowerCase().endsWith(".class");
@@ -371,7 +364,7 @@ public class ClassPath {
 	 */
 	private static class JarFileFilter implements FileFilter {
 		/**
-		 * @inheritDoc
+		 * {@inheritDoc}
 		 */
 		public boolean accept(final File thePathname) {
 			return thePathname.getName().toLowerCase().endsWith(".jar");

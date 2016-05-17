@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2014 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,6 +81,7 @@ public final class Memory {
 	 *
 	 * <p>
 	 * Examples:
+	 * </p>
 	 *
 	 * <pre>
 	 *         482 = 482B
@@ -90,8 +91,6 @@ public final class Memory {
 	 *    43316209 =  41M
 	 *  1987357695 = 1.9G
 	 * </pre>
-	 *
-	 * </p>
 	 */
 	public static String readable(long bytes) {
 		double result = bytes;

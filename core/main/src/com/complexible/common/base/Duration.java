@@ -45,7 +45,7 @@ public final class Duration implements Serializable {
 	}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
     public int hashCode() {
@@ -53,7 +53,7 @@ public final class Duration implements Serializable {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
 	@Override
     public boolean equals(Object obj) {

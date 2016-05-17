@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2013 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,16 +35,13 @@ public final class TimeRotationStrategy implements FileRotationStrategy {
 
     /**
      * Create a new DateRotationStrategy with the specified interval given in milliseconds.
-     *
-     * @param theTimeType
-     *            the field of the calendar that determine the rotation.
      */
     public TimeRotationStrategy(final long theMilliseconds) {
         mInterval = theMilliseconds;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean needsRotation(final File theFile) {

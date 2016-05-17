@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2011 Clark & Parsia, LLC. <http://www.clarkparsia.com>
+ * Copyright (c) 2005-2016 Clark & Parsia, LLC. <http://www.clarkparsia.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,11 @@ import com.google.common.collect.Maps;
 /**
  * <p>Extends the java.util.Properties stuff to provide typed accessors to get property values as boolean, int, etc.
  * Also provides a way to get a property value as a list, or as a map of values.  And it does variable substitution on
- * property values.<br/><br/>
+ * property values.</p>
+ * <p>
  * Given the following property file
- * <code><pre>
+ * </p>
+ * {@code
  * some_boolean_property = true
  * some_integer_property = 42
  * some_property = some_value
@@ -43,12 +45,13 @@ import com.google.common.collect.Maps;
  * key_a = a
  * key_b = b
  * key_c = c
- * </pre></code>
- * {@link #getPropertyAsBoolean(String) getPropertyAsBoolean("some_boolean_property")} yields the boolean value "true".
- * {@link #getPropertyAsInt(String) getPropertyAsInt("some_integer_property")} yields the integer 42.
- * {@link #getPropertyAsList(String) getPropertyAsList("some_list")} yields a List&lt;String&gt; with the values "one", "two", "three" and "four".
- * {@link #getPropertyAsMap(String) getPropertyAsMap("some_map")} yields a Map&lt;String, String&gt; with the key value pairs:
- * key_a => a, key_b => b, key_c => c.  Lastly, getting the property "some_other_property" yields the value "some_value/foo" via
+ * }
+ * <p>
+ * {@link #getPropertyAsBoolean(String) getPropertyAsBoolean("some_boolean_property")} yields the boolean value {@code true}.
+ * {@link #getPropertyAsInt(String) getPropertyAsInt("some_integer_property")} yields the integer {@code 42}.
+ * {@link #getPropertyAsList(String) getPropertyAsList("some_list")} yields a {@code List<String>} with the values {@code "one", "two", "three", "four"}.
+ * {@link #getPropertyAsMap(String) getPropertyAsMap("some_map")} yields a {@code Map<String, String>} with the key value pairs:
+ * {@code key_a => a, key_b => b, key_c => c}.  Lastly, getting the property "some_other_property" yields the value "some_value/foo" via
  * variable substitution.</p>
  *
  * @author  Michael Grove
@@ -122,7 +125,7 @@ public class EnhancedProperties extends Properties implements Copyable<EnhancedP
     }
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object put(Object theKey, Object theValue) {
@@ -301,7 +304,7 @@ public class EnhancedProperties extends Properties implements Copyable<EnhancedP
     }
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public EnhancedProperties copy() {

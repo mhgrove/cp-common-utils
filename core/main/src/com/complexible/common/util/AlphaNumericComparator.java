@@ -62,7 +62,7 @@ public class AlphaNumericComparator<T> implements Comparator<T> {
     }
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
     public int compare(T o1, T o2) {
         String s1 = o1.toString();
