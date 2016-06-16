@@ -1,5 +1,5 @@
 group = "com.complexible.common"
-version = "5.0.1"
+version = "5.0.2"
 archivesBaseName = "cp-common-utils"
 
 dependencies {
