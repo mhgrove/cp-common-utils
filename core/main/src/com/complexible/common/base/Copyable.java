@@ -18,11 +18,11 @@ package com.complexible.common.base;
 /**
  * <p>Interface for an object that can be copied.</p>
  *
- * @author Michael Grove
- * @since 2.0
+ * @author  Michael Grove
+ * @since   2.0
  * @version 2.0
  */
-public interface Copyable<T> {
+public interface Copyable<T extends Copyable<T>> {
 
 	/**
 	 * Create a deep copy of the object which does not share any references with the original.
