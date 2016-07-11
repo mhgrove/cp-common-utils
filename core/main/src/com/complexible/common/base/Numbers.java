@@ -80,6 +80,28 @@ public final class Numbers {
 			return String.format("%1.1fM", number / 1E6);
 	}
 
+	/**
+	 * The opposite of {@link #readable(long)}: parses a readable string and returns the corresponding number.
+	 *
+	 * @param theStr input string
+	 * @return number represented by the string
+	 */
+	public static Number fromReadable(final String theStr) {
+		final char aSuffix = theStr.charAt(theStr.length()-1);
+		final double aBase = Double.parseDouble(theStr.substring(0, theStr.length()-1));
+
+		switch (aSuffix) {
+			case 'K':
+			case 'k':
+				return valueOf((long) (aBase * K));
+			case 'm':
+			case 'M':
+				return valueOf((long) (aBase * M));
+			default:
+				throw new IllegalArgumentException("Unknown suffix");
+		}
+	}
+
 	public static String readable(double number) {
 		return String.format("%1.3f", number);
 	}
