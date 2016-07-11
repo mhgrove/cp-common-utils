@@ -1,9 +1,14 @@
+*.DS_Store
+gradle/
+gradlew
+gradlew.bat
 
 out
 build
 *.iml
 *.ipr
 *.iws
+.idea/
 
 # where gradle properties are stored
 gradle.properties
