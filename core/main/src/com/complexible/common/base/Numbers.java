@@ -15,6 +15,8 @@
 
 package com.complexible.common.base;
 
+import com.google.common.math.DoubleMath;
+
 /**
  * 
  * @author Evren Sirin
@@ -87,18 +89,31 @@ public final class Numbers {
 	 * @return number represented by the string
 	 */
 	public static Number fromReadable(final String theStr) {
-		final char aSuffix = theStr.charAt(theStr.length()-1);
-		final double aBase = Double.parseDouble(theStr.substring(0, theStr.length()-1));
+		if (theStr == null || theStr.isEmpty()) {
+			throw new IllegalArgumentException("Empty string");
+		}
+
+		char aSuffix = theStr.charAt(theStr.length()-1);
+		int aEndIndex = theStr.length() - 1;
+
+		if (Character.isDigit(aSuffix)) {
+			aEndIndex += 1;
+			aSuffix = ' ';
+		}
+
+		final double aBase = Double.parseDouble(theStr.substring(0, aEndIndex));
 
 		switch (aSuffix) {
+			case ' ':
+				return valueOf(aBase);
 			case 'K':
 			case 'k':
-				return valueOf((long) (aBase * K));
+				return valueOf(aBase * K);
 			case 'm':
 			case 'M':
-				return valueOf((long) (aBase * M));
+				return valueOf(aBase * M);
 			default:
-				throw new IllegalArgumentException("Unknown suffix");
+				throw new IllegalArgumentException("Unknown suffix: " + aSuffix);
 		}
 	}
 
@@ -112,5 +127,9 @@ public final class Numbers {
 	 */
 	public static Number valueOf(long value) {
 		return (value < Integer.MAX_VALUE) ? (Number) Integer.valueOf((int) value) : (Number) Long.valueOf(value);
+	}
+
+	public static Number valueOf(double value) {
+		return DoubleMath.isMathematicalInteger(value) ? valueOf((long) value) : value;
 	}
 }

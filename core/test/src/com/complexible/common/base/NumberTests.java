@@ -17,6 +17,8 @@ public class NumberTests {
 		assertEquals(2000, Numbers.fromReadable("2K"));
 		assertEquals(2900, Numbers.fromReadable("2.9K"));
 		assertEquals(3100000, Numbers.fromReadable("3.1M"));
+		assertEquals(13, Numbers.fromReadable("13"));
+		assertEquals(13.56, Numbers.fromReadable("13.56"));
 	}
 
 	@Test(expected=IllegalArgumentException.class)
